@@ -2,7 +2,7 @@
   "name": "autodoc-test",
   "version": "1.0.0",
   "description": "Sass documentation and code snippet generator with Markdown parsing",
-  "main": "index.js",
+  "main": "js/commentParser.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mocon/autodoc-test#readme",
   "devDependencies": {
-    "comment-parser": "^0.4.0"
+    "comment-parser": "^0.4.0",
+    "nodemon": "^1.10.0"
   }
 }
