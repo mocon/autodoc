@@ -1,11 +1,19 @@
 /**
- * Singleline or multiline description text. Line breaks are preserved.
+ * This is a sample footer component. It is used at the bottom of the page.
  *
- * @some-tag {Type} name Singleline or multiline description text
- * @some-tag {Type} name.subname Singleline or multiline description text
- * @some-tag {Type} name.subname.subsubname Singleline or
- * multiline description text
- * @another-tag
+ * @name {String} .test__footer
+ *
+ * @section {String} Atoms
+ *
+ * @example {Code}
+ *
+ * ```html
+ * <p class="example">
+ * \t<span class="example__span">Example</span>
+ * </p>
+ * ```
+ *
+ * @author {String} author Myles O'Connor
  */
 
 // Footer styles

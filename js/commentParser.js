@@ -8,6 +8,13 @@ var parse = require('comment-parser'),
 
 console.log(`${date}, ${time} - Parsing Scss comments`);
 
-test = parse(content);
+test = JSON.stringify(parse(content));
 
-console.log(test);
+// Write test to a file
+fs.writeFile(__dirname + '/commentJson/test.json', test, function(err) {
+    if (err) {
+        return console.log(err);
+    } else {
+        return console.log('Successfully wrote file.');
+    }
+});
