@@ -48,8 +48,16 @@ function _extractComments(arr) {
 
     commentTags += ']';
 
+    // Write commentTags to a JSON file, to be used as React state for './docs/index.html' page
+    fs.writeFile(__dirname + '/docs/scssComments.json', commentTags, function(err) {
+        if (err) {
+            return console.log(err);
+        } else {
+            return console.log('Successfully wrote docs JSON file.');
+        }
+    });
+
     _extractComponentMarkup(JSON.parse(commentTags));
-    _generateDocumentation(JSON.parse(commentTags));
 }
 
 // Extract markup for each component, to assemble code snippets
@@ -61,12 +69,8 @@ function _extractComponentMarkup(json) {
                     codeSampleFormatted = codeSample.replace(/---]/g, tabSpaces);
 
                 // TODO: Assemble code snippets
-                console.log(codeSampleFormatted);
+                // console.log(codeSampleFormatted);
             }
         });
     });
-}
-
-function _generateDocumentation(json) {
-    // TODO: Render documentation from comment JSON
 }
