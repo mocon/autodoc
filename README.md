@@ -1,15 +1,23 @@
 # Autodoc Test
 
-An experiment to parse comments from Scss source code.
+An experiment to parse comments from Scss source code, and use the output to automatically generate documentation and autocomplete code snippets for Sublime Text 3, Vim, and PhpStorm.
 
 ## Installation
 
-```
-npm install
+```shell
+$ npm install
 ```
 
-## Development
+## Generate documentation and code snippets
 
+```shell
+$ node commentParser.js
 ```
-node commentParser.js
-```
+
+## To do
+
+- [x] Parse .scss comments and output results as JSON
+- [ ] Set up React in `./docs/index.html`
+- [ ] Render docs UI using `./docs/scssComments.json` as state
+- [ ] Connect `./commentParser.js` to code snippet generator
+- [ ] Output code snippets to `./code_snippets`
