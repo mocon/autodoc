@@ -59,7 +59,10 @@ function _extractComponentMarkup(jsonString) {
     jsonObject.forEach(function(component) {
         component.tags.forEach(function(tag) {
             if (tag.type === 'Code') {
-                console.log(tag.description);
+                var codeSample = tag.description,
+                    codeSampleFormatted = codeSample.replace(/---]/g, '    ');
+
+                console.log(codeSampleFormatted);
             }
         });
     });

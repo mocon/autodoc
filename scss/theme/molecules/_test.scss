@@ -7,13 +7,11 @@
  *
  * @example {Code}
  *
- * ```html
  * <div class="test__molecule">
- * \t<span class="example__span">
- * \t\t<span class="example__span">Example</span>
- * \t</span>
+ * ---]<span class="example__span">
+ * ---]---]<span class="example__span">Example</span>
+ * ---]</span>
  * </div>
- * ```
  *
  * @author {String} author Myles O'Connor
  */
