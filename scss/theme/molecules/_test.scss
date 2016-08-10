@@ -8,9 +8,11 @@
  * @example {Code}
  *
  * ```html
- * <p class="example">
- * \t<span class="example__span">Example</span>
- * </p>
+ * <div class="test__molecule">
+ * \t<span class="example__span">
+ * \t\t<span class="example__span">Example</span>
+ * \t</span>
+ * </div>
  * ```
  *
  * @author {String} author Myles O'Connor

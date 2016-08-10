@@ -4,17 +4,21 @@ var parse = require('comment-parser'),
     path = require('path'),
     date = new Date().toDateString(),
     time = new Date().toLocaleTimeString(),
-    commentTags = '';
+    commentTags = '',
+    // Configuration
+    config = {
+        scssDirectory: '/scss/theme'
+    };
 
 // Clear Terminal window before showing output
 function _clearTerminalOutput() {
-    console.reset = (function () {
+    console.reset = (function() {
         return process.stdout.write('\033c');
     })();
 }
 
 // Loop through all .scss files in directory, ignoring .DS_Store files
-recursive(__dirname + '/scss/theme', ['.DS_Store'], function (err, files) {
+recursive(__dirname + config.scssDirectory, ['.DS_Store'], function(err, files) {
     _clearTerminalOutput();
     console.log(`${date}, ${time} - Parsing Scss comments`);
 
@@ -53,7 +57,11 @@ function _extractComponentMarkup(jsonString) {
     var jsonObject = JSON.parse(jsonString);
 
     jsonObject.forEach(function(component) {
-        console.log(component.description);
+        component.tags.forEach(function(tag) {
+            if (tag.type === 'Code') {
+                console.log(tag.description);
+            }
+        });
     });
 
     // TODO: Assemble code snippets

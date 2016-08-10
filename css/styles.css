@@ -8,9 +8,9 @@
  * @example {Code}
  *
  * ```html
- * <p class="example">
- *     <span class="example__span">Example</span>
- * </p>
+ * <header class="test__header">
+ * \t<span class="example__span">Example</span>
+ * </header>
  * ```
  *
  * @author {String} author Myles O'Connor
@@ -31,9 +31,9 @@
  * @example {Code}
  *
  * ```html
- * <p class="example">
+ * <section class="test__main">
  * \t<span class="example__span">Example</span>
- * </p>
+ * </section>
  * ```
  *
  * @author {String} author Myles O'Connor
@@ -53,9 +53,9 @@
  * @example {Code}
  *
  * ```html
- * <p class="example">
+ * <footer class="test__footer">
  * \t<span class="example__span">Example</span>
- * </p>
+ * </footer>
  * ```
  *
  * @author {String} author Myles O'Connor
@@ -76,9 +76,11 @@
  * @example {Code}
  *
  * ```html
- * <p class="example">
- * \t<span class="example__span">Example</span>
- * </p>
+ * <div class="test__molecule">
+ * \t<span class="example__span">
+ * \t\t<span class="example__span">Example</span>
+ * \t</span>
+ * </div>
  * ```
  *
  * @author {String} author Myles O'Connor
