@@ -1,6 +1,9 @@
 # Autodoc Test
 
-An experiment to parse comments from Scss source code, and use the output to automatically generate documentation and autocomplete code snippets for Sublime Text 3, Vim, and PhpStorm.
+An experiment to parse comments from Scss source code, and use the output to automatically generate:
+
+* Documentation with syntax-highlighted code samples
+* Autocomplete code snippets for Sublime Text 3, Vim, and PhpStorm
 
 ## Installation
 
