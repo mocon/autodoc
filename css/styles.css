@@ -65,3 +65,28 @@
   padding: 10px;
   background-color: orange;
   color: white; }
+
+/**
+ * This is a sample molecule. It is used at the bottom of the page.
+ *
+ * @name {String} .test__molecule
+ *
+ * @section {String} Molecules
+ *
+ * @example {Code}
+ *
+ * ```html
+ * <p class="example">
+ * \t<span class="example__span">Example</span>
+ * </p>
+ * ```
+ *
+ * @author {String} author Myles O'Connor
+ */
+.test__molecule {
+  margin: 30px 0;
+  padding: 10px;
+  background-color: orange;
+  color: white; }
+
+/*# sourceMappingURL=styles.css.map */

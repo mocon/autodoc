@@ -3,6 +3,8 @@ $primary: red;
 $secondary: orange;
 
 // Imports
-@import './theme/_header';
-@import './theme/_main';
-@import './theme/_footer';
+@import './theme/atoms/_header';
+@import './theme/atoms/_main';
+@import './theme/atoms/_footer';
+
+@import './theme/molecules/_test';

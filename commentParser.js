@@ -9,7 +9,7 @@ var parse = require('comment-parser'),
 console.log(`${date}, ${time} - Parsing Scss comments`);
 
 // Loop through all .scss files in directory
-recursive(__dirname + '/scss/theme', function (err, files) {
+recursive(__dirname + '/scss/theme', ['.DS_Store'], function (err, files) {
     extractComments(files); // Files is an array of filenames
 });
 
