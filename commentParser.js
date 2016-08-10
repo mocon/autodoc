@@ -6,15 +6,23 @@ var parse = require('comment-parser'),
     time = new Date().toLocaleTimeString(),
     commentTags = '';
 
-console.log(`${date}, ${time} - Parsing Scss comments`);
+// Clear Terminal window before showing output
+function _clearTerminalOutput() {
+    console.reset = (function () {
+        return process.stdout.write('\033c');
+    })();
+}
 
-// Loop through all .scss files in directory
+// Loop through all .scss files in directory, ignoring .DS_Store files
 recursive(__dirname + '/scss/theme', ['.DS_Store'], function (err, files) {
-    extractComments(files); // Files is an array of filenames
+    _clearTerminalOutput();
+    console.log(`${date}, ${time} - Parsing Scss comments`);
+
+    _extractComments(files); // Files is an array of filenames
 });
 
 // Extract comments from each .scss file
-function extractComments(arr) {
+function _extractComments(arr) {
     commentTags += '[';
 
     arr.map(function(file, index) {
@@ -28,12 +36,27 @@ function extractComments(arr) {
 
     commentTags += ']';
 
-    // Write commentTags to a file
-    fs.writeFile(__dirname + '/js/commentJson/comments.json', commentTags, function(err) {
-        if (err) {
-            return console.log(err);
-        } else {
-            return console.log('Successfully wrote file.');
-        }
-    });
+    // Write commentTags to a file (comment this out if using nodemon)
+    // fs.writeFile(__dirname + '/js/commentJson/comments.json', commentTags, function(err) {
+    //     if (err) {
+    //         return console.log(err);
+    //     } else {
+    //         return console.log('Successfully wrote file.');
+    //     }
+    // });
+
+    _extractComponentMarkup(commentTags);
 }
+
+// Extract markup for each component, to assemble code snippets
+function _extractComponentMarkup(jsonString) {
+    var jsonObject = JSON.parse(jsonString);
+
+    jsonObject.forEach(function(component) {
+        console.log(component.description);
+    });
+
+    // TODO: Assemble code snippets
+}
+
+// TODO: Render documentation from comment JSON

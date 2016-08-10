@@ -1,5 +1,5 @@
 /**
- * This is a sample header component. This component is meant to be placed at the top of the page.
+ * This is a sample header atom. This component is meant to be placed at the top of the page.
  *
  * @name {String} .test__header
  *
@@ -22,7 +22,7 @@
   color: white; }
 
 /**
- * This is a sample main section component. Place the main content of the page inside of this component.
+ * This is a sample main section atom. Place the main content of the page inside of this component.
  *
  * @name {String} .test__main
  *
@@ -44,7 +44,7 @@
   color: red; }
 
 /**
- * This is a sample footer component. It is used at the bottom of the page.
+ * This is a sample footer atom. It is used at the bottom of the page.
  *
  * @name {String} .test__footer
  *
@@ -67,7 +67,7 @@
   color: white; }
 
 /**
- * This is a sample molecule. It is used at the bottom of the page.
+ * This is a sample test molecule. It is used at the bottom of the page.
  *
  * @name {String} .test__molecule
  *
