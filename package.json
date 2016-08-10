@@ -18,6 +18,7 @@
   "homepage": "https://github.com/mocon/autodoc-test#readme",
   "devDependencies": {
     "comment-parser": "^0.4.0",
-    "nodemon": "^1.10.0"
+    "nodemon": "^1.10.0",
+    "recursive-readdir": "^2.0.0"
   }
 }
