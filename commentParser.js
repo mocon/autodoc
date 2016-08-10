@@ -29,7 +29,7 @@ function extractComments(arr) {
     commentTags += ']';
 
     // Write commentTags to a file
-    fs.writeFile(__dirname + '/js/commentJson/test.json', commentTags, function(err) {
+    fs.writeFile(__dirname + '/js/commentJson/comments.json', commentTags, function(err) {
         if (err) {
             return console.log(err);
         } else {
