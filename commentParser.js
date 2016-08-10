@@ -5,10 +5,18 @@ var parse = require('comment-parser'),
     date = new Date().toDateString(),
     time = new Date().toLocaleTimeString(),
     commentTags = '',
-    // Configuration
+    tabSpaces = '',
     config = {
-        scssDirectory: '/scss/theme'
+        scssDirectory: '/scss/theme', // Directory to search for all .scss files
+        tabSpaces: 4
     };
+
+// Tab spacing, from configuration
+if (config.tabSpaces === 4) {
+    tabSpaces = '    ';
+} else if (config.tabSpaces === 2) {
+    tabSpaces = '  ';
+}
 
 // Clear Terminal window before showing output
 function _clearTerminalOutput() {
@@ -40,34 +48,25 @@ function _extractComments(arr) {
 
     commentTags += ']';
 
-    // Write commentTags to a file (comment this out if using nodemon)
-    // fs.writeFile(__dirname + '/js/commentJson/comments.json', commentTags, function(err) {
-    //     if (err) {
-    //         return console.log(err);
-    //     } else {
-    //         return console.log('Successfully wrote file.');
-    //     }
-    // });
-
-    _extractComponentMarkup(commentTags);
+    _extractComponentMarkup(JSON.parse(commentTags));
+    _generateDocumentation(JSON.parse(commentTags));
 }
 
 // Extract markup for each component, to assemble code snippets
-function _extractComponentMarkup(jsonString) {
-    var jsonObject = JSON.parse(jsonString);
-
-    jsonObject.forEach(function(component) {
+function _extractComponentMarkup(json) {
+    json.forEach(function(component) {
         component.tags.forEach(function(tag) {
             if (tag.type === 'Code') {
                 var codeSample = tag.description,
-                    codeSampleFormatted = codeSample.replace(/---]/g, '    ');
+                    codeSampleFormatted = codeSample.replace(/---]/g, tabSpaces);
 
+                // TODO: Assemble code snippets
                 console.log(codeSampleFormatted);
             }
         });
     });
-
-    // TODO: Assemble code snippets
 }
 
-// TODO: Render documentation from comment JSON
+function _generateDocumentation(json) {
+    // TODO: Render documentation from comment JSON
+}
