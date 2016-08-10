@@ -11,5 +11,5 @@ npm install
 ## Development
 
 ```
-nodemon js/commentParser.js
+node commentParser.js
 ```
