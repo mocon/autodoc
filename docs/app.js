@@ -5,7 +5,7 @@ var json = (function () {
         'async': false,
         'global': false,
         'url': 'scssComments.json',
-        'dataType': "json",
+        'dataType': 'json',
         'success': function (data) {
             json = data;
         }
@@ -18,8 +18,31 @@ var App = React.createClass({
     getInitialState: function() {
         // Use generated JSON file as state
         return {
-            json
+            json,
+            sections : []
         }
+    },
+    _getSections: function() {
+        var _this = this,
+            currentJson = _this.state.json,
+            sections = [];
+
+        currentJson.map(function(component) {
+            component.tags.map(function(tag) {
+                if (tag.tag === 'section' && sections.indexOf(tag.name) < 0) {
+                    sections.push(tag.name);
+                }
+            });
+        });
+
+        sections.sort();
+
+        _this.setState({sections: sections});
+    },
+    componentDidMount: function() {
+        var _this = this;
+
+        _this._getSections();
     },
     render: function() {
         return (
@@ -31,7 +54,7 @@ var App = React.createClass({
                             <MainSection components={this.state.json} />
                         </div>
                         <div className="gds-layout__column--lg-3 gds-layout__hidden-md-down">
-                            <Sidebar components={this.state.json} />
+                            <Sidebar sections={this.state.sections} />
                         </div>
                     </div>
                 </div>
@@ -75,9 +98,17 @@ var MainSectionItem = React.createClass({
 // <Sidebar /> component
 var Sidebar = React.createClass({
     render: function() {
+        var sections = this.props.sections;
+
         return (
             <aside>
-                <p>Sidebar</p>
+                <ul>
+                    {sections.map(function(section, index) {
+                        return (
+                            <li key={index}>{section}</li>
+                        )
+                    })}
+                </ul>
             </aside>
         )
     }
@@ -96,6 +127,12 @@ var GdsPageHeader = React.createClass({
                 </div>
                 <div className="gds-page-header__nav-bar">
                     <div className="gds-page-header__primary-nav" id="gg-slide-nav-button">
+                        <button className="gds-page-header__menu">
+                            <span className="gds-page-header__menu-line"></span>
+                            <span className="gds-page-header__menu-line"></span>
+                            <span className="gds-page-header__menu-line"></span>
+                            <span className="gds-page-header__menu-line"></span>
+                        </button>
                         <h4 className="gds-page-header__page-name gds-text__header--small">Documentation</h4>
                     </div>
                     <div className="-clear-both"></div>
