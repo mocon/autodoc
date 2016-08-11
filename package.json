@@ -16,10 +16,12 @@
     "url": "https://github.com/mocon/autodoc-test/issues"
   },
   "homepage": "https://github.com/mocon/autodoc-test#readme",
-  "devDependencies": {
+  "dependencies": {
     "comment-parser": "^0.4.0",
     "html-entities": "^1.2.0",
-    "nodemon": "^1.10.0",
     "recursive-readdir": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.0"
   }
 }
