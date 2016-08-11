@@ -18,7 +18,7 @@ var App = React.createClass({
     getInitialState: function() {
         // Use generated JSON file as state
         return {
-            json: json
+            json
         }
     },
     render: function() {
@@ -48,11 +48,9 @@ var MainSection = React.createClass({
         return (
             <section>
                 <ul>
-                    {components.forEach(function(component) {
-                        console.log(component.description);
-
+                    {components.map((component, index) => {
                         return (
-                            <MainSectionItem component={component} />
+                            <MainSectionItem key={index} component={component} />
                         )
                     })}
                 </ul>
