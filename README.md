@@ -1,9 +1,10 @@
-# Autodoc Test
+[![Autodoc by @mocon](https://github.com/mocon/autodoc/blob/master/docs/logo.jpg)](https://dribbble.com/shots/2377274-Origami-Logo)
+# Autodoc
 
-An experiment to parse comments from Scss source code, and use the output to automatically generate:
+A script that parses JSdoc-style comments from Scss source code, and uses the output to automatically generate:
 
-* Documentation with syntax-highlighted code samples
-* Autocomplete code snippets for Sublime Text 3, Vim, and PhpStorm
+* Documentation for all components, with syntax-highlighted code samples
+* Autocomplete code snippets for all components, for use with Sublime Text 3, Vim, and PhpStorm
 
 ## Installation
 
@@ -18,7 +19,7 @@ $ node commentParser.js
 ```
 
 ## View the generated documentation
-Generated documentation can be seen at <a href="https://mocon.github.io/autodoc-test/docs/" target="_blank">mocon.github.io/autodoc-test/docs</a>.
+Generated documentation can be seen at <a href="https://mocon.github.io/autodoc/docs/" target="_blank">mocon.github.io/autodoc/docs</a>.
 
 ## To do
 
@@ -26,6 +27,6 @@ Generated documentation can be seen at <a href="https://mocon.github.io/autodoc-
 - [x] Set up React in `./docs/index.html`
 - [x] Render docs UI using `./docs/scssComments.json` as state
 - [x] Transform data into sections and items
-- [ ] Finish displaying tag data in documentation sections
+- [x] Finish displaying tag data in documentation sections
 - [ ] Connect `./commentParser.js` to code snippet generator
 - [ ] Output code snippets to `./code_snippets`
