@@ -26,6 +26,6 @@ Generated documentation can be seen at <a href="https://mocon.github.io/autodoc-
 - [x] Set up React in `./docs/index.html`
 - [x] Render docs UI using `./docs/scssComments.json` as state
 - [x] Transform data into sections and items
-- [ ] Finish displaying tag data in documentation sections
+- [x] Finish displaying tag data in documentation sections
 - [ ] Connect `./commentParser.js` to code snippet generator
 - [ ] Output code snippets to `./code_snippets`
