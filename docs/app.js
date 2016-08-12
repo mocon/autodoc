@@ -200,7 +200,7 @@ var MainColumnSectionItem = React.createClass({
                     {/* Display component's code sample, syntax highlight it with Prism.js */}
                     if (tag.tag === 'example') {
                         var sampleCode = tag.description.replace(/---]/g, '    '),
-                            preStyle = {background: '#f3f3f3', lineHeight: 1.2, borderRadius: '2px'};
+                            preStyle = {background: '#fafafa', lineHeight: 1.2, borderRadius: '2px'};
 
                         return (
                             <div key={index} className="-m-b-3">
