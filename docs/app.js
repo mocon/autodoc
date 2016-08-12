@@ -144,39 +144,34 @@ var SidebarSection = React.createClass({
 var SidebarSectionItemsList = React.createClass({
     render: function() {
         var section = this.props.section,
-            components = this.props.components;
+            components = this.props.components,
+            sortedComponents = [];
+
+        // Sort components in section
+        components.map(function(component) {
+            return component.tags.map(function(tag) {
+                if (tag.tag === 'section' && tag.name === section) {
+                    return component.tags.map(function(tag) {
+                        if (tag.tag === 'name' && sortedComponents.indexOf(tag.name) < 0) {
+                            sortedComponents.push(tag.name);
+                        } 
+                    });
+                }
+            });
+        });
+
+        sortedComponents.sort();
 
         return (
             <ul className="-m-b-3">
-                {components.map(function(component) {
-                    return component.tags.map(function(tag) {
-                        if (tag.tag === 'section' && tag.name === section) {
-                            return (
-                                <SidebarSectionItem component={component} />
-                            )
-                        }
-                    })
+                {sortedComponents.map(function(component, index) {
+                    return (
+                        <li key={index}>
+                            <a className="gds-text--link" href={`#${slugify(component)}-item`}>{component}</a>
+                        </li>
+                    )
                 })}
             </ul>
-        )
-    }
-});
-
-// <SidebarSectionItem /> component
-var SidebarSectionItem = React.createClass({
-    render: function() {
-        var component = this.props.component;
-
-        return (
-            <li>
-                {component.tags.map(function(tag) {
-                    if (tag.tag === 'name') {
-                        return (
-                            <a className="gds-text--link" href={`#${slugify(tag.name)}-item`}>{tag.name}</a>
-                        )
-                    }
-                })}
-            </li>
         )
     }
 });
