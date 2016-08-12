@@ -69,7 +69,6 @@ function _extractComponentMarkup(json) {
                     codeSampleFormatted = codeSample.replace(/---]/g, tabSpaces);
 
                 // TODO: Assemble code snippets
-                // console.log(codeSampleFormatted);
             }
         });
     });
