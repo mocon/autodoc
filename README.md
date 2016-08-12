@@ -24,7 +24,7 @@ Generated documentation can be seen at <a href="https://mocon.github.io/autodoc-
 
 - [x] Parse .scss comments and output results as JSON
 - [x] Set up React in `./docs/index.html`
+- [x] Render docs UI using `./docs/scssComments.json` as state
 - [ ] Transform data into sections and items using Ramda
-- [ ] Render docs UI using `./docs/scssComments.json` as state
 - [ ] Connect `./commentParser.js` to code snippet generator
 - [ ] Output code snippets to `./code_snippets`
