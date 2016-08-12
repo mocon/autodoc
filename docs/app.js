@@ -60,10 +60,11 @@ var App = React.createClass({
                 <GdsPageHeader />
                 <div className="gds-layout__container">
                     <div className="gds-layout__row">
-                        <div className="gds-layout__column--lg-9 gds-layout__column--md-12">
-                            <MainSection components={this.state.json} />
+                        <div className="gds-layout__column--lg-9 gds-layout__column--md-12 -p-h-3">
+                            <SearchBar components={this.state.json} />
+                            <MainColumn sections={this.state.sections} components={this.state.json} />
                         </div>
-                        <div className="gds-layout__column--lg-3 gds-layout__hidden-md-down">
+                        <div className="gds-layout__column--lg-3 -p-h-3 gds-layout__hidden-md-down">
                             <Sidebar sections={this.state.sections} components={this.state.json} />
                         </div>
                     </div>
@@ -73,34 +74,115 @@ var App = React.createClass({
     }
 });
 
-// <MainSection /> component
-var MainSection = React.createClass({
+// <SearchBar /> component
+var SearchBar = React.createClass({
+    componentDidUpdate: function() {
+        var _this = this;
+
+        ReactDOM.findDOMNode(_this.refs.searchInput).focus();
+    },
     render: function() {
-        var components = this.props.components;
+        return (
+            <div className="gds-form-group -m-b-4">
+                <label className="gds-form-group__label">Search Documentation</label>
+                <input ref="searchInput" className="gds-form-group__text-input" type="text" placeholder="Search..." />
+            </div>
+        )
+    }
+});
+
+// <MainColumn /> component
+var MainColumn = React.createClass({
+    render: function() {
+        var sections = this.props.sections,
+            components = this.props.components;
 
         return (
             <section>
-                <ul>
-                    {components.map((component, index) => {
-                        return (
-                            <MainSectionItem key={index} component={component} />
-                        )
-                    })}
-                </ul>
+                {sections.map((section, index) => {
+                    return (
+                        <MainColumnSection key={index} section={section} components={components} />
+                    )
+                })}
             </section>
         )
     }
 });
 
-// <MainSectionItem /> component
-var MainSectionItem = React.createClass({
+// <MainColumnSection /> component
+var MainColumnSection = React.createClass({
     render: function() {
-        var component = this.props.component;
+        var section = this.props.section,
+            components = this.props.components,
+            componentsInSection = [],
+            componentNamesInSection = [];
+
+        // Grab components in section and their names, then sort the names for display
+        components.map(function(component) {
+            return component.tags.map(function(tag) {
+                if (tag.tag === 'section' && tag.name === section) {
+                    return component.tags.map(function(tag) {
+                        if (tag.tag === 'name' && componentsInSection.indexOf(tag.name) < 0) {
+                            componentsInSection.push(component);
+                            componentNamesInSection.push(tag.name);
+                        }
+                    });
+                }
+            });
+        });
+        componentNamesInSection.sort();
 
         return (
-            <li>
-                <p>{component.description}</p>
-            </li>
+            <article>
+                <h1 className="gds-text--header-lg -m-b-3">{section}</h1>
+                <MainColumnSectionItemsList componentNames={componentNamesInSection} components={componentsInSection} />
+            </article>
+        )
+    }
+});
+
+// <MainColumnSectionItemsList /> component
+var MainColumnSectionItemsList = React.createClass({
+    render: function() {
+        var componentNames = this.props.componentNames,
+            components = this.props.components;
+
+        return (
+            <div className="-m-b-4">
+                {componentNames.map(function(componentName, index) {
+                    return components.map(function(component) {
+                        return component.tags.map(function(tag) {
+                            if (tag.tag === 'name' && tag.name === componentNames[index]) {
+                                return (
+                                    <MainColumnSectionItem component={component} />
+                                )
+                            }
+                        })
+                    })
+                })}
+            </div>
+        )
+    }
+});
+
+// <MainColumnSectionItem /> component
+var MainColumnSectionItem = React.createClass({
+    render: function() {
+        var component = this.props.component,
+            capitalized = {textTransform: capitalized};
+
+        return (
+            <div className="-m-b-4">
+                {component.tags.map(function(tag, index) {
+                    if (tag.tag === 'name') {
+                        return (
+                            <div key={index}>
+                                <h3 className="gds-text--header-sm" style={capitalized}>{tag.name}</h3>
+                            </div>
+                        )
+                    }
+                })}
+            </div>
         )
     }
 });
@@ -133,7 +215,7 @@ var SidebarSection = React.createClass({
 
         return (
             <li>
-                <a className="gds-text--header-xs gds-text--bold gds-text--link" href={`#${slugify(section)}-section`}>{section}</a>
+                <a className="gds-text--header-xs gds-text--link" href={`#${slugify(section)}-section`}>{section}</a>
                 <SidebarSectionItemsList section={section} components={components} />
             </li>
         )
@@ -154,19 +236,18 @@ var SidebarSectionItemsList = React.createClass({
                     return component.tags.map(function(tag) {
                         if (tag.tag === 'name' && sortedComponents.indexOf(tag.name) < 0) {
                             sortedComponents.push(tag.name);
-                        } 
+                        }
                     });
                 }
             });
         });
-
         sortedComponents.sort();
 
         return (
             <ul className="-m-b-3">
                 {sortedComponents.map(function(component, index) {
                     return (
-                        <li key={index}>
+                        <li className="-m-l-2" key={index}>
                             <a className="gds-text--link" href={`#${slugify(component)}-item`}>{component}</a>
                         </li>
                     )
