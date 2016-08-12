@@ -1,0 +1,25 @@
+/**
+ * This is an example organism. It is a combination of atoms & molecules.
+ *
+ * @name {String} Example
+ *
+ * @section {String} Organisms
+ *
+ * @example {Code}
+ *
+ * <div class="example__organism">
+ * ---]<span class="example__span">
+ * ---]---]<span class="example__span">Example</span>
+ * ---]</span>
+ * </div>
+ *
+ * @author {String} author Dan McKenna
+ */
+
+// Organism styles
+.test__molecule {
+    margin: 30px 0;
+    padding: 10px;
+    background-color: $secondary;
+    color: white;
+}
