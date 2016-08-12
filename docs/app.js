@@ -63,6 +63,7 @@ var App = React.createClass({
                         <div className="gds-layout__column--lg-9 gds-layout__column--md-12 -p-h-3">
                             <SearchBar components={this.state.json} />
                             <MainColumn sections={this.state.sections} components={this.state.json} />
+                            <Footer />
                         </div>
                         <div className="gds-layout__column--lg-3 -p-h-3 gds-layout__hidden-md-down">
                             <Sidebar sections={this.state.sections} components={this.state.json} />
@@ -136,7 +137,7 @@ var MainColumnSection = React.createClass({
 
         return (
             <article>
-                <h1 className="gds-text--header-lg -m-b-4">{section}</h1>
+                <h1 className="gds-text--header-lg -m-t-6 -m-b-4">{section}</h1>
                 <MainColumnSectionItemsList section={section} componentNames={componentNamesInSection} components={componentsInSection} />
             </article>
         )
@@ -170,22 +171,59 @@ var MainColumnSectionItemsList = React.createClass({
 
 // <MainColumnSectionItem /> component
 var MainColumnSectionItem = React.createClass({
+    componentDidMount: function() {
+        Prism.highlightAll();
+    },
     render: function() {
         var section = this.props.section,
             component = this.props.component,
             capitalized = {textTransform: capitalized};
 
         return (
-            <div className="gds-card gds-card--no-bg gds-card--white gds-card--underlined -p-a-3 -m-b-4">
+            <div className="gds-card gds-card--white gds-card--underlined -p-a-3 -m-b-4">
                 {component.tags.map(function(tag, index) {
+
+                    {/* Display component's name */}
                     if (tag.tag === 'name') {
                         return (
                             <div key={index}>
-                                <label className="gds-form-group__label">{tag.tag}</label>
-                                <h3 id={`${slugify(section)}-${slugify(tag.name)}`} className="gds-text--header-sm gds-text--primary" style={capitalized}>{tag.name}</h3>
+                                <label className="gds-form-group__label -m-a-0">{tag.tag}</label>
+                                <h3 id={`${slugify(section)}-${slugify(tag.name)}`} className="gds-text--header-sm gds-text--primary -m-b-3" style={capitalized}>{tag.name}</h3>
+
+                                {/* Display component's description */}
+                                <label className="gds-form-group__label -m-a-0">Description</label>
+                                <h3 className="gds-text--body-md -m-b-3" style={capitalized}>{component.description}</h3>
                             </div>
                         )
                     }
+
+                    {/* Display component's code sample, syntax highlight it with Prism.js */}
+                    if (tag.tag === 'example') {
+                        var sampleCode = tag.description.replace(/---]/g, '    '),
+                            preStyle = {background: '#f3f3f3', lineHeight: 1.2, borderRadius: '2px'};
+
+                        return (
+                            <div key={index} className="-m-b-3">
+                                <label className="gds-form-group__label -m-b-2">{tag.tag}</label>
+                                <pre className="-m-a-0" style={preStyle}>
+                                    <code className="language-html gds-text--body-sm">
+                                        {sampleCode}
+                                    </code>
+                                </pre>
+                            </div>
+                        )
+                    }
+
+                    {/* Display component's author */}
+                    if (tag.tag === 'author') {
+                        return (
+                            <div key={index}>
+                                <label className="gds-form-group__label -m-a-0">{tag.tag}</label>
+                                <h3 className="gds-text--body-md">{tag.description}</h3>
+                            </div>
+                        )
+                    }
+
                 })}
             </div>
         )
@@ -287,6 +325,18 @@ var GdsPageHeader = React.createClass({
                     <div className="-clear-both"></div>
                 </div>
             </header>
+        )
+    }
+});
+
+// <Footer /> component
+var Footer = React.createClass({
+    render: function() {
+        var currentYear = new Date().getFullYear(),
+            copyrightStyle = {opacity: 0.54};
+
+        return (
+            <p className="gds-text--body-sm -m-v-6" style={copyrightStyle}>&copy; Copyright {currentYear} GumGum, All Rights Reserved</p>
         )
     }
 });
