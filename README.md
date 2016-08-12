@@ -1,4 +1,6 @@
-# Autodoc Test
+[[https://github.com/mocon/autodoc/blob/master/docs/logo.jpg|alt=Autodoc by @mocon]]
+
+# Autodoc
 
 A script that parses JSdoc-style comments from Scss source code, and uses the output to automatically generate:
 
