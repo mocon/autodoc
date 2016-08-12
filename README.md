@@ -18,7 +18,7 @@ $ node commentParser.js
 ```
 
 ## View the generated documentation
-Generated documentation can be seen at <a href="https://mocon.github.io/autodoc-test/docs/" target="_blank">mocon.github.io/autodoc-test/docs</a>.
+Generated documentation can be seen at <a href="https://mocon.github.io/autodoc/docs/" target="_blank">mocon.github.io/autodoc-test/docs</a>.
 
 ## To do
 
