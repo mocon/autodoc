@@ -1,4 +1,4 @@
-[![Autodoc by @mocon](https://github.com/mocon/autodoc/blob/master/docs/logo.jpg)](https://github.com/mocon/autodoc/)
+[![Autodoc by @mocon](https://github.com/mocon/autodoc/blob/master/docs/logo.jpg)](https://dribbble.com/shots/2377274-Origami-Logo)
 # Autodoc
 
 A script that parses JSdoc-style comments from Scss source code, and uses the output to automatically generate:
