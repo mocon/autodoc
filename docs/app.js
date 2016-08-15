@@ -39,12 +39,11 @@ var App = React.createClass({
 
         currentJson.map(function(component) {
             component.tags.map(function(tag) {
-                if (tag.tag === 'section' && sections.indexOf(tag.name) < 0) {
-                    sections.push(tag.name);
+                if (tag.tag === 'section' && sections.indexOf(tag.description) < 0) {
+                    sections.push(tag.description);
                 }
             });
         });
-
         sections.sort();
 
         _this.setState({sections: sections});
@@ -123,7 +122,7 @@ var MainColumnSection = React.createClass({
         // Grab components in section and their names, then sort the names for display
         components.map(function(component) {
             return component.tags.map(function(tag) {
-                if (tag.tag === 'section' && tag.name === section) {
+                if (tag.tag === 'section' && tag.description === section) {
                     return component.tags.map(function(tag) {
                         if (tag.tag === 'name' && componentsInSection.indexOf(tag.name) < 0) {
                             componentsInSection.push(component);
@@ -276,7 +275,7 @@ var SidebarSectionItemsList = React.createClass({
         // Sort components in section
         components.map(function(component) {
             return component.tags.map(function(tag) {
-                if (tag.tag === 'section' && tag.name === section) {
+                if (tag.tag === 'section' && tag.description === section) {
                     return component.tags.map(function(tag) {
                         if (tag.tag === 'name' && sortedComponents.indexOf(tag.name) < 0) {
                             sortedComponents.push(tag.description);
