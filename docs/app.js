@@ -127,7 +127,7 @@ var MainColumnSection = React.createClass({
                     return component.tags.map(function(tag) {
                         if (tag.tag === 'name' && componentsInSection.indexOf(tag.name) < 0) {
                             componentsInSection.push(component);
-                            componentNamesInSection.push(tag.name);
+                            componentNamesInSection.push(tag.description);
                         }
                     });
                 }
@@ -156,7 +156,7 @@ var MainColumnSectionItemsList = React.createClass({
                 {componentNames.map(function(componentName, index) {
                     return components.map(function(component) {
                         return component.tags.map(function(tag) {
-                            if (tag.tag === 'name' && tag.name === componentNames[index]) {
+                            if (tag.tag === 'name' && tag.description === componentNames[index]) {
                                 return (
                                     <MainColumnSectionItem section={section} component={component} />
                                 )
@@ -188,7 +188,7 @@ var MainColumnSectionItem = React.createClass({
                         return (
                             <div key={index}>
                                 <label className="gds-form-group__label -m-a-0">{tag.tag}</label>
-                                <h3 id={`${slugify(section)}-${slugify(tag.name)}`} className="gds-text--header-sm gds-text--primary -m-b-3" style={capitalized}>{tag.name}</h3>
+                                <h3 id={`${slugify(section)}-${slugify(tag.description)}`} className="gds-text--header-sm gds-text--primary -m-b-3" style={capitalized}>{tag.description}</h3>
 
                                 {/* Display component's description */}
                                 <label className="gds-form-group__label -m-a-0">Description</label>
@@ -279,7 +279,7 @@ var SidebarSectionItemsList = React.createClass({
                 if (tag.tag === 'section' && tag.name === section) {
                     return component.tags.map(function(tag) {
                         if (tag.tag === 'name' && sortedComponents.indexOf(tag.name) < 0) {
-                            sortedComponents.push(tag.name);
+                            sortedComponents.push(tag.description);
                         }
                     });
                 }
