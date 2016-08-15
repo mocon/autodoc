@@ -14,6 +14,27 @@
         <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
         <script src="https://npmcdn.com/jquery@3.1.0/dist/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+        <style>
+            /* Temporary */
+            .gds-docs__child-component:before {
+                content: '';
+                position: absolute;
+                display: block;
+                top: -3.5rem;
+                left: -17px;
+                right: -17px;
+                height: 2.5rem;
+                border-left: 1px solid #e6e6e6;
+                border-right: 1px solid #e6e6e6;
+                background: repeating-linear-gradient(
+                    -45deg,
+                    #ececec,
+                    #ececec 10px,
+                    #fafafa 10px,
+                    #fafafa 20px
+                );
+            }
+        </style>
     </head>
     <body class="gg-theme-mantii -has-page-header">
         <!-- React app injected here -->

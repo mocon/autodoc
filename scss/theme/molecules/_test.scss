@@ -1,9 +1,11 @@
 /**
  * This is a sample test molecule. It is used at the bottom of the page.
  *
- * @name {String} Test Molecule
+ * @section {String} section Molecules Section
  *
- * @section {String} Molecules
+ * @parentComponent {String} parentComponent Test Molecule
+ *
+ * @name {String} name Test Molecule
  *
  * @example {Code}
  *
@@ -14,6 +16,11 @@
  * </div>
  *
  * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-test-molecule
+ * @defaultTextContent {String} defaultTextContent Test molecule
+ * @defaultClasses {Array} defaultClasses ["test__molecule--mod-1", "test__molecule--mod-2", "test__molecule--mod-3", "test__molecule--mod-4", "test__molecule--mod-5", "test__molecule--mod-6", "test__molecule--mod-7", "test__molecule--mod-8", "test__molecule--mod-9"]
+ * @optionalClasses {Array} optionalClasses ["test__molecule--variant-1 (Description of variant #1)", "test__molecule--variant-2 (Description of variant #2)", "test__molecule--variant-3 (Description of variant #3)", "test__molecule--variant-4 (Description of variant #4)", "test__molecule--variant-5 (Description of variant #5)", "test__molecule--variant-6 (Description of variant #6)", "test__molecule--variant-7 (Description of variant #7)", "test__molecule--variant-8 (Description of variant #8)", "test__molecule--variant-9 (Description of variant #9)"]
  */
 
 // Molecule styles

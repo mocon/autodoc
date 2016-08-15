@@ -2,3 +2,4 @@ node_modules
 .sass-cache
 docs/min
 config.codekit
+.DS_Store

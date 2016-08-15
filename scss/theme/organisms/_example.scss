@@ -1,9 +1,11 @@
 /**
  * This is an example organism. It is a combination of atoms & molecules.
  *
- * @name {String} Example
+ * @section {String} section Organisms Section
  *
- * @section {String} Organisms
+ * @parentComponent {String} parentComponent Example Organism
+ *
+ * @name {String} name Example Organism
  *
  * @example {Code}
  *
@@ -14,10 +16,15 @@
  * </div>
  *
  * @author {String} author Dan McKenna
+ *
+ * @tabTrigger {String} tabTrigger gds-example-organism
+ * @defaultTextContent {String} defaultTextContent Example organism
+ * @defaultClasses {Array} defaultClasses ["example__organism--mod-1", "example__organism--mod-2", "example__organism--mod-3", "example__organism--mod-4", "example__organism--mod-5", "example__organism--mod-6", "example__organism--mod-7", "example__organism--mod-8", "example__organism--mod-9"]
+ * @optionalClasses {Array} optionalClasses ["example__organism--variant-1 (Description of variant #1)", "example__organism--variant-2 (Description of variant #2)", "example__organism--variant-3 (Description of variant #3)", "example__organism--variant-4 (Description of variant #4)", "example__organism--variant-5 (Description of variant #5)", "example__organism--variant-6 (Description of variant #6)", "example__organism--variant-7 (Description of variant #7)", "example__organism--variant-8 (Description of variant #8)", "example__organism--variant-9 (Description of variant #9)"]
  */
 
 // Organism styles
-.test__molecule {
+.example__organism {
     margin: 30px 0;
     padding: 10px;
     background-color: $secondary;

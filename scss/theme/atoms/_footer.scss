@@ -1,9 +1,11 @@
 /**
  * This is a sample footer atom. It is used at the bottom of the page.
  *
- * @name {String} Footer
+ * @section {String} section Atoms Section
  *
- * @section {String} Atoms
+ * @parentComponent {String} parentComponent Footer
+ *
+ * @name {String} name Footer
  *
  * @example {Code}
  *
@@ -12,6 +14,11 @@
  * </footer>
  *
  * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-test-footer
+ * @defaultTextContent {String} defaultTextContent Sample footer
+ * @defaultClasses {Array} defaultClasses ["test__footer--mod-1", "test__footer--mod-2", "test__footer--mod-3", "test__footer--mod-4", "test__footer--mod-5", "test__footer--mod-6", "test__footer--mod-7", "test__footer--mod-8", "test__footer--mod-9"]
+ * @optionalClasses {Array} optionalClasses ["test__footer--variant-1 (Description of variant #1)", "test__footer--variant-2 (Description of variant #2)", "test__footer--variant-3 (Description of variant #3)"]
  */
 
 // Footer styles
@@ -21,3 +28,26 @@
     background-color: $secondary;
     color: white;
 }
+
+/**
+ * This is a sample footer sub-component.
+ *
+ * @section {String} section Atoms Section
+ *
+ * @parentComponent {String} Footer
+ *
+ * @name {String} name Footer Sub-Component
+ *
+ * @example {Code}
+ *
+ * <footer class="test__footer">
+ * ---]<span class="example__span">Example</span>
+ * </footer>
+ *
+ * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-test-footer
+ * @defaultTextContent {String} defaultTextContent Sample footer
+ * @defaultClasses {Array} defaultClasses ["test__footer--mod-1", "test__footer--mod-2", "test__footer--mod-3", "test__footer--mod-4", "test__footer--mod-5", "test__footer--mod-6", "test__footer--mod-7", "test__footer--mod-8", "test__footer--mod-9"]
+ * @optionalClasses {Array} optionalClasses ["test__footer--variant-1 (Description of variant #1)", "test__footer--variant-2 (Description of variant #2)", "test__footer--variant-3 (Description of variant #3)"]
+ */

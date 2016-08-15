@@ -39,12 +39,11 @@ var App = React.createClass({
 
         currentJson.map(function(component) {
             component.tags.map(function(tag) {
-                if (tag.tag === 'section' && sections.indexOf(tag.name) < 0) {
-                    sections.push(tag.name);
+                if (tag.tag === 'section' && sections.indexOf(tag.description) < 0) {
+                    sections.push(tag.description);
                 }
             });
         });
-
         sections.sort();
 
         _this.setState({sections: sections});
@@ -123,11 +122,11 @@ var MainColumnSection = React.createClass({
         // Grab components in section and their names, then sort the names for display
         components.map(function(component) {
             return component.tags.map(function(tag) {
-                if (tag.tag === 'section' && tag.name === section) {
+                if (tag.tag === 'section' && tag.description === section) {
                     return component.tags.map(function(tag) {
                         if (tag.tag === 'name' && componentsInSection.indexOf(tag.name) < 0) {
                             componentsInSection.push(component);
-                            componentNamesInSection.push(tag.name);
+                            componentNamesInSection.push(tag.description);
                         }
                     });
                 }
@@ -149,16 +148,40 @@ var MainColumnSectionItemsList = React.createClass({
     render: function() {
         var section = this.props.section,
             componentNames = this.props.componentNames,
-            components = this.props.components;
+            components = this.props.components,
+            parentComponentsOnly = [];
+
+        componentNames.map(function(name) {
+            return components.map(function(component) {
+                var parentComponent;
+
+                return component.tags.map(function(tag) {
+                    if (tag.tag === 'parentComponent') {
+                        parentComponent = tag.description;
+
+                        return component.tags.map(function(tag) {
+                            if (tag.tag === 'name' && tag.description === parentComponent && parentComponentsOnly.indexOf(tag.description) < 0) {
+                                parentComponentsOnly.push(tag.description);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+        parentComponentsOnly.sort();
+
+        // console.log(parentComponentsOnly);
 
         return (
             <div className="-m-b-4">
                 {componentNames.map(function(componentName, index) {
                     return components.map(function(component) {
                         return component.tags.map(function(tag) {
-                            if (tag.tag === 'name' && tag.name === componentNames[index]) {
+                            if (tag.tag === 'name' && tag.description === componentNames[index]) {
                                 return (
-                                    <MainColumnSectionItem section={section} component={component} />
+                                    <div className="gds-card gds-card--white gds-card--underlined -p-a-3 -m-b-4">
+                                        <MainColumnSectionItem section={section} component={component} />
+                                    </div>
                                 )
                             }
                         })
@@ -177,18 +200,36 @@ var MainColumnSectionItem = React.createClass({
     render: function() {
         var section = this.props.section,
             component = this.props.component,
-            capitalized = {textTransform: capitalized};
+            capitalized = {textTransform: capitalized},
+            parentComponent,
+            headerClass = 'gds-text--header-md',
+            isChildComponent = '';
+
+        // Determine if this component is a parentComponent
+        component.tags.map(function(tag) {
+            if (tag.tag === 'parentComponent') {
+                parentComponent = tag.description;
+
+                return component.tags.map(function(tag) {
+                    if (tag.tag === 'name') {
+                        if (tag.description !== parentComponent) {
+                            isChildComponent = 'gds-docs__child-component';
+                            headerClass = 'gds-text--header-sm';
+                        }
+                    }
+                });
+            }
+        });
 
         return (
-            <div className="gds-card gds-card--white gds-card--underlined -p-a-3 -m-b-4">
+            <div className={isChildComponent}>
                 {component.tags.map(function(tag, index) {
 
                     {/* Display component's name */}
                     if (tag.tag === 'name') {
                         return (
                             <div key={index}>
-                                <label className="gds-form-group__label -m-a-0">{tag.tag}</label>
-                                <h3 id={`${slugify(section)}-${slugify(tag.name)}`} className="gds-text--header-sm gds-text--primary -m-b-3" style={capitalized}>{tag.name}</h3>
+                                <h3 id={`${slugify(section)}-${slugify(tag.description)}`} className={`${headerClass} gds-text--primary -m-t-1 -m-b-3`} style={capitalized}>{tag.description}</h3>
 
                                 {/* Display component's description */}
                                 <label className="gds-form-group__label -m-a-0">Description</label>
@@ -276,10 +317,18 @@ var SidebarSectionItemsList = React.createClass({
         // Sort components in section
         components.map(function(component) {
             return component.tags.map(function(tag) {
-                if (tag.tag === 'section' && tag.name === section) {
+                if (tag.tag === 'section' && tag.description === section) {
+                    var parentComponent;
+
                     return component.tags.map(function(tag) {
-                        if (tag.tag === 'name' && sortedComponents.indexOf(tag.name) < 0) {
-                            sortedComponents.push(tag.name);
+                        if (tag.tag === 'parentComponent') {
+                            parentComponent = tag.description;
+
+                            return component.tags.map(function(tag) {
+                                if (tag.tag === 'name' && tag.description === parentComponent && sortedComponents.indexOf(tag.name) < 0) {
+                                    sortedComponents.push(tag.description);
+                                }
+                            });
                         }
                     });
                 }

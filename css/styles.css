@@ -1,9 +1,11 @@
 /**
  * This is a sample header atom. This component is meant to be placed at the top of the page.
  *
- * @name {String} Header
+ * @section {String} section Atoms Section
  *
- * @section {String} Atoms
+ * @parentComponent {String} parentComponent Header
+ *
+ * @name {String} name Header
  *
  * @example {Code}
  *
@@ -12,6 +14,11 @@
  * </header>
  *
  * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-test-header
+ * @defaultTextContent {String} defaultTextContent Sample header
+ * @defaultClasses {Array} defaultClasses ["test__header--mod-1", "test__header--mod-2", "test__header--mod-3", "test__header--mod-4", "test__header--mod-5", "test__header--mod-6", "test__header--mod-7", "test__header--mod-8", "test__header--mod-9"]
+ * @optionalClasses {Array} optionalClasses ["test__header--variant-1 (Description of variant #1)", "test__header--variant-2 (Description of variant #2)", "test__header--variant-3 (Description of variant #3)"]
  */
 .test__header {
   margin: 30px 0;
@@ -20,11 +27,35 @@
   color: white; }
 
 /**
+ * This is a sample header atom sub-component.
+ *
+ * @section {String} section Atoms Section
+ *
+ * @parentComponent {String} parentComponent Header
+ *
+ * @name {String} name Header Sub-Component
+ *
+ * @example {Code}
+ *
+ * <header class="test__header">
+ * ---]<span class="example__span">Example</span>
+ * </header>
+ *
+ * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-test-header
+ * @defaultTextContent {String} defaultTextContent Sample header
+ * @defaultClasses {Array} defaultClasses ["test__header--mod-1", "test__header--mod-2", "test__header--mod-3", "test__header--mod-4", "test__header--mod-5", "test__header--mod-6", "test__header--mod-7", "test__header--mod-8", "test__header--mod-9"]
+ * @optionalClasses {Array} optionalClasses ["test__header--variant-1 (Description of variant #1)", "test__header--variant-2 (Description of variant #2)", "test__header--variant-3 (Description of variant #3)"]
+ */
+/**
  * This is a sample main section atom. Place the main content of the page inside of this component.
  *
- * @name {String} Main
+ * @section {String} section Atoms Section
  *
- * @section {String} Atoms
+ * @parentComponent {String} parentComponent Main
+ *
+ * @name {String} name Main
  *
  * @example {Code}
  *
@@ -33,6 +64,11 @@
  * </section>
  *
  * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-test-main
+ * @defaultTextContent {String} defaultTextContent Test main section
+ * @defaultClasses {Array} defaultClasses ["test__main--mod-1", "test__main--mod-2", "test__main--mod-3", "test__main--mod-4", "test__main--mod-5", "test__main--mod-6", "test__main--mod-7", "test__main--mod-8", "test__main--mod-9"]
+ * @optionalClasses {Array} optionalClasses ["test__main--variant-1 (Description of variant #1)", "test__main--variant-2 (Description of variant #2)", "test__main--variant-3 (Description of variant #3)"]
  */
 .test__main {
   margin: 30px 0;
@@ -42,9 +78,11 @@
 /**
  * This is a sample footer atom. It is used at the bottom of the page.
  *
- * @name {String} Footer
+ * @section {String} section Atoms Section
  *
- * @section {String} Atoms
+ * @parentComponent {String} parentComponent Footer
+ *
+ * @name {String} name Footer
  *
  * @example {Code}
  *
@@ -53,6 +91,11 @@
  * </footer>
  *
  * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-test-footer
+ * @defaultTextContent {String} defaultTextContent Sample footer
+ * @defaultClasses {Array} defaultClasses ["test__footer--mod-1", "test__footer--mod-2", "test__footer--mod-3", "test__footer--mod-4", "test__footer--mod-5", "test__footer--mod-6", "test__footer--mod-7", "test__footer--mod-8", "test__footer--mod-9"]
+ * @optionalClasses {Array} optionalClasses ["test__footer--variant-1 (Description of variant #1)", "test__footer--variant-2 (Description of variant #2)", "test__footer--variant-3 (Description of variant #3)"]
  */
 .test__footer {
   margin: 30px 0;
@@ -61,11 +104,35 @@
   color: white; }
 
 /**
+ * This is a sample footer sub-component.
+ *
+ * @section {String} section Atoms Section
+ *
+ * @parentComponent {String} Footer
+ *
+ * @name {String} name Footer Sub-Component
+ *
+ * @example {Code}
+ *
+ * <footer class="test__footer">
+ * ---]<span class="example__span">Example</span>
+ * </footer>
+ *
+ * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-test-footer
+ * @defaultTextContent {String} defaultTextContent Sample footer
+ * @defaultClasses {Array} defaultClasses ["test__footer--mod-1", "test__footer--mod-2", "test__footer--mod-3", "test__footer--mod-4", "test__footer--mod-5", "test__footer--mod-6", "test__footer--mod-7", "test__footer--mod-8", "test__footer--mod-9"]
+ * @optionalClasses {Array} optionalClasses ["test__footer--variant-1 (Description of variant #1)", "test__footer--variant-2 (Description of variant #2)", "test__footer--variant-3 (Description of variant #3)"]
+ */
+/**
  * This is a sample test molecule. It is used at the bottom of the page.
  *
- * @name {String} Test Molecule
+ * @section {String} section Molecules Section
  *
- * @section {String} Molecules
+ * @parentComponent {String} parentComponent Test Molecule
+ *
+ * @name {String} name Test Molecule
  *
  * @example {Code}
  *
@@ -76,6 +143,11 @@
  * </div>
  *
  * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-test-molecule
+ * @defaultTextContent {String} defaultTextContent Test molecule
+ * @defaultClasses {Array} defaultClasses ["test__molecule--mod-1", "test__molecule--mod-2", "test__molecule--mod-3", "test__molecule--mod-4", "test__molecule--mod-5", "test__molecule--mod-6", "test__molecule--mod-7", "test__molecule--mod-8", "test__molecule--mod-9"]
+ * @optionalClasses {Array} optionalClasses ["test__molecule--variant-1 (Description of variant #1)", "test__molecule--variant-2 (Description of variant #2)", "test__molecule--variant-3 (Description of variant #3)", "test__molecule--variant-4 (Description of variant #4)", "test__molecule--variant-5 (Description of variant #5)", "test__molecule--variant-6 (Description of variant #6)", "test__molecule--variant-7 (Description of variant #7)", "test__molecule--variant-8 (Description of variant #8)", "test__molecule--variant-9 (Description of variant #9)"]
  */
 .test__molecule {
   margin: 30px 0;
@@ -86,9 +158,11 @@
 /**
  * This is an example organism. It is a combination of atoms & molecules.
  *
- * @name {String} Example
+ * @section {String} section Organisms Section
  *
- * @section {String} Organisms
+ * @parentComponent {String} parentComponent Example Organism
+ *
+ * @name {String} name Example Organism
  *
  * @example {Code}
  *
@@ -99,8 +173,13 @@
  * </div>
  *
  * @author {String} author Dan McKenna
+ *
+ * @tabTrigger {String} tabTrigger gds-example-organism
+ * @defaultTextContent {String} defaultTextContent Example organism
+ * @defaultClasses {Array} defaultClasses ["example__organism--mod-1", "example__organism--mod-2", "example__organism--mod-3", "example__organism--mod-4", "example__organism--mod-5", "example__organism--mod-6", "example__organism--mod-7", "example__organism--mod-8", "example__organism--mod-9"]
+ * @optionalClasses {Array} optionalClasses ["example__organism--variant-1 (Description of variant #1)", "example__organism--variant-2 (Description of variant #2)", "example__organism--variant-3 (Description of variant #3)", "example__organism--variant-4 (Description of variant #4)", "example__organism--variant-5 (Description of variant #5)", "example__organism--variant-6 (Description of variant #6)", "example__organism--variant-7 (Description of variant #7)", "example__organism--variant-8 (Description of variant #8)", "example__organism--variant-9 (Description of variant #9)"]
  */
-.test__molecule {
+.example__organism {
   margin: 30px 0;
   padding: 10px;
   background-color: orange;
