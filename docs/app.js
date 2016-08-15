@@ -148,14 +148,34 @@ var MainColumnSectionItemsList = React.createClass({
     render: function() {
         var section = this.props.section,
             componentNames = this.props.componentNames,
-            components = this.props.components;
+            components = this.props.components,
+            parentComponentsOnly = [];
+
+        componentNames.map(function(name) {
+            return components.map(function(component) {
+                var parentComponent;
+
+                return component.tags.map(function(tag) {
+                    if (tag.tag === 'parentComponent') {
+                        parentComponent = tag.description;
+
+                        return component.tags.map(function(tag) {
+                            if (tag.tag === 'name' && tag.description === parentComponent && parentComponentsOnly.indexOf(tag.description) < 0) {
+                                parentComponentsOnly.push(tag.description);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+        parentComponentsOnly.sort();
 
         return (
             <div className="-m-b-4">
-                {componentNames.map(function(componentName, index) {
+                {parentComponentsOnly.map(function(componentName, index) {
                     return components.map(function(component) {
                         return component.tags.map(function(tag) {
-                            if (tag.tag === 'name' && tag.description === componentNames[index]) {
+                            if (tag.tag === 'name' && tag.description === parentComponentsOnly[index]) {
                                 return (
                                     <MainColumnSectionItem section={section} component={component} />
                                 )
