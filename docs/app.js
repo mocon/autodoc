@@ -170,14 +170,18 @@ var MainColumnSectionItemsList = React.createClass({
         });
         parentComponentsOnly.sort();
 
+        // console.log(parentComponentsOnly);
+
         return (
             <div className="-m-b-4">
-                {parentComponentsOnly.map(function(componentName, index) {
+                {componentNames.map(function(componentName, index) {
                     return components.map(function(component) {
                         return component.tags.map(function(tag) {
-                            if (tag.tag === 'name' && tag.description === parentComponentsOnly[index]) {
+                            if (tag.tag === 'name' && tag.description === componentNames[index]) {
                                 return (
-                                    <MainColumnSectionItem section={section} component={component} />
+                                    <div className="gds-card gds-card--white gds-card--underlined -p-a-3 -m-b-4">
+                                        <MainColumnSectionItem section={section} component={component} />
+                                    </div>
                                 )
                             }
                         })
@@ -196,18 +200,36 @@ var MainColumnSectionItem = React.createClass({
     render: function() {
         var section = this.props.section,
             component = this.props.component,
-            capitalized = {textTransform: capitalized};
+            capitalized = {textTransform: capitalized},
+            parentComponent,
+            headerClass = 'gds-text--header-md',
+            isChildComponent = '';
+
+        // Determine if this component is a parentComponent
+        component.tags.map(function(tag) {
+            if (tag.tag === 'parentComponent') {
+                parentComponent = tag.description;
+
+                return component.tags.map(function(tag) {
+                    if (tag.tag === 'name') {
+                        if (tag.description !== parentComponent) {
+                            isChildComponent = 'gds-docs__child-component';
+                            headerClass = 'gds-text--header-sm';
+                        }
+                    }
+                });
+            }
+        });
 
         return (
-            <div className="gds-card gds-card--white gds-card--underlined -p-a-3 -m-b-4">
+            <div className={isChildComponent}>
                 {component.tags.map(function(tag, index) {
 
                     {/* Display component's name */}
                     if (tag.tag === 'name') {
                         return (
                             <div key={index}>
-                                <label className="gds-form-group__label -m-a-0">{tag.tag}</label>
-                                <h3 id={`${slugify(section)}-${slugify(tag.description)}`} className="gds-text--header-sm gds-text--primary -m-b-3" style={capitalized}>{tag.description}</h3>
+                                <h3 id={`${slugify(section)}-${slugify(tag.description)}`} className={`${headerClass} gds-text--primary -m-t-1 -m-b-3`} style={capitalized}>{tag.description}</h3>
 
                                 {/* Display component's description */}
                                 <label className="gds-form-group__label -m-a-0">Description</label>
