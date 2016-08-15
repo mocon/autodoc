@@ -1,33 +1,23 @@
+/*
+ * This file parses all JSdoc-style comments from var config.scssDirectory, and outputs
+ * `./docs/scssComments.json`, which is used to render React docs in `./docs/index.html` as
+ * well as passing the data to `./snippetConverter.js` which constructs the code snippets
+ * & saves them to `./code_snippets/phpstorm`, `./code_snippets/sublime` & `./code_snippets/vim`
+*/
 var parse = require('comment-parser'),
     recursive = require('recursive-readdir'),
     fs = require('fs'),
     path = require('path'),
+    snippetConverter = require('./snippetConverter'),
     date = new Date().toDateString(),
     time = new Date().toLocaleTimeString(),
     commentTags = '',
-    tabSpaces = '',
     config = {
-        scssDirectory: '/scss/theme', // Directory to search for all .scss files
-        tabSpaces: 4
+        scssDirectory: '/scss/theme' // Directory to search for all .scss files
     };
-
-// Tab spacing, from configuration
-if (config.tabSpaces === 4) {
-    tabSpaces = '    ';
-} else if (config.tabSpaces === 2) {
-    tabSpaces = '  ';
-}
-
-// Clear Terminal window before showing output
-function _clearTerminalOutput() {
-    console.reset = (function() {
-        return process.stdout.write('\033c');
-    })();
-}
 
 // Loop through all .scss files in directory, ignoring .DS_Store files
 recursive(__dirname + config.scssDirectory, ['.DS_Store'], function(err, files) {
-    _clearTerminalOutput();
     console.log(`${date}, ${time} - Parsing Scss comments`);
 
     _extractComments(files); // Files is an array of filenames
@@ -57,19 +47,6 @@ function _extractComments(arr) {
         }
     });
 
-    _extractComponentMarkup(JSON.parse(commentTags));
-}
-
-// Extract markup for each component, to assemble code snippets
-function _extractComponentMarkup(json) {
-    json.forEach(function(component) {
-        component.tags.forEach(function(tag) {
-            if (tag.type === 'Code') {
-                var codeSample = tag.description,
-                    codeSampleFormatted = codeSample.replace(/---]/g, tabSpaces);
-
-                // TODO: Assemble code snippets
-            }
-        });
-    });
+    // Generate autocomplete code snippets
+    snippetConverter.convert(JSON.parse(commentTags));
 }
