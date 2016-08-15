@@ -276,9 +276,17 @@ var SidebarSectionItemsList = React.createClass({
         components.map(function(component) {
             return component.tags.map(function(tag) {
                 if (tag.tag === 'section' && tag.description === section) {
+                    var parentComponent;
+
                     return component.tags.map(function(tag) {
-                        if (tag.tag === 'name' && sortedComponents.indexOf(tag.name) < 0) {
-                            sortedComponents.push(tag.description);
+                        if (tag.tag === 'parentComponent') {
+                            parentComponent = tag.description;
+
+                            return component.tags.map(function(tag) {
+                                if (tag.tag === 'name' && tag.description === parentComponent && sortedComponents.indexOf(tag.name) < 0) {
+                                    sortedComponents.push(tag.description);
+                                }
+                            });
                         }
                     });
                 }
