@@ -47,6 +47,6 @@ function _extractComments(arr) {
         }
     });
 
-    // Generate autocomplete code snippets
-    snippetConverter.convert(JSON.parse(commentTags));
+    // TODO: Generate autocomplete code snippets
+    // snippetConverter.convert(JSON.parse(commentTags));
 }
