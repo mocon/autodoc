@@ -1,9 +1,11 @@
 /**
  * This is a sample main section atom. Place the main content of the page inside of this component.
  *
- * @name {String} Main
+ * @name {String} name Main component
  *
  * @section {String} Atoms
+ *
+ * @parentComponent {String} parentComponent Example component
  *
  * @example {Code}
  *
@@ -12,6 +14,11 @@
  * </section>
  *
  * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-test-main
+ * @defaultTextContent {String} defaultTextContent Test main section
+ * @defaultClasses {Array} defaultClasses ["test__main--mod-1", "test__main--mod-2", "test__main--mod-3", "test__main--mod-4", "test__main--mod-5", "test__main--mod-6", "test__main--mod-7", "test__main--mod-8", "test__main--mod-9"]
+ * @optionalClasses {Array} optionalClasses ["test__main--variant-1 (Description of variant #1)", "test__main--variant-2 (Description of variant #2)", "test__main--variant-3 (Description of variant #3)"]
  */
 
 // Main section styles

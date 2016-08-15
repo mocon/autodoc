@@ -1,9 +1,11 @@
 /**
  * This is a sample header atom. This component is meant to be placed at the top of the page.
  *
- * @name {String} Header
+ * @name {String} name Header component
  *
  * @section {String} Atoms
+ *
+ * @parentComponent {String} parentComponent Example component
  *
  * @example {Code}
  *
@@ -12,6 +14,11 @@
  * </header>
  *
  * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-test-header
+ * @defaultTextContent {String} defaultTextContent Sample header
+ * @defaultClasses {Array} defaultClasses ["test__header--mod-1", "test__header--mod-2", "test__header--mod-3", "test__header--mod-4", "test__header--mod-5", "test__header--mod-6", "test__header--mod-7", "test__header--mod-8", "test__header--mod-9"]
+ * @optionalClasses {Array} optionalClasses ["test__header--variant-1 (Description of variant #1)", "test__header--variant-2 (Description of variant #2)", "test__header--variant-3 (Description of variant #3)"]
  */
 
 // Header styles
