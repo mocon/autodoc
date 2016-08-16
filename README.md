@@ -30,8 +30,8 @@ Generated documentation can be seen at <a href="https://mocon.github.io/autodoc/
 - [x] Set up React in `./docs/index.html`
 - [x] Render docs UI using `./docs/scssComments.json` as state
 - [x] Finish displaying tag data in documentation sections
-- [ ] Minimize `<GdsPageHeader />` on scroll
-- [ ] Add `<GdsSlideNav />` component with nested navigation
+- [x] Minimize `<GdsPageHeader />` on scroll
+- [x] Add `<GdsSlideNav />` component with nested navigation
 - [ ] Create and add `<GdsTableOfContents />` component with scrollspy, & offset with `<GdsPageHeader />` on scroll
 - [ ] Add configuration file, required()'d by `./commentParser.js` for productName, sourceDirectory, and introductory section content
 - [ ] Hook up `<SearchBar />` to live filter all components
