@@ -57,23 +57,34 @@ var App = React.createClass({
         return (
             <div>
                 <GdsSlideNav sections={this.state.sections} components={this.state.json} />
+                <GdsTableOfContents sections={this.state.sections} components={this.state.json} />
                 <GdsPageHeader />
                 <div className="gds-slide-content">
                     <div className="gds-layout__container">
-                        <div className="gds-layout__row">
-                            <div className="gds-layout__column--lg-9 gds-layout__column--md-12 -p-h-3">
-                                <SearchBar components={this.state.json} />
-                                <MainColumn sections={this.state.sections} components={this.state.json} />
-                                <Footer />
-                            </div>
-                            <div className="gds-layout__column--lg-3 -p-h-3 gds-layout__hidden-md-down">
-                                <Sidebar sections={this.state.sections} components={this.state.json} />
-                            </div>
+                        <div className="gds-layout__column--lg-9 gds-layout__column--md-12 -p-h-3">
+                            <SearchBar components={this.state.json} />
+                            <MainColumn sections={this.state.sections} components={this.state.json} />
+                            <Footer />
                         </div>
                     </div>
                 </div>
             </div>
         );
+    }
+});
+
+// <GdsTableOfContents /> component
+var GdsTableOfContents = React.createClass({
+    render: function() {
+        return (
+            <div className="fixed-scrollspy-nav -pointer-events--none">
+                <div className="gds-layout__container">
+                    <div className="gds-layout__column--lg-push-9 gds-layout__column--lg-3 -p-h-3 gds-layout__hidden-md-down -pointer-events--auto">
+                        <Sidebar sections={this.props.sections} components={this.props.components} />
+                    </div>
+                </div>
+            </div>
+        )
     }
 });
 
@@ -507,9 +518,11 @@ var GdsPageHeader = React.createClass({
         $(window).bind('scroll', function() {
             if ($(window).scrollTop() >= 5) {
                 $('.gds-page-header__product-bar').addClass('gds-page-header__product-bar--collapsed');
+                $('.fixed-scrollspy-nav').addClass('fixed-scrollspy-nav--scrolled');
             }
             else {
                 $('.gds-page-header__product-bar').removeClass('gds-page-header__product-bar--collapsed');
+                $('.fixed-scrollspy-nav').removeClass('fixed-scrollspy-nav--scrolled');
             }
         });
     },
