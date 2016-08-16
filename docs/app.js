@@ -425,33 +425,78 @@ var GdsSlideNav = React.createClass({
         }(jQuery));
     },
     render: function() {
+        var sections = this.props.sections,
+            components = this.props.components;
+
         return (
             <nav className="gds-slide-nav">
                 <div className="gds-slide-nav__group">
                     <label className='gds-slide-nav__label'>Main Menu</label>
                     <ul className="gds-slide-nav__list">
-                        <li className="gds-slide-nav__list-item gds-slide-nav__list-item--primary gds-slide-nav__list-item--has-children">
-                            <a className="gds-slide-nav__link gds-slide-nav__link--expandable gg-expandable" href="#">Sub-Atoms</a>
-                            <ul className="gds-slide-nav__list gds-slide-nav__list--nested gg-expand-list">
-                                <li><a href="#colors" className="gds-slide-nav__link">Colors</a></li>
-                                <li><a href="#layout" className="gds-slide-nav__link">Layout</a></li>
-                                <li><a href="#spacing" className="gds-slide-nav__link">Spacing</a></li>
-                                <li><a href="#transitions" className="gds-slide-nav__link">Transitions</a></li>
-                            </ul>
-                        </li>
-                        <li className="gds-slide-nav__list-item gds-slide-nav__list-item--primary gds-slide-nav__list-item--has-children">
-                            <a className="gds-slide-nav__link gds-slide-nav__link--expandable gg-expandable" href="#">Atoms</a>
-                            <ul className="gds-slide-nav__list gds-slide-nav__list--nested gg-expand-list">
-                                <li><a href="#containers" className="gds-slide-nav__link">Containers</a></li>
-                                <li><a href="#badges" className="gds-slide-nav__link">Badges</a></li>
-                                <li><a href="#buttons" className="gds-slide-nav__link">Buttons</a></li>
-                                <li><a href="#tooltips" className="gds-slide-nav__link">Tooltips</a></li>
-                                <li><a href="#type" className="gds-slide-nav__link">Type</a></li>
-                            </ul>
-                        </li>
+                        {sections.map(function(section, index) {
+                            return (
+                                <GdsSlideNavSection key={index} section={section} components={components} />
+                            )
+                        })}
                     </ul>
                 </div>
             </nav>
+        )
+    }
+});
+
+// <GdsSlideNavSection /> component
+var GdsSlideNavSection = React.createClass({
+    render: function() {
+        var section = this.props.section,
+            components = this.props.components;
+
+        return (
+            <li className="gds-slide-nav__list-item gds-slide-nav__list-item--primary gds-slide-nav__list-item--has-children">
+                <a className="gds-slide-nav__link gds-slide-nav__link--expandable gg-expandable" href="#">{section}</a>
+                <GdsSlideNavSectionList section={section} components={components} />
+            </li>
+        )
+    }
+});
+
+// <GdsSlideNavSectionList /> component
+var GdsSlideNavSectionList = React.createClass({
+    render: function() {
+        var section = this.props.section,
+            components = this.props.components,
+            sortedComponents = [];
+
+        // Sort components in section
+        components.map(function(component) {
+            return component.tags.map(function(tag) {
+                if (tag.tag === 'section' && tag.description === section) {
+                    var parentComponent;
+
+                    return component.tags.map(function(tag) {
+                        if (tag.tag === 'parentComponent') {
+                            parentComponent = tag.description;
+
+                            return component.tags.map(function(tag) {
+                                if (tag.tag === 'name' && tag.description === parentComponent && sortedComponents.indexOf(tag.name) < 0) {
+                                    sortedComponents.push(tag.description);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        });
+        sortedComponents.sort();
+
+        return (
+            <ul className="gds-slide-nav__list gds-slide-nav__list--nested gg-expand-list">
+                {sortedComponents.map(function(component, index) {
+                    return (
+                        <li key={index}><a href={`#${slugify(section)}-${slugify(component)}`} className="gds-slide-nav__link">{component}</a></li>
+                    )
+                })}
+            </ul>
         )
     }
 });
