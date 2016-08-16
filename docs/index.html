@@ -40,6 +40,92 @@
                 height: 70px; /* fixed header height*/
                 margin: -70px 0 0; /* negative fixed header height */
             }
+            .fixed {
+                position: fixed;
+            }
+
+            /* sidebar */
+            .bs-docs-sidebar {
+                padding-left: 20px;
+            }
+
+            /* all links */
+            .bs-docs-sidebar .nav > li > a {
+                border-left: (1rem / 6) solid transparent;
+                padding: 4px 20px;
+                font-size: 16px;
+                font-weight: 400;
+            }
+
+            /* nested links */
+            .bs-docs-sidebar .nav .nav > li > a {
+                padding-left: 2rem;
+                font-weight: 300;
+            }
+
+            .bs-docs-sidebar .nav .nav > li > a:hover {
+                text-decoration: none;
+            }
+
+            /* active & hover links */
+            .bs-docs-sidebar .nav > .active > a,
+            .bs-docs-sidebar .nav > li > a:hover,
+            .bs-docs-sidebar .nav > li > a:focus {
+                text-decoration: none;
+                background-color: transparent;
+                border-left-color: #26a0c0;
+            }
+
+            /* all active links */
+            .bs-docs-sidebar .nav > .active > a,
+            .bs-docs-sidebar .nav > .active:hover > a,
+            .bs-docs-sidebar .nav > .active:focus > a {
+                font-weight: 700;
+            }
+
+            /* nested active links */
+            .bs-docs-sidebar .nav .nav > .active > a,
+            .bs-docs-sidebar .nav .nav > .active:hover > a,
+            .bs-docs-sidebar .nav .nav > .active:focus > a {
+                font-weight: 500;
+            }
+
+            /* hide inactive nested list */
+            .bs-docs-sidebar .nav ul.nav {
+                display: none;
+            }
+
+            /* show active nested list */
+            .bs-docs-sidebar .nav > .active > ul.nav {
+                display: block;
+            }
+
+            .fixed-scrollspy-nav {
+                position: fixed;
+                top: 7rem;
+                left: 0;
+                width: 100%;
+                z-index: 3;
+                -webkit-transition: all .25s cubic-bezier(.165,.84,.44,1);
+                transition: all .25s cubic-bezier(.165,.84,.44,1);
+            }
+
+            .fixed-scrollspy-nav--scrolled {
+                top: 5rem;
+            }
+
+            .gds-slide-out .fixed-scrollspy-nav {
+                -webkit-transform: translateX(25rem);
+                transform: translateX(25rem);
+            }
+
+            .-pointer-events--none {
+                pointer-events: none;
+            }
+
+            .-pointer-events--auto {
+                pointer-events: auto;
+            }
         </style>
     </head>
     <body class="gg-theme-mantii -has-page-header -has-slide-nav" gg-slide-nav>
