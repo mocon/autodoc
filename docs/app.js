@@ -56,16 +56,19 @@ var App = React.createClass({
     render: function() {
         return (
             <div>
+                <GdsSlideNav sections={this.state.sections} components={this.state.json} />
                 <GdsPageHeader />
-                <div className="gds-layout__container">
-                    <div className="gds-layout__row">
-                        <div className="gds-layout__column--lg-9 gds-layout__column--md-12 -p-h-3">
-                            <SearchBar components={this.state.json} />
-                            <MainColumn sections={this.state.sections} components={this.state.json} />
-                            <Footer />
-                        </div>
-                        <div className="gds-layout__column--lg-3 -p-h-3 gds-layout__hidden-md-down">
-                            <Sidebar sections={this.state.sections} components={this.state.json} />
+                <div className="gds-slide-content">
+                    <div className="gds-layout__container">
+                        <div className="gds-layout__row">
+                            <div className="gds-layout__column--lg-9 gds-layout__column--md-12 -p-h-3">
+                                <SearchBar components={this.state.json} />
+                                <MainColumn sections={this.state.sections} components={this.state.json} />
+                                <Footer />
+                            </div>
+                            <div className="gds-layout__column--lg-3 -p-h-3 gds-layout__hidden-md-down">
+                                <Sidebar sections={this.state.sections} components={this.state.json} />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -350,13 +353,116 @@ var SidebarSectionItemsList = React.createClass({
     }
 });
 
+// <GdsSlideNav /> component
+var GdsSlideNav = React.createClass({
+    componentDidMount: function() {
+        // Off-canvas module
+        (function($) {
+            var element = $('[gg-slide-nav]'),
+                html = $('[gg-slide-nav-html]'),
+                menuOpen = false;
+
+            function toggleMenu(e) {
+                $('#gg-slide-nav-button').toggleClass('gds-page-header__menu--open');
+
+                if (menuOpen) {
+                    closeMenu();
+                } else {
+                    openMenu(e);
+                }
+            }
+
+            function openMenu(e) {
+                e.stopPropagation();
+                element.addClass("gds-slide-out");
+                html.addClass('hide-overflow');
+                menuOpen = true;
+            }
+
+            function closeMenu(e) {
+                element.removeClass("gds-slide-out");
+                html.removeClass('hide-overflow');
+                menuOpen = false;
+            }
+
+            $('body').on('click', '#gg-slide-nav-button', toggleMenu).on('click','[gg-nav-closer]', closeMenu);
+
+            $('body').on('click', '.gds-slide-nav__list--expanded .gds-slide-nav__link', toggleMenu);
+
+            // Toggle .gds-slide-nav menu with "a" key
+            $(document).keypress(function(e) {
+                // If any inputs or textareas are being typed in, disable "a" hotkey for showing .gds-slide-nav menu
+                if ($('input[type="text"]:focus').length === 0 && $('input[type="email"]:focus').length === 0 && $('input[type="url"]:focus').length === 0 && $('input[type="password"]:focus').length === 0 && $('textarea:focus').length === 0 && e.which === 97) {
+                    toggleMenu(e);
+                }
+            });
+
+            // Hide .gds-slide-nav menu with esc
+            $(document).on('keydown', function(e) {
+                if (menuOpen && $('input[type="text"]:focus').length === 0 && $('input[type="email"]:focus').length === 0 && $('input[type="url"]:focus').length === 0 && $('input[type="password"]:focus').length === 0 && $('textarea:focus').length === 0 && e.which == 27) {
+                    toggleMenu();
+                }
+            });
+        }(jQuery));
+
+        // Mobile-nav module
+        (function($) {
+            $('body').on('click', '.gg-expandable', function(e) {
+                e.stopPropagation();
+
+                var ea = 'gds-slide-nav__link--expanded',
+                    el = 'gds-slide-nav__list--expanded';
+
+                if ($(this).hasClass(ea)) {
+                    $(this).parent().removeClass(el).children('.gg-expand-list').removeClass(el).parent().find('a').first().removeClass(ea);
+                } else {
+                    $(this).parent().siblings().removeClass(el).find('.gg-expand-list').removeClass(el).parent().find('a').removeClass(ea);
+                    $(this).parent().addClass(el).children('.gg-expand-list').addClass(el).parent().find('a').first().addClass(ea);
+                }
+                return false;
+            });
+        }(jQuery));
+    },
+    render: function() {
+        return (
+            <nav className="gds-slide-nav">
+                <div className="gds-slide-nav__group">
+                    <label className='gds-slide-nav__label'>Main Menu</label>
+                    <ul className="gds-slide-nav__list">
+                        <li className="gds-slide-nav__list-item gds-slide-nav__list-item--primary gds-slide-nav__list-item--has-children">
+                            <a className="gds-slide-nav__link gds-slide-nav__link--expandable gg-expandable" href="#">Sub-Atoms</a>
+                            <ul className="gds-slide-nav__list gds-slide-nav__list--nested gg-expand-list">
+                                <li><a href="#colors" className="gds-slide-nav__link">Colors</a></li>
+                                <li><a href="#layout" className="gds-slide-nav__link">Layout</a></li>
+                                <li><a href="#spacing" className="gds-slide-nav__link">Spacing</a></li>
+                                <li><a href="#transitions" className="gds-slide-nav__link">Transitions</a></li>
+                            </ul>
+                        </li>
+                        <li className="gds-slide-nav__list-item gds-slide-nav__list-item--primary gds-slide-nav__list-item--has-children">
+                            <a className="gds-slide-nav__link gds-slide-nav__link--expandable gg-expandable" href="#">Atoms</a>
+                            <ul className="gds-slide-nav__list gds-slide-nav__list--nested gg-expand-list">
+                                <li><a href="#containers" className="gds-slide-nav__link">Containers</a></li>
+                                <li><a href="#badges" className="gds-slide-nav__link">Badges</a></li>
+                                <li><a href="#buttons" className="gds-slide-nav__link">Buttons</a></li>
+                                <li><a href="#tooltips" className="gds-slide-nav__link">Tooltips</a></li>
+                                <li><a href="#type" className="gds-slide-nav__link">Type</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        )
+    }
+});
+
 // <GdsPageHeader /> component
 var GdsPageHeader = React.createClass({
-    render: function() {
-        var headerStyle = {pointerEvents: 'none'};
+    componentDidMount: function() {
 
+    },
+    render: function() {
         return (
-            <header className="gds-page-header" style={headerStyle}>
+            <header className="gds-page-header">
                 <div className="gds-page-header__product-bar">
                     <h6 className="gds-page-header__product-name">Product Name</h6>
                     <img className="gds-page-header__logo" src="https://ds.gumgum.com/images/svg/logo-white.svg" />
