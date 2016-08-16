@@ -62,7 +62,7 @@ var App = React.createClass({
                 <div className="gds-slide-content">
                     <div className="gds-layout__container">
                         <div className="gds-layout__column--lg-9 gds-layout__column--md-12 -p-h-3">
-                            <SearchBar components={this.state.json} />
+                            {/*<SearchBar components={this.state.json} />*/}
                             <MainColumn sections={this.state.sections} components={this.state.json} />
                             <Footer />
                         </div>
@@ -234,8 +234,9 @@ var MainColumnSection = React.createClass({
 
         return (
             <article>
-                <h1 id={`${slugify(section)}`} className="gds-docs__anchor-target gds-text--header-lg -m-t-6 -m-b-4">{section}</h1>
+                <h1 id={`${slugify(section)}`} className="gds-docs__anchor-target gds-text--header-lg -m-b-4">{section}</h1>
                 <MainColumnSectionItemsList section={section} componentNames={componentNamesInSection} components={componentsInSection} />
+                <div className="-block -m-b-6"></div>
             </article>
         )
     }
