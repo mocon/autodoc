@@ -75,15 +75,99 @@ var App = React.createClass({
 
 // <GdsTableOfContents /> component
 var GdsTableOfContents = React.createClass({
+    componentDidMount: function() {
+        $('body').scrollspy({
+            target: '.gds-table-of-contents__fixed-nav',
+            offset: 140
+        });
+    },
     render: function() {
         return (
-            <div className="fixed-scrollspy-nav -pointer-events--none">
+            <div className="gds-table-of-contents__fixed-nav -pointer-events--none">
                 <div className="gds-layout__container">
-                    <div className="gds-layout__column--lg-push-9 gds-layout__column--lg-3 -p-h-3 gds-layout__hidden-md-down -pointer-events--auto">
+                    <div className="gds-layout__column--lg-push-9 gds-layout__column--lg-3 gds-layout__hidden-md-down -p-l-3 -pointer-events--auto">
                         <Sidebar sections={this.props.sections} components={this.props.components} />
                     </div>
                 </div>
             </div>
+        )
+    }
+});
+
+// <Sidebar /> component
+var Sidebar = React.createClass({
+    render: function() {
+        var sections = this.props.sections,
+            components = this.props.components;
+
+        return (
+            <nav className="gds-table-of-contents">
+                <ul id="sidebar" className="nav nav-stacked">
+                    {sections.map(function(section, index) {
+                        return (
+                            <SidebarSection key={index} section={section} components={components} />
+                        )
+                    })}
+                </ul>
+            </nav>
+        )
+    }
+});
+
+// <SidebarSection /> component
+var SidebarSection = React.createClass({
+    render: function() {
+        var section = this.props.section,
+            components = this.props.components;
+
+        return (
+            <li>
+                <a href={`#${slugify(section)}`} className="gds-text--header-xs gds-text--link -ellipsis -block">{section}</a>
+                <SidebarSectionItemsList section={section} components={components} />
+            </li>
+        )
+    }
+});
+
+// <SidebarSectionItemsList /> component
+var SidebarSectionItemsList = React.createClass({
+    render: function() {
+        var section = this.props.section,
+            components = this.props.components,
+            sortedComponents = [];
+
+        // Sort components in section
+        components.map(function(component) {
+            return component.tags.map(function(tag) {
+                if (tag.tag === 'section' && tag.description === section) {
+                    var parentComponent;
+
+                    return component.tags.map(function(tag) {
+                        if (tag.tag === 'parentComponent') {
+                            parentComponent = tag.description;
+
+                            return component.tags.map(function(tag) {
+                                if (tag.tag === 'name' && tag.description === parentComponent && sortedComponents.indexOf(tag.name) < 0) {
+                                    sortedComponents.push(tag.description);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        });
+        sortedComponents.sort();
+
+        return (
+            <ul className="nav nav-stacked">
+                {sortedComponents.map(function(component, index) {
+                    return (
+                        <li key={index}>
+                            <a className="gds-text--link -ellipsis -block" href={`#${slugify(section)}-${slugify(component)}`}>{component}</a>
+                        </li>
+                    )
+                })}
+            </ul>
         )
     }
 });
@@ -150,7 +234,7 @@ var MainColumnSection = React.createClass({
 
         return (
             <article>
-                <h1 className="gds-text--header-lg -m-t-6 -m-b-4">{section}</h1>
+                <h1 id={`${slugify(section)}`} className="gds-docs__anchor-target gds-text--header-lg -m-t-6 -m-b-4">{section}</h1>
                 <MainColumnSectionItemsList section={section} componentNames={componentNamesInSection} components={componentsInSection} />
             </article>
         )
@@ -183,8 +267,6 @@ var MainColumnSectionItemsList = React.createClass({
             });
         });
         parentComponentsOnly.sort();
-
-        // console.log(parentComponentsOnly);
 
         return (
             <div className="-m-b-4">
@@ -243,7 +325,8 @@ var MainColumnSectionItem = React.createClass({
                     if (tag.tag === 'name') {
                         return (
                             <div key={index}>
-                                <h3 id={`${slugify(section)}-${slugify(tag.description)}`} className={`${headerClass} gds-text--primary gds-docs__anchor-target -m-t-1 -m-b-3`} style={capitalized}>{tag.description}</h3>
+                                <label className="gds-form-group__label -m-t-1 -m-b-0">Name</label>
+                                <h3 id={`${slugify(section)}-${slugify(tag.description)}`} className={`${headerClass} gds-text--primary gds-docs__anchor-target -m-b-3`} style={capitalized}>{tag.description}</h3>
 
                                 {/* Display component's description */}
                                 <label className="gds-form-group__label -m-a-0">Description</label>
@@ -281,85 +364,6 @@ var MainColumnSectionItem = React.createClass({
 
                 })}
             </div>
-        )
-    }
-});
-
-// <Sidebar /> component
-var Sidebar = React.createClass({
-    render: function() {
-        var sections = this.props.sections,
-            components = this.props.components;
-
-        return (
-            <aside>
-                <ul>
-                    {sections.map(function(section, index) {
-                        return (
-                            <SidebarSection key={index} section={section} components={components} />
-                        )
-                    })}
-                </ul>
-            </aside>
-        )
-    }
-});
-
-// <SidebarSection /> component
-var SidebarSection = React.createClass({
-    render: function() {
-        var section = this.props.section,
-            components = this.props.components;
-
-        return (
-            <li>
-                <h2 className="gds-text--header-xs">{section}</h2>
-                <hr />
-                <SidebarSectionItemsList section={section} components={components} />
-            </li>
-        )
-    }
-});
-
-// <SidebarSectionItemsList /> component
-var SidebarSectionItemsList = React.createClass({
-    render: function() {
-        var section = this.props.section,
-            components = this.props.components,
-            sortedComponents = [];
-
-        // Sort components in section
-        components.map(function(component) {
-            return component.tags.map(function(tag) {
-                if (tag.tag === 'section' && tag.description === section) {
-                    var parentComponent;
-
-                    return component.tags.map(function(tag) {
-                        if (tag.tag === 'parentComponent') {
-                            parentComponent = tag.description;
-
-                            return component.tags.map(function(tag) {
-                                if (tag.tag === 'name' && tag.description === parentComponent && sortedComponents.indexOf(tag.name) < 0) {
-                                    sortedComponents.push(tag.description);
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-        });
-        sortedComponents.sort();
-
-        return (
-            <ul className="-m-t-2 -m-b-3">
-                {sortedComponents.map(function(component, index) {
-                    return (
-                        <li key={index}>
-                            <a className="gds-text--link" href={`#${slugify(section)}-${slugify(component)}`}>{component}</a>
-                        </li>
-                    )
-                })}
-            </ul>
         )
     }
 });
@@ -518,11 +522,11 @@ var GdsPageHeader = React.createClass({
         $(window).bind('scroll', function() {
             if ($(window).scrollTop() >= 5) {
                 $('.gds-page-header__product-bar').addClass('gds-page-header__product-bar--collapsed');
-                $('.fixed-scrollspy-nav').addClass('fixed-scrollspy-nav--scrolled');
+                $('.gds-table-of-contents__fixed-nav').addClass('gds-table-of-contents__fixed-nav--scrolled');
             }
             else {
                 $('.gds-page-header__product-bar').removeClass('gds-page-header__product-bar--collapsed');
-                $('.fixed-scrollspy-nav').removeClass('fixed-scrollspy-nav--scrolled');
+                $('.gds-table-of-contents__fixed-nav').removeClass('gds-table-of-contents__fixed-nav--scrolled');
             }
         });
     },

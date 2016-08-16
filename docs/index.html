@@ -14,13 +14,14 @@
         <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
         <script src="https://npmcdn.com/jquery@3.1.0/dist/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <style>
             /* Temporary */
             .gds-docs__child-component:before {
                 content: '';
                 position: absolute;
                 display: block;
-                top: 13px;
+                top: -53px;
                 left: -17px;
                 right: -17px;
                 height: 2.5rem;
@@ -37,70 +38,61 @@
             .gds-docs__anchor-target:before {
                 content: '';
                 display: block;
-                height: 70px; /* fixed header height*/
-                margin: -70px 0 0; /* negative fixed header height */
-            }
-            .fixed {
-                position: fixed;
-            }
-
-            /* sidebar */
-            .bs-docs-sidebar {
-                padding-left: 20px;
+                height: 100px; /* fixed header height*/
+                margin: -100px 0 0; /* negative fixed header height */
             }
 
             /* all links */
-            .bs-docs-sidebar .nav > li > a {
-                border-left: (1rem / 6) solid transparent;
-                padding: 4px 20px;
-                font-size: 16px;
+            .gds-table-of-contents .nav > li > a {
+                border-left: 0.1666666667rem solid transparent; /* 1/6 rem */
+                padding: 0.25rem 1.25rem;
                 font-weight: 400;
             }
 
             /* nested links */
-            .bs-docs-sidebar .nav .nav > li > a {
-                padding-left: 2rem;
+            .gds-table-of-contents .nav .nav > li > a {
+                padding: 0 2rem;
                 font-weight: 300;
             }
 
-            .bs-docs-sidebar .nav .nav > li > a:hover {
+            .gds-table-of-contents .nav .nav > li > a:hover {
                 text-decoration: none;
             }
 
             /* active & hover links */
-            .bs-docs-sidebar .nav > .active > a,
-            .bs-docs-sidebar .nav > li > a:hover,
-            .bs-docs-sidebar .nav > li > a:focus {
+            .gds-table-of-contents .nav > .active > a,
+            .gds-table-of-contents .nav > li > a:hover,
+            .gds-table-of-contents .nav > li > a:focus {
                 text-decoration: none;
                 background-color: transparent;
                 border-left-color: #26a0c0;
             }
 
             /* all active links */
-            .bs-docs-sidebar .nav > .active > a,
-            .bs-docs-sidebar .nav > .active:hover > a,
-            .bs-docs-sidebar .nav > .active:focus > a {
+            .gds-table-of-contents .nav > .active > a,
+            .gds-table-of-contents .nav > .active:hover > a,
+            .gds-table-of-contents .nav > .active:focus > a {
                 font-weight: 700;
             }
 
             /* nested active links */
-            .bs-docs-sidebar .nav .nav > .active > a,
-            .bs-docs-sidebar .nav .nav > .active:hover > a,
-            .bs-docs-sidebar .nav .nav > .active:focus > a {
+            .gds-table-of-contents .nav .nav > .active > a,
+            .gds-table-of-contents .nav .nav > .active:hover > a,
+            .gds-table-of-contents .nav .nav > .active:focus > a {
                 font-weight: 500;
             }
 
             /* hide inactive nested list */
-            .bs-docs-sidebar .nav ul.nav {
+            .gds-table-of-contents .nav ul.nav {
                 display: none;
             }
 
             /* show active nested list */
-            .bs-docs-sidebar .nav > .active > ul.nav {
+            .gds-table-of-contents .nav > .active > ul.nav {
                 display: block;
             }
 
-            .fixed-scrollspy-nav {
+            .gds-table-of-contents__fixed-nav {
                 position: fixed;
                 top: 7rem;
                 left: 0;
@@ -110,15 +102,16 @@
                 transition: all .25s cubic-bezier(.165,.84,.44,1);
             }
 
-            .fixed-scrollspy-nav--scrolled {
+            .gds-table-of-contents__fixed-nav--scrolled {
                 top: 5rem;
             }
 
-            .gds-slide-out .fixed-scrollspy-nav {
+            .gds-slide-out .gds-table-of-contents__fixed-nav {
                 -webkit-transform: translateX(25rem);
                 transform: translateX(25rem);
             }
 
+            /* Utilities to add to DS */
             .-pointer-events--none {
                 pointer-events: none;
             }
