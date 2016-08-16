@@ -232,7 +232,7 @@ var MainColumnSectionItem = React.createClass({
                     if (tag.tag === 'name') {
                         return (
                             <div key={index}>
-                                <h3 id={`${slugify(section)}-${slugify(tag.description)}`} className={`${headerClass} gds-text--primary -m-t-1 -m-b-3`} style={capitalized}>{tag.description}</h3>
+                                <h3 id={`${slugify(section)}-${slugify(tag.description)}`} className={`${headerClass} gds-text--primary gds-docs__anchor-target -m-t-1 -m-b-3`} style={capitalized}>{tag.description}</h3>
 
                                 {/* Display component's description */}
                                 <label className="gds-form-group__label -m-a-0">Description</label>
