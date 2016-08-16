@@ -459,12 +459,12 @@ var GdsSlideNav = React.createClass({
 // <GdsPageHeader /> component
 var GdsPageHeader = React.createClass({
     componentDidMount: function() {
-        $(window).bind('scroll',function() {
-            if($(window).scrollTop() >= 5) {
-                $('.gds-page-header__product-bar').addClass("gds-page-header__product-bar--collapsed");
+        $(window).bind('scroll', function() {
+            if ($(window).scrollTop() >= 5) {
+                $('.gds-page-header__product-bar').addClass('gds-page-header__product-bar--collapsed');
             }
             else {
-                $('.aagds-page-header__product-bar').removeClass("gds-page-header__product-bar--collapsed");
+                $('.gds-page-header__product-bar').removeClass('gds-page-header__product-bar--collapsed');
             }
         });
     },
