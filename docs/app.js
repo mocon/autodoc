@@ -388,6 +388,7 @@ var GdsSlideNav = React.createClass({
             $('body').on('click', '#gg-slide-nav-button', toggleMenu).on('click','[gg-nav-closer]', closeMenu);
 
             $('body').on('click', '.gds-slide-nav__list--expanded .gds-slide-nav__link', toggleMenu);
+            $('body').on('click', '.gds-slide-nav__link.gds-slide-nav__link--expandable.gds-slide-nav__link--expanded', openMenu);
 
             // Toggle .gds-slide-nav menu with "a" key
             $(document).keypress(function(e) {
@@ -458,7 +459,14 @@ var GdsSlideNav = React.createClass({
 // <GdsPageHeader /> component
 var GdsPageHeader = React.createClass({
     componentDidMount: function() {
-
+        $(window).bind('scroll',function() {
+            if($(window).scrollTop() >= 5) {
+                $('.gds-page-header__product-bar').addClass("gds-page-header__product-bar--collapsed");
+            }
+            else {
+                $('.aagds-page-header__product-bar').removeClass("gds-page-header__product-bar--collapsed");
+            }
+        });
     },
     render: function() {
         return (
