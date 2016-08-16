@@ -1,5 +1,5 @@
 /*
- * This file parses all JSdoc-style comments from var config.scssDirectory, and outputs
+ * This file parses all JSdoc-style comments from var config.sourceDirectory, and outputs
  * `./docs/scssComments.json`, which is used to render React docs in `./docs/index.html` as
  * well as passing the data to `./snippetConverter.js` which constructs the code snippets
  * & saves them to `./code_snippets/phpstorm`, `./code_snippets/sublime` & `./code_snippets/vim`
@@ -13,12 +13,12 @@ var parse = require('comment-parser'),
     time = new Date().toLocaleTimeString(),
     commentTags = '',
     config = {
-        scssDirectory: '/scss/theme' // Directory to search for all .scss files
+        sourceDirectory: '/scss/theme' // Directory to search for all comment blocks
     };
 
-// Loop through all .scss files in directory, ignoring .DS_Store files
-recursive(__dirname + config.scssDirectory, ['.DS_Store'], function(err, files) {
-    console.log(`${date}, ${time} - Parsing Scss comments`);
+// Loop through all files in sourceDirectory, ignoring .DS_Store files
+recursive(__dirname + config.sourceDirectory, ['.DS_Store'], function(err, files) {
+    console.log(`${date}, ${time} - Parsing source code comments`);
 
     _extractComments(files); // Files is an array of filenames
 });
