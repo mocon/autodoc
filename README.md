@@ -38,5 +38,5 @@ Generated documentation can be seen at <a href="https://mocon.github.io/autodoc/
 
 #### Code snippet generator
 
-- [ ] Connect `./commentParser.js` to code snippet generator
+- [x] Connect `./commentParser.js` to code snippet generator
 - [ ] Output code snippets to `./code_snippets`
