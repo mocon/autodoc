@@ -3,11 +3,48 @@
 */
 var fs = require('fs'),
     Entities = require('html-entities').AllHtmlEntities,
-    entities = new Entities();
+    entities = new Entities(),
+    formattedComponents = [];
 
 module.exports = {
-    convert: function(json) {
-        console.log('Converting...');
+    _formatComments: function(json) {
+        console.log('Formatting comments for snippet conversion...');
+
+        // Restructure JSON output from commentParser into formattedComponents [{component}, {component}, {component}] etc...
+        json.map(function(component, index) {
+            var currentComponent = {};
+
+            currentComponent.index = index;
+            currentComponent.description = component.description;
+
+            component.tags.map(function(tag) {
+                var key = tag.tag,
+                    value = tag.description;
+
+                currentComponent[key] = value;
+
+                // Grab outerElement from example code
+                if (tag.tag === 'example') {
+                    var regex = /\<(.*?)\ /,
+                        stringToMatch = tag.description,
+                        outerElement = regex.exec(stringToMatch)[1];
+
+                    currentComponent.outerElement = outerElement;
+                }
+            });
+
+            formattedComponents.push(currentComponent);
+        });
+
+        console.log(formattedComponents[0]);
+
+        console.log('Formatting complete.');
+
+        // Convert formattedComponents to code snippets and save the snippet files
+        this._convert(formattedComponents);
+    },
+    _convert: function(json) {
+        console.log('Converting code snippets...');
 
         // Loop through all components, passed into convert() as json
         json.map(function(component) {
@@ -31,13 +68,13 @@ module.exports = {
             Assemble Sublime snippet
             --------------------------------------------
             */
-            component.defaultClasses.map(function(className, index) {
+            component.defaultClasses.split(',').map(function(className, index) {
                 // Map defaultClasses to string
                 index === (numberOfDefaultClasses - 1) ? sublimeDefaultClasses += className : sublimeDefaultClasses += className + ' ';
             });
 
             // Map optionalClasses to string
-            component.optionalClasses.map(function(className, index) {
+            component.optionalClasses.split(',').map(function(className, index) {
                 if (index === (numberOfOptionalClasses - 1)) {
                     sublimeOptionalClasses += '${' + tabStopIndex + ':' + className + '}';
                 } else {
@@ -47,7 +84,7 @@ module.exports = {
             });
 
             // Add tab stop index to default text
-            defaultTextWithTabStop = '${' + tabStopIndex + ':' + component.defaultTextContent + '}';
+            defaultTextWithTabStop = '${' + tabStopIndex + ':' + component.tabTrigger + '}';
 
             // Assemble code snippet
             sublimeSnippet += '<!-- ' + component.name + ' -->\n<snippet><content><![CDATA[\n';
@@ -106,7 +143,7 @@ module.exports = {
             --------------------------------------------
             */
             // Map optionalClasses to string
-            component.optionalClasses.map(function(className, index) {
+            component.optionalClasses.split(',').map(function(className, index) {
                 if (index === (numberOfOptionalClasses - 1)) {
                     phpStormOptionalClasses += '$' + phpStormTabStopIndex + '$';
                     phpStormOptionalClassVariables += '\t<variable name="' + phpStormTabStopIndex + '" expression="&quot;' + className + '&quot;" defaultValue="" alwaysStopAt="true" />';
@@ -129,7 +166,7 @@ module.exports = {
             phpStormEncodedHtml = entities.encode(phpStormBaseHtml);
             phpStormSnippet += '<template name="' + component.tabTrigger + '" value="' + phpStormEncodedHtml.replace(/&Tab;/g, '\t').replace(/\r?\n|\r/g, '&#13;') + '" description="' + component.name + '" toReformat="false" toShortenFQNames="true">';
             phpStormSnippet += '\n' + phpStormOptionalClassVariables;
-            phpStormSnippet += '\n\t<variable name="' + phpStormTabStopIndex + '" expression="&quot;' + component.defaultTextContent + '&quot;" defaultValue="" alwaysStopAt="true" />';
+            phpStormSnippet += '\n\t<variable name="' + phpStormTabStopIndex + '" expression="&quot;' + component.tabTrigger + '&quot;" defaultValue="" alwaysStopAt="true" />';
             phpStormSnippet += '\n\t<context>\n\t\t<option name="HTML" value="true" />\n\t</context>\n</template>';
 
             // Write the PhpStorm code snippet file
@@ -141,6 +178,6 @@ module.exports = {
 
         });
 
-        console.log('Conversion complete.');
+        console.log('Code snippets converted and saved.');
     }
 }
