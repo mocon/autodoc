@@ -61,6 +61,7 @@ An example of the generated documentation can be seen at <a href="https://mocon.
 
 - [ ] Add configuration file, required()'d by `./commentParser.js` for productName, sourceDirectory, and introductory section content
 - [ ] Hook up `<SearchBar />` to live filter all components
+- [ ] localStorage for theme selector circles
 
 #### Code snippet generator
 
