@@ -35,7 +35,7 @@ Autodoc performs a recursive search of all files (with any varying file extensio
  */
 ```
 
-__Note:__ Any `tags`, prefaced by @, can be added. The generated documentation view, in `/docs/app.js` will need to be updated to render any new tags added.
+__Note:__ Any `tags`, prefaced by @, can be added. The JSX markup for the generated documentation view, in `/docs/app.js` will need to be updated to render any new tags added.
 
 ## Installation
 
