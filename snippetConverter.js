@@ -86,32 +86,9 @@ module.exports = {
             });
 
             // Assemble PhpStorm snippet
-
-            // Map optionalClasses to string
-            component.optionalClasses.split(',').map(function(className, index) {
-                if (index === (numberOfOptionalClasses - 1)) {
-                    phpStormOptionalClasses += '$' + phpStormTabStopIndex + '$';
-                    phpStormOptionalClassVariables += '\t<variable name="' + phpStormTabStopIndex + '" expression="&quot;' + className + '&quot;" defaultValue="" alwaysStopAt="true" />';
-                } else {
-                    phpStormOptionalClasses += '$' + phpStormTabStopIndex + '$' + ' ';
-                    phpStormOptionalClassVariables += '\t<variable name="' + phpStormTabStopIndex + '" expression="&quot;' + className + '&quot;" defaultValue="" alwaysStopAt="true" />\n';
-                }
-                phpStormTabStopIndex++;
-            });
-
-            // If this component has innerHtml
-            if (component.innerHtml !== '') {
-                // Show innerHtml, cannot use defaultText, for now
-                phpStormBaseHtml = '<' + component.outerElement + ' class="' + sublimeDefaultClasses + ' ' + phpStormOptionalClasses + '">' + component.innerHtml + '</' + component.outerElement + '>';
-            } else {
-                // Just render single element, with default text
-                phpStormBaseHtml = '<' + component.outerElement + ' class="' + sublimeDefaultClasses + ' ' + phpStormOptionalClasses + '">$' + phpStormTabStopIndex + '$</' + component.outerElement + '>';
-            }
-
+            phpStormBaseHtml = component.example;
             phpStormEncodedHtml = entities.encode(phpStormBaseHtml);
-            phpStormSnippet += '<template name="' + component.tabTrigger + '" value="' + phpStormEncodedHtml.replace(/&Tab;/g, '\t').replace(/\r?\n|\r/g, '&#13;') + '" description="' + component.name + '" toReformat="false" toShortenFQNames="true">';
-            phpStormSnippet += '\n' + phpStormOptionalClassVariables;
-            phpStormSnippet += '\n\t<variable name="' + phpStormTabStopIndex + '" expression="&quot;' + component.tabTrigger + '&quot;" defaultValue="" alwaysStopAt="true" />';
+            phpStormSnippet += '<template name="' + component.tabTrigger + '" value="' + phpStormEncodedHtml.replace(/---]/g, '\t').replace(/\r?\n|\r/g, '&#13;') + '" description="' + component.name + '" toReformat="false" toShortenFQNames="true">';
             phpStormSnippet += '\n\t<context>\n\t\t<option name="HTML" value="true" />\n\t</context>\n</template>';
 
             // Write the PhpStorm code snippet file
