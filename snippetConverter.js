@@ -35,9 +35,6 @@ module.exports = {
 
             formattedComponents.push(currentComponent);
         });
-
-        console.log(formattedComponents[0]);
-
         console.log('Formatting complete.');
 
         // Convert formattedComponents to code snippets and save the snippet files
@@ -63,42 +60,9 @@ module.exports = {
                 phpStormBaseHtml = '',
                 phpStormEncodedHtml = '';
 
-            /*
-            --------------------------------------------
-            Assemble Sublime snippet
-            --------------------------------------------
-            */
-            component.defaultClasses.split(',').map(function(className, index) {
-                // Map defaultClasses to string
-                index === (numberOfDefaultClasses - 1) ? sublimeDefaultClasses += className : sublimeDefaultClasses += className + ' ';
-            });
-
-            // Map optionalClasses to string
-            component.optionalClasses.split(',').map(function(className, index) {
-                if (index === (numberOfOptionalClasses - 1)) {
-                    sublimeOptionalClasses += '${' + tabStopIndex + ':' + className + '}';
-                } else {
-                    sublimeOptionalClasses += '${' + tabStopIndex + ':' + className + '}' + ' ';
-                }
-                tabStopIndex++;
-            });
-
-            // Add tab stop index to default text
-            defaultTextWithTabStop = '${' + tabStopIndex + ':' + component.tabTrigger + '}';
-
-            // Assemble code snippet
+            // Assemble Sublime snippet
             sublimeSnippet += '<!-- ' + component.name + ' -->\n<snippet><content><![CDATA[\n';
-            sublimeSnippet += '<' + component.outerElement + ' class="' + sublimeDefaultClasses;
-
-            // If this component has innerHtml
-            if (component.innerHtml !== '') {
-                // Show innerHtml, cannot use defaultText, for now
-                sublimeSnippet += ' ' + sublimeOptionalClasses + '">' + component.innerHtml + '</' + component.outerElement + '>\n';
-            } else {
-                // Just render single element, with default text
-                sublimeSnippet += ' ' + sublimeOptionalClasses + '">' + defaultTextWithTabStop + '</' + component.outerElement + '>\n';
-            }
-
+            sublimeSnippet += component.example.replace(/---]/g, '    ') + '\n';
             sublimeSnippet += ']]></content><tabTrigger>' + component.tabTrigger + '</tabTrigger>';
             sublimeSnippet += '<scope>text.html</scope></snippet>';
 
@@ -109,24 +73,9 @@ module.exports = {
                 }
             });
 
-
-            /*
-            --------------------------------------------
-            Assemble Vim snippet
-            --------------------------------------------
-            */
+            // Assemble Vim snippet
             vimSnippet += 'snippet ' + component.tabTrigger + ' "' + component.name + '" b' + '\n';
-            vimSnippet += '<' + component.outerElement + ' class="' + sublimeDefaultClasses;
-
-            // If this component has innerHtml
-            if (component.innerHtml !== '') {
-                // Show innerHtml, cannot use defaultText, for now
-                vimSnippet += ' ' + sublimeOptionalClasses + '">' + component.innerHtml + '</' + component.outerElement + '>' + '\n';
-            } else {
-                // Just render single element, with default text
-                vimSnippet += ' ' + sublimeOptionalClasses + '">' + defaultTextWithTabStop + '</' + component.outerElement + '>' + '\n';
-            }
-
+            vimSnippet += component.example.replace(/---]/g, '    ') + '\n';
             vimSnippet += 'endsnippet';
 
             // Write the Vim code snippet file
@@ -136,12 +85,8 @@ module.exports = {
                 }
             });
 
+            // Assemble PhpStorm snippet
 
-            /*
-            --------------------------------------------
-            Assemble PhpStorm snippet
-            --------------------------------------------
-            */
             // Map optionalClasses to string
             component.optionalClasses.split(',').map(function(className, index) {
                 if (index === (numberOfOptionalClasses - 1)) {

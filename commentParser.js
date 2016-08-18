@@ -18,7 +18,7 @@ var parse = require('comment-parser'),
 
 // Loop through all files in sourceDirectory, ignoring .DS_Store files
 recursive(__dirname + config.sourceDirectory, ['.DS_Store'], function(err, files) {
-    console.log(`${date}, ${time} - Parsing source code comments`);
+    console.log(`${date}, ${time} - Parsing source code comments...`);
 
     _extractComments(files); // Files is an array of filenames
 });
