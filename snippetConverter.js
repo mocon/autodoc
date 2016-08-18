@@ -43,7 +43,7 @@ module.exports = {
     _convert: function(json) {
         console.log('Converting code snippets...');
 
-        // Loop through all components, passed into convert() as json
+        // Loop through all components, passed into _convert() as json
         json.map(function(component) {
             var defaultTextWithTabStop = '',
                 numberOfDefaultClasses = component.defaultClasses.length,
