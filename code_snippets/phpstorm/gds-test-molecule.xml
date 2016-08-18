@@ -1,0 +1,5 @@
+<template name="gds-test-molecule" value="&lt;div class=&quot;test__molecule&quot;&gt;&#13;	&lt;span class=&quot;example__span&quot;&gt;&#13;		&lt;span class=&quot;example__span&quot;&gt;Example&lt;/span&gt;&#13;	&lt;/span&gt;&#13;&lt;/div&gt;" description="Test Molecule" toReformat="false" toShortenFQNames="true">
+	<context>
+		<option name="HTML" value="true" />
+	</context>
+</template>

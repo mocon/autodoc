@@ -1,0 +1,6 @@
+<!-- Main -->
+<snippet><content><![CDATA[
+<section class="test__main">
+    <span class="example__span">Example</span>
+</section>
+]]></content><tabTrigger>gds-test-main</tabTrigger><scope>text.html</scope></snippet>
