@@ -54,5 +54,3 @@ $ node commentParser.js
 After running the script above, generated documentation can be viewed in `/docs/index.html`. This file currently requires a webserver to view it.
 
 An example of the generated documentation can be seen at <a href="https://mocon.github.io/autodoc/docs/" target="_blank">mocon.github.io/autodoc/docs</a>.
-
-Logo by Myles O'Connor
