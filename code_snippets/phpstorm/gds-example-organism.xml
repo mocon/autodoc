@@ -1,0 +1,5 @@
+<template name="gds-example-organism" value="&lt;div class=&quot;example__organism&quot;&gt;&#13;	&lt;span class=&quot;example__span&quot;&gt;&#13;		&lt;span class=&quot;example__span&quot;&gt;Example&lt;/span&gt;&#13;	&lt;/span&gt;&#13;&lt;/div&gt;" description="Example Organism" toReformat="false" toShortenFQNames="true">
+	<context>
+		<option name="HTML" value="true" />
+	</context>
+</template>

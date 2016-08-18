@@ -3,6 +3,3 @@ node_modules
 docs/min
 config.codekit
 .DS_Store
-code_snippets/phpstorm/*.xml
-code_snippets/sublime/*.sublime-snippet
-code_snippets/vim/*.snippets
