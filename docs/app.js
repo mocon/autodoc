@@ -300,7 +300,10 @@ var MainColumnSectionItem = React.createClass({
             capitalized = {textTransform: capitalized},
             parentComponent,
             headerClass = 'gds-text--header-md',
-            isChildComponent = '';
+            isChildComponent = '',
+            renderedMarkupStyle = {},
+            autocompleteTrigger,
+            componentOptions;
 
         // Determine if this component is a parentComponent
         component.tags.map(function(tag) {
@@ -316,7 +319,27 @@ var MainColumnSectionItem = React.createClass({
                     }
                 });
             }
+
+            // Only render markup if component.renderMarkup === true
+            if (tag.tag === 'renderMarkup') {
+                tag.description === 'false' ? renderedMarkupStyle.display = 'none' : renderedMarkupStyle.display = 'block';
+            }
+
+            // Autocomplete trigger
+            if (tag.tag === 'tabTrigger') {
+                autocompleteTrigger = tag.description;
+            }
+
+            // Optional classes
+            if (tag.tag === 'optionalClasses') {
+                componentOptions = tag.description.split(',');
+            }
         });
+
+        // For rendering HTML strings as rendered example markup
+        function createRenderedMarkup(str) {
+            return {__html: str};
+        }
 
         return (
             <div className={isChildComponent}>
@@ -343,7 +366,14 @@ var MainColumnSectionItem = React.createClass({
 
                         return (
                             <div key={index} className="-m-b-3">
-                                <label className="gds-form-group__label -m-b-2">{tag.tag}</label>
+                                {/* Show rendered example */}
+                                <div style={renderedMarkupStyle}>
+                                    <label className="gds-form-group__label -m-b-2">Example</label>
+                                    <div className="-m-b-3" dangerouslySetInnerHTML={createRenderedMarkup(sampleCode)}></div>
+                                </div>
+
+                                {/* Show code sample */}
+                                <label className="gds-form-group__label -m-b-2">Code</label>
                                 <pre className="-m-a-0" style={preStyle}>
                                     <code className="language-html gds-text--body-sm">
                                         {sampleCode}
@@ -353,14 +383,56 @@ var MainColumnSectionItem = React.createClass({
                         )
                     }
 
-                    {/* Display component's author */}
-                    if (tag.tag === 'author') {
+                    {/* Show autocomplete trigger, if component has one */}
+                    if (tag.tag === 'tabTrigger' && tag.description) {
                         return (
                             <div key={index}>
-                                <label className="gds-form-group__label -m-a-0">{tag.tag}</label>
+                                <label className="gds-form-group__label -m-t-3 -m-b-2">Autocomplete trigger</label>
+                                <h3 className="gds-text--body-md -m-b-3"><span className="gds-text--keyboard gds-text--body-sm">{autocompleteTrigger}</span></h3>
+                            </div>
+                        )
+                    }
+
+                    {/* Display component's author */}
+                    if (tag.tag === 'author') {
+                        var authorValue = tag.description,
+                            comma = ',',
+                            authorLabelValue;
+
+                        // Plural if author contains a comma
+                        authorValue.indexOf(comma) > -1 ? authorLabelValue = 'authors' : authorLabelValue = 'author';
+
+                        return (
+                            <div key={index}>
+                                <label className="gds-form-group__label -m-a-0">{authorLabelValue}</label>
                                 <h3 className="gds-text--body-md">{tag.description}</h3>
                             </div>
                         )
+                    }
+
+                    {/* Display component options */}
+                    if (tag.tag === 'optionalClasses') {
+                        var optionsStyle = {fontSize: '0.8rem'};
+
+                        if (componentOptions.length > 1) {
+                            return (
+                                <div key={index} className="-m-t-3">
+                                    <label className="gds-form-group__label -m-a-0">Options</label>
+                                    {componentOptions.map(function(name, index) {
+                                        return (
+                                            <p key={index}><span style={optionsStyle} className="gds-text--code">{name}</span></p>
+                                        )
+                                    })}
+                                </div>
+                            )
+                        } else {
+                            return (
+                                <div key={index} className="-m-t-3">
+                                    <label className="gds-form-group__label -m-a-0">Options</label>
+                                    <p>None</p>
+                                </div>
+                            )
+                        }
                     }
 
                 })}
@@ -535,7 +607,7 @@ var GdsPageHeader = React.createClass({
         return (
             <header className="gds-page-header">
                 <div className="gds-page-header__product-bar">
-                    <h6 className="gds-page-header__product-name">Product Name</h6>
+                    <h6 className="gds-page-header__product-name">Design System</h6>
                     <img className="gds-page-header__logo" src="https://ds.gumgum.com/images/svg/logo-white.svg" />
                 </div>
                 <div className="gds-page-header__nav-bar">
