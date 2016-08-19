@@ -23,6 +23,11 @@ function slugify(text) {
       .replace(/-+$/, '');            // Trim - from end of text
 }
 
+// For rendering HTML strings as rendered example markup
+function createRenderedMarkup(str) {
+    return {__html: str};
+}
+
 // <App /> component
 var App = React.createClass({
     getInitialState: function() {
@@ -54,6 +59,32 @@ var App = React.createClass({
         _this._getSections();
     },
     render: function() {
+        if (!this.state.json) {
+            var emptyStateParentStyles = {
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%'
+                },
+                emptyStateChildStyles = {
+                    marginTop: '-100px',
+                    maxWidth: '50%'
+                };
+
+            return (
+                <div style={emptyStateParentStyles}>
+                    <div className="-text-center" style={emptyStateChildStyles}>
+                        <img src="./logo.png" alt="Autodoc" className="-m-b-2" />
+                        <p><span className="gds-text--keyboard">npm run autodoc &lt;/path/to/sourcecode/&gt;</span><br/>to generate documentation.</p>
+                    </div>
+                </div>
+            )
+        }
+
         return (
             <div>
                 <GdsSlideNav sections={this.state.sections} components={this.state.json} />
@@ -68,8 +99,40 @@ var App = React.createClass({
                         </div>
                     </div>
                 </div>
+                <GdsCornerContent />
             </div>
         );
+    }
+});
+
+// <GdsCornerContent /> component
+var GdsCornerContent = React.createClass({
+    componentDidMount: function() {
+        $(document).on('click', '.gds-corner-content__header', function() {
+            $(this).closest('.gds-corner-content').toggleClass('gds-corner-content--shown');
+        });
+        Prism.highlightAll();
+    },
+    render: function() {
+        var headerStyle = {cursor: 'pointer'},
+            preStyle = {background: '#fafafa', lineHeight: 1.2, borderRadius: '2px'};
+
+        return (
+            <div className="gds-corner-content gds-corner-content--right gds-corner-content--shown">
+                <div className="gds-corner-content__header" style={headerStyle}>
+                    <h4 className="gds-corner-content__title">Getting Started</h4>
+                    <div className="gds-corner-content__controls">
+                        <button className="gds-corner-content__button"><i className="fa fa-arrows-v"></i></button>
+                    </div>
+                </div>
+                <div className="gds-corner-content__block -p-a-3">
+                    <p className="-m-b-3">To use the Design System, include the following code in the <span className="gds-text--code">&lt;head&gt;</span> of your document:</p>
+                    <pre className="language-html" style={preStyle}>
+                        <code className="gds-text--body-sm">&lt;link rel="stylesheet" href="https://ds.gumgum.com/staging/main.css"&gt;</code>
+                    </pre>
+                </div>
+            </div>
+        )
     }
 });
 
@@ -336,11 +399,6 @@ var MainColumnSectionItem = React.createClass({
             }
         });
 
-        // For rendering HTML strings as rendered example markup
-        function createRenderedMarkup(str) {
-            return {__html: str};
-        }
-
         return (
             <div className={isChildComponent}>
                 {component.tags.map(function(tag, index) {
@@ -373,7 +431,7 @@ var MainColumnSectionItem = React.createClass({
                                 </div>
 
                                 {/* Show code sample */}
-                                <label className="gds-form-group__label -m-a-0">Code</label>
+                                <label className="gds-form-group__label -m-b-1">Code</label>
                                 <pre className="-m-a-0" style={preStyle}>
                                     <code className="language-html gds-text--body-sm">
                                         {sampleCode}
@@ -387,7 +445,7 @@ var MainColumnSectionItem = React.createClass({
                     if (tag.tag === 'tabTrigger' && tag.description) {
                         return (
                             <div key={index}>
-                                <label className="gds-form-group__label -m-t-3 -m-b-0">Autocomplete trigger</label>
+                                <label className="gds-form-group__label -m-a-0">Autocomplete trigger</label>
                                 <h3 className="gds-text--body-md -m-b-3"><span className="gds-text--keyboard gds-text--body-sm">{autocompleteTrigger}</span></h3>
                             </div>
                         )
@@ -403,7 +461,7 @@ var MainColumnSectionItem = React.createClass({
                         authorValue.indexOf(comma) > -1 ? authorLabelValue = 'authors' : authorLabelValue = 'author';
 
                         return (
-                            <div key={index}>
+                            <div key={index} className="-m-b-3">
                                 <label className="gds-form-group__label -m-a-0">{authorLabelValue}</label>
                                 <h3 className="gds-text--body-md">{tag.description}</h3>
                             </div>
