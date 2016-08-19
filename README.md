@@ -45,8 +45,10 @@ $ npm install
 
 ## Generate documentation and code snippets
 
+Pass in the directory to be scanned:
+
 ```
-$ npm run autodoc
+$ npm run autodoc /scss/theme/
 ```
 
 ## View the generated documentation
@@ -59,6 +61,6 @@ An example of the generated documentation can be seen at <a href="https://mocon.
 
 Generated code snippets can be viewed in:
 
-* `/code_snippets/phpstorm`
-* `/code_snippets/sublime`
-* `/code_snippets/vim`
+* `/autodocCodeSnippets/phpstorm`
+* `/autodocCodeSnippets/sublime`
+* `/autodocCodeSnippets/vim`

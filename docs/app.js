@@ -4,7 +4,7 @@ var json = (function () {
     $.ajax({
         'async': false,
         'global': false,
-        'url': 'scssComments.json',
+        'url': 'autodocComments.json',
         'dataType': 'json',
         'success': function (data) {
             json = data;
