@@ -349,7 +349,7 @@ var MainColumnSectionItem = React.createClass({
                     if (tag.tag === 'name') {
                         return (
                             <div key={index}>
-                                <label className="gds-form-group__label -m-t-1 -m-b-0">Name</label>
+                                <label className="gds-form-group__label -m-a-0">Name</label>
                                 <h3 id={`${slugify(section)}-${slugify(tag.description)}`} className={`${headerClass} gds-text--primary gds-docs__anchor-target -m-b-3`} style={capitalized}>{tag.description}</h3>
 
                                 {/* Display component's description */}
@@ -368,12 +368,12 @@ var MainColumnSectionItem = React.createClass({
                             <div key={index} className="-m-b-3">
                                 {/* Show rendered example */}
                                 <div style={renderedMarkupStyle}>
-                                    <label className="gds-form-group__label -m-b-2">Example</label>
+                                    <label className="gds-form-group__label -m-a-0">Example</label>
                                     <div className="-m-b-3" dangerouslySetInnerHTML={createRenderedMarkup(sampleCode)}></div>
                                 </div>
 
                                 {/* Show code sample */}
-                                <label className="gds-form-group__label -m-b-2">Code</label>
+                                <label className="gds-form-group__label -m-a-0">Code</label>
                                 <pre className="-m-a-0" style={preStyle}>
                                     <code className="language-html gds-text--body-sm">
                                         {sampleCode}
@@ -387,7 +387,7 @@ var MainColumnSectionItem = React.createClass({
                     if (tag.tag === 'tabTrigger' && tag.description) {
                         return (
                             <div key={index}>
-                                <label className="gds-form-group__label -m-t-3 -m-b-2">Autocomplete trigger</label>
+                                <label className="gds-form-group__label -m-t-3 -m-b-0">Autocomplete trigger</label>
                                 <h3 className="gds-text--body-md -m-b-3"><span className="gds-text--keyboard gds-text--body-sm">{autocompleteTrigger}</span></h3>
                             </div>
                         )
