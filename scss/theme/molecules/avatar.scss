@@ -1,0 +1,191 @@
+/**
+ * The avatar component, prefixed by .gds-avatar, can display a user's photo, a brand's logo, or a flag icon for internationalization. The avatar can include a dropdown menu, which is meant to be shown when the avatar is clicked on.
+ *
+ * @section {String} section Molecules
+ *
+ * @parentComponent {String} parentComponent Avatar
+ *
+ * @name {String} name Avatar
+ *
+ * @example {Code}
+ *
+ * <div class="gds-avatar" gg-avatar>
+ * ---]<div class="gds-avatar__image">
+ * ---]---]<img src="https://ds.gumgum.com/images/ken.png" alt="Ken Weiner" height="100%" />
+ * ---]</div>
+ * ---]<div class="gds-avatar__menu">
+ * ---]---]<ul class="gds-avatar__menu-list">
+ * ---]---]---]<li class="gds-avatar__menu-list-item -ellipsis"><a class="gds-avatar__menu-list-link" href="#">Profile</a></li>
+ * ---]---]---]<li class="gds-avatar__menu-list-item -ellipsis"><a class="gds-avatar__menu-list-link" href="#">Settings</a></li>
+ * ---]---]---]<li class="gds-avatar__menu-list-divider"></li>
+ * ---]---]---]<li class="gds-avatar__menu-list-item -ellipsis"><a class="gds-avatar__menu-list-link" href="#">Logout</a></li>
+ * ---]---]</ul>
+ * ---]</div>
+ * </div>
+ *
+ * @renderMarkup {Boolean} renderMarkup true
+ *
+ * @author {String} author Dan McKenna, Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-avatar
+ * @defaultClasses {Array} defaultClasses gds-avatar
+ * @optionalClasses {Array} optionalClasses
+ */
+.gds-avatar {
+  display: inline-block;
+  height: ($unit * 2);
+  margin-left: ($unit * 0.75);
+  cursor: pointer;
+
+  // SVG gear icon
+  &:after {
+    content: "";
+    width: ($unit * 1.5);
+    height: ($unit * 1.5);
+    background-image: url("data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2028%2028%22%20style%3D%22enable-background%3Anew%200%200%2028%2028%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E.st0%7Bfill-rule%3Aevenodd%3Bclip-rule%3Aevenodd%3Bfill%3A%23FFFFFF%3B%7D.st1%7Bfill-rule%3Aevenodd%3Bclip-rule%3Aevenodd%3Bfill%3A%23#{strip-hash($gg-light-4)}%3B%7D%3C%2Fstyle%3E%3Cg%3E%3Cpath%20class%3D%22st0%22%20d%3D%22M11.9%2C27.9l-1-2.3l-2.1%2C1.5L5.3%2C25l0.3-2.5L3%2C22.7l-2.1-3.6l1.5-2.1l-2.3-1v-4.1l2.3-1L0.9%2C8.8L3%2C5.3l2.5%2C0.3L5.3%2C3l3.6-2.1l2.1%2C1.5l1-2.3h4.1l1%2C2.3l2.1-1.5L22.7%2C3l-0.3%2C2.5L25%2C5.3l2.1%2C3.6l-1.5%2C2.1l2.3%2C1v4.1l-2.3%2C1l1.5%2C2.1L25%2C22.7l-2.5-0.3l0.3%2C2.5l-3.6%2C2.1l-2.1-1.5l-1%2C2.3H11.9z%22%2F%3E%3Cpath%20class%3D%22st1%22%20d%3D%22M26%2C13.2v1.7l-2.3%2C1c-0.1%2C0.5-0.2%2C0.9-0.4%2C1.4l1.5%2C2L24%2C20.7l-2.5-0.3c-0.3%2C0.4-0.7%2C0.7-1%2C1l0.3%2C2.5l-1.4%2C0.8l-2-1.5c-0.5%2C0.2-0.9%2C0.3-1.4%2C0.4l-1%2C2.3h-1.7l-1-2.3c-0.5-0.1-0.9-0.2-1.4-0.4l-2%2C1.5L7.3%2C24l0.3-2.5c-0.4-0.3-0.7-0.7-1-1L4%2C20.7l-0.8-1.4l1.5-2c-0.2-0.5-0.3-0.9-0.4-1.4l-2.3-1v-1.7l2.3-1c0.1-0.5%2C0.2-0.9%2C0.4-1.4l-1.5-2L4%2C7.3l2.5%2C0.3c0.3-0.4%2C0.7-0.7%2C1-1L7.3%2C4l1.4-0.8l2%2C1.5c0.5-0.2%2C0.9-0.3%2C1.4-0.4l1-2.3h1.7l1%2C2.3c0.5%2C0.1%2C0.9%2C0.2%2C1.4%2C0.4l2-1.5L20.7%2C4l-0.3%2C2.5c0.4%2C0.3%2C0.7%2C0.7%2C1%2C1L24%2C7.3l0.8%2C1.4l-1.5%2C2c0.2%2C0.5%2C0.3%2C0.9%2C0.4%2C1.4L26%2C13.2z%20M14%2C6.9c-3.9%2C0-7.1%2C3.2-7.1%2C7.1s3.2%2C7.1%2C7.1%2C7.1s7.1-3.2%2C7.1-7.1S17.9%2C6.9%2C14%2C6.9z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    position: absolute;
+    bottom: -2px;
+    right: 19px;
+    pointer-events: none;
+		@include transition-ease-out(all,1000ms);
+  }
+
+	&:hover {
+		.gds-avatar__image {
+			border-color:white;
+			box-shadow:0px 0px 0px 2px $gg-blue;
+			transform:scale(1.1);
+		}
+	}
+}
+
+.gds-avatar--menu-open {
+
+	&:after {
+		transform:rotate(360deg);
+    background-image: url("data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2028%2028%22%20style%3D%22enable-background%3Anew%200%200%2028%2028%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E.st0%7Bfill-rule%3Aevenodd%3Bclip-rule%3Aevenodd%3Bfill%3A%23FFFFFF%3B%7D.st1%7Bfill-rule%3Aevenodd%3Bclip-rule%3Aevenodd%3Bfill%3A%23#{strip-hash($gg-blue)}%3B%7D%3C%2Fstyle%3E%3Cg%3E%3Cpath%20class%3D%22st0%22%20d%3D%22M11.9%2C27.9l-1-2.3l-2.1%2C1.5L5.3%2C25l0.3-2.5L3%2C22.7l-2.1-3.6l1.5-2.1l-2.3-1v-4.1l2.3-1L0.9%2C8.8L3%2C5.3l2.5%2C0.3L5.3%2C3l3.6-2.1l2.1%2C1.5l1-2.3h4.1l1%2C2.3l2.1-1.5L22.7%2C3l-0.3%2C2.5L25%2C5.3l2.1%2C3.6l-1.5%2C2.1l2.3%2C1v4.1l-2.3%2C1l1.5%2C2.1L25%2C22.7l-2.5-0.3l0.3%2C2.5l-3.6%2C2.1l-2.1-1.5l-1%2C2.3H11.9z%22%2F%3E%3Cpath%20class%3D%22st1%22%20d%3D%22M26%2C13.2v1.7l-2.3%2C1c-0.1%2C0.5-0.2%2C0.9-0.4%2C1.4l1.5%2C2L24%2C20.7l-2.5-0.3c-0.3%2C0.4-0.7%2C0.7-1%2C1l0.3%2C2.5l-1.4%2C0.8l-2-1.5c-0.5%2C0.2-0.9%2C0.3-1.4%2C0.4l-1%2C2.3h-1.7l-1-2.3c-0.5-0.1-0.9-0.2-1.4-0.4l-2%2C1.5L7.3%2C24l0.3-2.5c-0.4-0.3-0.7-0.7-1-1L4%2C20.7l-0.8-1.4l1.5-2c-0.2-0.5-0.3-0.9-0.4-1.4l-2.3-1v-1.7l2.3-1c0.1-0.5%2C0.2-0.9%2C0.4-1.4l-1.5-2L4%2C7.3l2.5%2C0.3c0.3-0.4%2C0.7-0.7%2C1-1L7.3%2C4l1.4-0.8l2%2C1.5c0.5-0.2%2C0.9-0.3%2C1.4-0.4l1-2.3h1.7l1%2C2.3c0.5%2C0.1%2C0.9%2C0.2%2C1.4%2C0.4l2-1.5L20.7%2C4l-0.3%2C2.5c0.4%2C0.3%2C0.7%2C0.7%2C1%2C1L24%2C7.3l0.8%2C1.4l-1.5%2C2c0.2%2C0.5%2C0.3%2C0.9%2C0.4%2C1.4L26%2C13.2z%20M14%2C6.9c-3.9%2C0-7.1%2C3.2-7.1%2C7.1s3.2%2C7.1%2C7.1%2C7.1s7.1-3.2%2C7.1-7.1S17.9%2C6.9%2C14%2C6.9z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+	}
+	.gds-avatar__menu {
+    opacity: 1;
+		transform:scaleY(1);
+    pointer-events: auto;
+	}
+	.gds-avatar__image {
+		border-color:white;
+		box-shadow:0px 0px 0px 2px $gg-blue;
+		transform:scale(1.0);
+	}
+}
+
+.gds-avatar__image {
+  width: ($unit * 2);
+  height: ($unit * 2);
+  border-radius: $unit;
+	@include transition-back(all,250ms);
+	border:1px solid transparent;
+	transform-origin:50% 50%;
+	overflow:hidden;
+	&:after {
+		content:'×';
+		position:absolute;
+		left:0px;
+		top:0px;
+    font-size: 32px;
+    line-height: .9;
+    text-align: center;
+  	width: ($unit * 2);
+  	height: ($unit * 2);
+  	border-radius: $unit;
+		color:$gg-blue;
+		background-color:white;
+		opacity:0;
+		transform:rotate(270deg);
+		@include transition-ease-out(all,1000ms);
+	}
+}
+
+// Dropdown menu
+.gds-avatar__menu {
+  position: absolute;
+  top: ($unit * 3);
+  right: 0;
+  min-width: ($unit * 12);
+  z-index: $z-index-9;
+  opacity: 0;
+  pointer-events: none;
+	@include transition-ease-out(all,250ms);
+	transform:scaleY(0);
+	transform-origin:50% -10px;
+	/*
+  &.shown {
+    opacity: 1;
+    pointer-events: auto;
+  }
+	*/
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    right: 7px;
+    width: 16px;
+    height: 12.5px;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20xmlns%3Aa%3D%22http%3A%2F%2Fns.adobe.com%2FAdobeSVGViewerExtensions%2F3.0%2F%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%2216px%22%20height%3D%2212.5px%22%20viewBox%3D%220%200%2016%2012.5%22%20style%3D%22enable-background%3Anew%200%200%2016%2012.5%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E.st0%7Bfill%3A%23FFFFFF%3B%7D%3C%2Fstyle%3E%3Cpolygon%20class%3D%22st0%22%20points%3D%220%2C12.5%2016%2C12.5%208%2C0%20%22%2F%3E%3C%2Fsvg%3E");
+    z-index: $z-index-9;
+  }
+}
+
+
+.gds-avatar__menu-list-link {
+  display: block;
+  padding: ($unit / 2) $unit;
+  @extend .-transition-in-100;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.gds-avatar__menu-list {
+  border-radius: $border-radius;
+  background-color: white;
+  box-shadow: 0 0 ($unit / 2) 0 rgba(0,0,0,.2);
+  overflow: hidden;
+}
+
+.gds-avatar__menu-list-divider {
+  width: 100%;
+  height: 1px;
+  background-color: $gg-light-1;
+}
+
+// Theming
+$color-map: $default-color-map;
+@each $class, $primary-color, $primary-color-dark, $primary-color-light, $secondary-color, $secondary-color-dark, $secondary-color-light, $tertiary-color, $tertiary-color-dark, $tertiary-color-light, $success-color, $success-color-dark, $success-color-light, $warning-color, $warning-color-dark, $warning-color-light, $danger-color, $danger-color-dark, $danger-color-light, $info-color, $info-color-dark, $info-color-light in $color-map {
+  .#{$class} {
+		.gds-avatar {
+			&:hover {
+				.gds-avatar__image {
+					box-shadow:0px 0px 0px 2px $primary-color;
+				}
+			}
+		}
+    .gds-avatar__menu-list-link {
+      color: $primary-color;
+
+      &:hover {
+        background-color: $primary-color;
+        color: white;
+      }
+    }
+		.gds-avatar--menu-open {
+			&:after {
+				transform:rotate(360deg);
+				background-image: url("data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2028%2028%22%20style%3D%22enable-background%3Anew%200%200%2028%2028%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E.st0%7Bfill-rule%3Aevenodd%3Bclip-rule%3Aevenodd%3Bfill%3A%23FFFFFF%3B%7D.st1%7Bfill-rule%3Aevenodd%3Bclip-rule%3Aevenodd%3Bfill%3A%23#{strip-hash($primary-color)}%3B%7D%3C%2Fstyle%3E%3Cg%3E%3Cpath%20class%3D%22st0%22%20d%3D%22M11.9%2C27.9l-1-2.3l-2.1%2C1.5L5.3%2C25l0.3-2.5L3%2C22.7l-2.1-3.6l1.5-2.1l-2.3-1v-4.1l2.3-1L0.9%2C8.8L3%2C5.3l2.5%2C0.3L5.3%2C3l3.6-2.1l2.1%2C1.5l1-2.3h4.1l1%2C2.3l2.1-1.5L22.7%2C3l-0.3%2C2.5L25%2C5.3l2.1%2C3.6l-1.5%2C2.1l2.3%2C1v4.1l-2.3%2C1l1.5%2C2.1L25%2C22.7l-2.5-0.3l0.3%2C2.5l-3.6%2C2.1l-2.1-1.5l-1%2C2.3H11.9z%22%2F%3E%3Cpath%20class%3D%22st1%22%20d%3D%22M26%2C13.2v1.7l-2.3%2C1c-0.1%2C0.5-0.2%2C0.9-0.4%2C1.4l1.5%2C2L24%2C20.7l-2.5-0.3c-0.3%2C0.4-0.7%2C0.7-1%2C1l0.3%2C2.5l-1.4%2C0.8l-2-1.5c-0.5%2C0.2-0.9%2C0.3-1.4%2C0.4l-1%2C2.3h-1.7l-1-2.3c-0.5-0.1-0.9-0.2-1.4-0.4l-2%2C1.5L7.3%2C24l0.3-2.5c-0.4-0.3-0.7-0.7-1-1L4%2C20.7l-0.8-1.4l1.5-2c-0.2-0.5-0.3-0.9-0.4-1.4l-2.3-1v-1.7l2.3-1c0.1-0.5%2C0.2-0.9%2C0.4-1.4l-1.5-2L4%2C7.3l2.5%2C0.3c0.3-0.4%2C0.7-0.7%2C1-1L7.3%2C4l1.4-0.8l2%2C1.5c0.5-0.2%2C0.9-0.3%2C1.4-0.4l1-2.3h1.7l1%2C2.3c0.5%2C0.1%2C0.9%2C0.2%2C1.4%2C0.4l2-1.5L20.7%2C4l-0.3%2C2.5c0.4%2C0.3%2C0.7%2C0.7%2C1%2C1L24%2C7.3l0.8%2C1.4l-1.5%2C2c0.2%2C0.5%2C0.3%2C0.9%2C0.4%2C1.4L26%2C13.2z%20M14%2C6.9c-3.9%2C0-7.1%2C3.2-7.1%2C7.1s3.2%2C7.1%2C7.1%2C7.1s7.1-3.2%2C7.1-7.1S17.9%2C6.9%2C14%2C6.9z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+			}
+			.gds-avatar__image {
+				box-shadow:0px 0px 0px 2px $primary-color;
+			}
+		}
+  }
+}

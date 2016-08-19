@@ -1,0 +1,180 @@
+/**
+ * Assign margin or padding to any element with shorthand utility classes. Includes support for individual properties, all properties, and vertical and horizontal properties. All classes are multiples of the global default value, the $unit variable. The classes are named using the format: {property}-{sides}-{size}.
+ *
+ * @section {String} section Utilities
+ *
+ * @parentComponent {String} parentComponent Margin & Padding
+ *
+ * @name {String} name Margin & Padding
+ *
+ * @example {Code}
+ *
+ * <div class="-m-t-3">Margin top 3</div>
+ * <div class="-m-h-2">Margin horizontal 2</div>
+ * <div class="-p-v-4">Padding vertical 4</div>
+ * <div class="-p-a-1">Padding all 1</div>
+ *
+ * @renderMarkup {Boolean} renderMarkup false
+ *
+ * @author {String} author Dan McKenna, Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger
+ * @defaultClasses {Array} defaultClasses
+ * @optionalClasses {Array} optionalClasses -m-t-*,-m-r-*,-m-b-*,-m-l-*,-m-v-*,-m-h-*,-m-a-*,-p-t-*,-p-r-*,-p-b-*,-p-l-*,-p-v-*,-p-h-*,-p-a-*
+ */
+@each $index2, $spacing in $spacings{
+	// Standard
+	.-m-r-#{$spacing} {
+		margin-right: #{nth($increments, ($index2 + 1))} !important;
+	}
+	.-m-l-#{$spacing} {
+		margin-left: #{nth($increments, ($index2 + 1))} !important;
+	}
+
+	.-m-t-#{$spacing} {
+		margin-top: #{nth($increments, ($index2 + 1))} !important;
+	}
+
+	.-m-b-#{$spacing} {
+		margin-bottom: #{nth($increments, ($index2 + 1))} !important;
+	}
+
+	.-m-v-#{$spacing} {
+		margin-top: #{nth($increments, ($index2 + 1))} !important;
+		margin-bottom: #{nth($increments, ($index2 + 1))} !important;
+	}
+
+	.-m-h-#{$spacing} {
+		margin-left: #{nth($increments, ($index2 + 1))} !important;
+		margin-right: #{nth($increments, ($index2 + 1))} !important;
+	}
+
+	.-m-a-#{$spacing} {
+		margin: #{nth($increments, ($index2 + 1))} !important;
+	}
+
+	.-p-r-#{$spacing} {
+		padding-right: #{nth($increments, ($index2 + 1))} !important;
+	}
+
+	.-p-l-#{$spacing} {
+		padding-left: #{nth($increments, ($index2 + 1))} !important;
+	}
+
+	.-p-t-#{$spacing} {
+		padding-top: #{nth($increments, ($index2 + 1))} !important;
+	}
+
+	.-p-b-#{$spacing} {
+		padding-bottom: #{nth($increments, ($index2 + 1))} !important;
+	}
+
+	.-p-v-#{$spacing} {
+		padding-top: #{nth($increments, ($index2 + 1))} !important;
+		padding-bottom: #{nth($increments, ($index2 + 1))} !important;
+	}
+
+	.-p-h-#{$spacing} {
+		padding-left: #{nth($increments, ($index2 + 1))} !important;
+		padding-right: #{nth($increments, ($index2 + 1))} !important;
+	}
+
+	.-p-a-#{$spacing} {
+		padding: #{nth($increments, ($index2 + 1))} !important;
+	}
+}
+
+// Breakpoint-specific
+@each $index2, $affix in $affixes{
+	@each $index, $spacing in $spacings{
+		$bp: unquote(nth($breakpoints,$index2));
+
+		.-m-r-#{$spacing}-#{$affix} {
+			@media #{$bp} {
+				margin-right: #{nth($increments, ($index + 1))} !important;
+			}
+		}
+
+		.-m-l-#{$spacing}-#{$affix} {
+			@media #{$bp} {
+				margin-left: #{nth($increments, ($index + 1))} !important;
+			}
+		}
+
+		.-m-t-#{$spacing}-#{$affix} {
+			@media #{$bp} {
+				margin-top: #{nth($increments, ($index + 1))} !important;
+			}
+		}
+
+		.-m-b-#{$spacing}-#{$affix} {
+			@media #{$bp} {
+				margin-bottom: #{nth($increments, ($index + 1))} !important;
+			}
+		}
+
+		.-m-v-#{$spacing}-#{$affix} {
+			@media #{$bp} {
+				margin-top: #{nth($increments, ($index + 1))} !important;
+				margin-bottom: #{nth($increments, ($index + 1))} !important;
+			}
+		}
+
+		.-m-h-#{$spacing}-#{$affix} {
+			@media #{$bp} {
+				margin-left: #{nth($increments, ($index + 1))} !important;
+				margin-right: #{nth($increments, ($index + 1))} !important;
+			}
+		}
+
+		.-m-a-#{$spacing}-#{$affix} {
+			@media #{$bp} {
+				margin: #{nth($increments, ($index + 1))} !important;
+			}
+		}
+
+		.-p-r-#{$spacing}-#{$affix} {
+			@media #{$bp} {
+				padding-right: #{nth($increments, ($index + 1))} !important;
+			}
+		}
+
+		.-p-l-#{$spacing}-#{$affix} {
+			@media #{$bp} {
+				padding-left: #{nth($increments, ($index + 1))} !important;
+			}
+		}
+
+		.-p-t-#{$spacing}-#{$affix} {
+			@media #{$bp} {
+				padding-top: #{nth($increments, ($index + 1))} !important;
+			}
+		}
+
+		.-p-b-#{$spacing}-#{$affix} {
+			@media #{$bp} {
+				padding-bottom: #{nth($increments, ($index + 1))} !important;
+			}
+		}
+
+		.-p-v-#{$spacing}-#{$affix} {
+			@media #{$bp} {
+				padding-top: #{nth($increments, ($index + 1))} !important;
+				padding-bottom: #{nth($increments, ($index + 1))} !important;
+			}
+		}
+
+		.-p-h-#{$spacing}-#{$affix} {
+			@media #{$bp} {
+				padding-left: #{nth($increments, ($index + 1))} !important;
+				padding-right: #{nth($increments, ($index + 1))} !important;
+			}
+		}
+
+		.-p-a-#{$spacing}-#{$affix} {
+			@media #{$bp} {
+				padding: #{nth($increments, ($index + 1))} !important;
+			}
+		}
+	}
+};
