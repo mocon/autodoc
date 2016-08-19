@@ -1,22 +1,22 @@
 {
-  "name": "autodoc-test",
-  "version": "1.0.0",
-  "description": "Parse comments from Scss source code, and use the output to automatically generate documentation and code snippets",
-  "main": "commentParser.js",
+  "name": "autodoc",
+  "version": "0.4.0",
+  "description": "Parse comments from source code, and use the output to automatically generate documentation and code snippets",
+  "main": "autodocCommentParser.js",
   "scripts": {
-    "autodoc": "node commentParser.js",
+    "autodoc": "node autodocCommentParser.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mocon/autodoc-test.git"
+    "url": "git+https://github.com/mocon/autodoc.git"
   },
   "author": "Myles O'Connor",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mocon/autodoc-test/issues"
+    "url": "https://github.com/mocon/autodoc/issues"
   },
-  "homepage": "https://github.com/mocon/autodoc-test#readme",
+  "homepage": "https://github.com/mocon/autodoc#readme",
   "dependencies": {
     "comment-parser": "^0.4.0",
     "html-entities": "^1.2.0",

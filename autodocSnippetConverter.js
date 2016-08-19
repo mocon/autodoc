@@ -1,5 +1,5 @@
 /*
- * This file is require()'d by `./commentParser.js`.
+ * This file is require()'d by `./autodocCommentParser.js`.
 */
 var fs = require('fs'),
     Entities = require('html-entities').AllHtmlEntities,
@@ -10,7 +10,7 @@ module.exports = {
     _formatComments: function(json) {
         console.log('Formatting comments for snippet conversion...');
 
-        // Restructure JSON output from commentParser into formattedComponents [{component}, {component}, {component}] etc...
+        // Restructure JSON output from autodocCommentParser into formattedComponents [{component}, {component}, {component}] etc...
         json.map(function(component, index) {
             var currentComponent = {};
 
@@ -69,7 +69,7 @@ module.exports = {
                 sublimeSnippet += '<scope>text.html</scope></snippet>';
 
                 // Write the Sublime Text 3 code snippet file
-                fs.writeFile('./code_snippets/sublime/' + component.tabTrigger + '.sublime-snippet', sublimeSnippet, function(err) {
+                fs.writeFile('./autodocCodeSnippets/sublime/' + component.tabTrigger + '.sublime-snippet', sublimeSnippet, function(err) {
                     if (err) {
                         return console.log(err);
                     }
@@ -81,7 +81,7 @@ module.exports = {
                 vimSnippet += 'endsnippet';
 
                 // Write the Vim code snippet file
-                fs.writeFile('./code_snippets/vim/' + component.tabTrigger + '.snippets', vimSnippet, function(err) {
+                fs.writeFile('./autodocCodeSnippets/vim/' + component.tabTrigger + '.snippets', vimSnippet, function(err) {
                     if (err) {
                         return console.log(err);
                     }
@@ -94,7 +94,7 @@ module.exports = {
                 phpStormSnippet += '\n\t<context>\n\t\t<option name="HTML" value="true" />\n\t</context>\n</template>';
 
                 // Write the PhpStorm code snippet file
-                fs.writeFile('./code_snippets/phpstorm/' + component.tabTrigger + '.xml', phpStormSnippet, function(err) {
+                fs.writeFile('./autodocCodeSnippets/phpstorm/' + component.tabTrigger + '.xml', phpStormSnippet, function(err) {
                     if (err) {
                         return console.log(err);
                     }

@@ -1,23 +1,21 @@
 /*
- * This file parses all JSdoc-style comments from var config.sourceDirectory, and outputs
- * `./docs/scssComments.json`, which is used to render React docs in `./docs/index.html` as
- * well as passing the data to `./snippetConverter.js` which constructs the code snippets
- * & saves them to `./code_snippets/phpstorm`, `./code_snippets/sublime` & `./code_snippets/vim`
+ * This file parses all JSdoc-style comments from the CLI-passed source directory, and outputs
+ * `./docs/autodocComments.json`, which is used to render React docs in `./docs/index.html` as
+ * well as passing the data to `./autodocSnippetConverter.js` which constructs the code snippets
+ * & saves them to `./autodocCodeSnippets/phpstorm`, `./autodocCodeSnippets/sublime` &
+ * `./autodocCodeSnippets/vim`
 */
 var parse = require('comment-parser'),
     recursive = require('recursive-readdir'),
     fs = require('fs'),
     path = require('path'),
-    snippetConverter = require('./snippetConverter'),
+    snippetConverter = require('./autodocSnippetConverter'),
     date = new Date().toDateString(),
     time = new Date().toLocaleTimeString(),
-    commentTags = '',
-    config = {
-        sourceDirectory: '/scss/theme/' // Directory to search for all comment blocks
-    };
+    commentTags = '';
 
-// Loop through all files in sourceDirectory, ignoring .DS_Store files
-recursive(__dirname + config.sourceDirectory, ['.DS_Store'], function(err, files) {
+// Loop through all files in passed in directory, ignoring .DS_Store files
+recursive(__dirname + process.argv[2], ['.DS_Store'], function(err, files) {
     console.log(`${date}, ${time} - Parsing source code comments...`);
 
     _extractComments(files); // Files is an array of filenames
@@ -47,10 +45,10 @@ function _extractComments(arr) {
 
     // Console feedback
     taggedFiles === 1 ? files = 'file' : files = 'files';
-    console.log(`Searched ${filesToSearch} files in "${config.sourceDirectory}", found ${taggedFiles} tagged ${files}.`);
+    console.log(`Searched ${filesToSearch} files in "${process.argv[2]}", found ${taggedFiles} tagged ${files}.`);
 
     // Write commentTags to a JSON file, to be used as React state for './docs/index.html' page
-    fs.writeFile(__dirname + '/docs/scssComments.json', commentTags, function(err) {
+    fs.writeFile(__dirname + '/docs/autodocComments.json', commentTags, function(err) {
         if (err) {
             return console.log(err);
         } else {
