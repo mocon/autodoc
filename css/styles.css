@@ -1,7 +1,7 @@
 /**
  * This is a sample header atom. This component is meant to be placed at the top of the page.
  *
- * @section {String} section Atoms Section
+ * @section {String} section Atoms
  *
  * @parentComponent {String} parentComponent Header
  *
@@ -28,7 +28,7 @@
 /**
  * This is a sample header atom sub-component.
  *
- * @section {String} section Atoms Section
+ * @section {String} section Atoms
  *
  * @parentComponent {String} parentComponent Header
  *
@@ -49,7 +49,7 @@
 /**
  * This is a sample main section atom. Place the main content of the page inside of this component.
  *
- * @section {String} section Atoms Section
+ * @section {String} section Atoms
  *
  * @parentComponent {String} parentComponent Main
  *
@@ -75,7 +75,7 @@
 /**
  * This is a sample footer atom. It is used at the bottom of the page.
  *
- * @section {String} section Atoms Section
+ * @section {String} section Atoms
  *
  * @parentComponent {String} parentComponent Footer
  *
@@ -102,7 +102,7 @@
 /**
  * This is a sample footer sub-component.
  *
- * @section {String} section Atoms Section
+ * @section {String} section Atoms
  *
  * @parentComponent {String} Footer
  *
@@ -123,7 +123,7 @@
 /**
  * This is a sample test molecule. It is used at the bottom of the page.
  *
- * @section {String} section Molecules Section
+ * @section {String} section Molecules
  *
  * @parentComponent {String} parentComponent Test Molecule
  *
@@ -152,7 +152,7 @@
 /**
  * This is an example organism. It is a combination of atoms & molecules.
  *
- * @section {String} section Organisms Section
+ * @section {String} section Organisms
  *
  * @parentComponent {String} parentComponent Example Organism
  *
@@ -177,5 +177,3 @@
   padding: 10px;
   background-color: orange;
   color: white; }
-
-/*# sourceMappingURL=styles.css.map */

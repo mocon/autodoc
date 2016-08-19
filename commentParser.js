@@ -48,7 +48,6 @@ function _extractComments(arr) {
     // Console feedback
     taggedFiles === 1 ? files = 'file' : files = 'files';
     console.log(`Searched ${filesToSearch} files in "${config.sourceDirectory}", found ${taggedFiles} tagged ${files}.`);
-    console.log(`commentTags:\n${commentTags}\n=====================`);
 
     // Write commentTags to a JSON file, to be used as React state for './docs/index.html' page
     fs.writeFile(__dirname + '/docs/scssComments.json', commentTags, function(err) {

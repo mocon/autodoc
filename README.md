@@ -35,7 +35,7 @@ Autodoc performs a recursive search of all files (with any varying file extensio
  */
 ```
 
-__Note:__ Any `tags`, prefaced by @, can be added. The JSX markup for the generated documentation view, in `/docs/app.js` will need to be updated to render any new tags added.
+__Note:__ Any tags, prefaced by @, can be added. The JSX markup for the generated documentation view, in `/docs/app.js` will need to be updated to render any new tags added.
 
 ## Installation
 
@@ -46,12 +46,12 @@ $ npm install
 ## Generate documentation and code snippets
 
 ```
-$ node commentParser.js
+$ npm run autodoc
 ```
 
 ## View the generated documentation
 
-After running the script above, generated documentation can be viewed in `/docs/index.html`. This file currently requires a webserver to view it.
+After running the command above, documentation will be generated at `/docs/index.html`. This file currently requires a webserver to view it.
 
 An example of the generated documentation can be seen at <a href="https://mocon.github.io/autodoc/docs/" target="_blank">mocon.github.io/autodoc/docs</a>.
 

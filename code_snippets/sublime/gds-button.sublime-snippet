@@ -1,0 +1,4 @@
+<!-- Button -->
+<snippet><content><![CDATA[
+<button class="gds-button gds-button--default">Default button</button>
+]]></content><tabTrigger>gds-button</tabTrigger><scope>text.html</scope></snippet>

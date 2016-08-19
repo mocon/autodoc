@@ -1,0 +1,16 @@
+<!-- Avatar -->
+<snippet><content><![CDATA[
+<div class="gds-avatar" gg-avatar>
+    <div class="gds-avatar__image">
+        <img src="https://ds.gumgum.com/images/ken.png" alt="Ken Weiner" height="100%" />
+    </div>
+    <div class="gds-avatar__menu">
+        <ul class="gds-avatar__menu-list">
+            <li class="gds-avatar__menu-list-item -ellipsis"><a class="gds-avatar__menu-list-link" href="#">Profile</a></li>
+            <li class="gds-avatar__menu-list-item -ellipsis"><a class="gds-avatar__menu-list-link" href="#">Settings</a></li>
+            <li class="gds-avatar__menu-list-divider"></li>
+            <li class="gds-avatar__menu-list-item -ellipsis"><a class="gds-avatar__menu-list-link" href="#">Logout</a></li>
+        </ul>
+    </div>
+</div>
+]]></content><tabTrigger>gds-avatar</tabTrigger><scope>text.html</scope></snippet>

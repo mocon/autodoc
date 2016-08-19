@@ -1,0 +1,834 @@
+/**
+ * The button component, prefixed by .gds-button, is used to style <button> tags. Note that all optional classes may be used in combination with each other, for example on a single element with gds-button--success, gds-button--lg, & gds-button--block classes. To indicate that a button is disabled, use the disabled="disabled" HTML attribute.
+ *
+ * @section {String} section Atoms
+ *
+ * @parentComponent {String} parentComponent Button
+ *
+ * @name {String} name Button
+ *
+ * @example {Code}
+ *
+ * <button class="gds-button gds-button--default">Default button</button>
+ *
+ * @renderMarkup {Boolean} renderMarkup true
+ *
+ * @author {String} author Dan McKenna, Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-button
+ * @defaultClasses {Array} defaultClasses gds-button
+ * @optionalClasses {Array} optionalClasses gds-button--default,gds-button--lg,gds-button--sm,gds-button--xs,gds-button--primary,gds-button--secondary,gds-button--success,gds-button--warning,gds-button--info,gds-button--danger,gds-button--link,gds-button--block
+ */
+// Base button
+.gds-button {
+	font-family: $pri-font;
+  display: inline-block;
+	font-weight: normal;
+  font-size: $btn-font-size-normal;
+  padding: $btn-padding-normal;
+	line-height: 1.2;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	position: relative;
+  top: 0;
+	margin-bottom: $cap-size*1.5;
+	border-radius:$btn-border-radius;
+	border:none;
+	text-rendering: optimizeLegibility;
+  letter-spacing: 0.03em;
+  text-shadow: 0px 1px 1px rgba(0,0,0,.4);
+	text-transform: none;
+	overflow: visible;
+	-ms-touch-action: manipulation;
+  touch-action: manipulation;
+	box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-light-3;
+  @include no-select();
+  @include transition-ease-out(all,250ms);
+
+	/*----default interaction states----*/
+	&:hover {
+		background-color: $gg-light-1;
+		box-shadow: 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.35);
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.6);
+	}
+	&:focus {
+		outline: none;
+    box-shadow:inset 0px 0px 0px 5px $gg-light-3;
+	}
+	&:active {
+		top: $cap-size / 2;
+		box-shadow: inset 0 2px 10px 0px rgba(0,0,0,.1);
+	}
+
+	>.fa {
+		vertical-align: middle;
+	}
+}
+
+.gds-button--inline-form-shift {
+	transform:translateY(0px);
+}
+
+.gds-button--no-grow:hover {
+	top: 0;
+}
+
+// Button with border
+.gds-button--border {
+	border-width: 1px;
+	border-style: solid;
+}
+
+
+// Disabled buttons
+.gds-button[disabled="disabled"], .gds-button--disabled {
+  @extend .-disabled;
+  &:hover {
+		top:0;
+    box-shadow: none;
+	}
+}
+
+
+// Large buttons
+.gds-button--lg {
+  font-size: $btn-font-size-large;
+  padding: $btn-padding-large;
+}
+
+
+// Small buttons
+.gds-button--sm {
+  font-size: $btn-font-size-small;
+  padding: $btn-padding-small;
+	&:active {
+		top: $cap-size / 2;
+		box-shadow: inset 0 2px 10px 0px rgba(0,0,0,.1);
+	}
+}
+
+
+// XSmall buttons
+.gds-button--xs {
+  font-size: $btn-font-size-xsmall;
+  padding: $btn-padding-xsmall;
+	&:active {
+		top: $cap-size / 4;
+		box-shadow: inset 0 2px 10px 0px rgba(0,0,0,.1);
+	}
+}
+
+
+// Plain white buttons
+.gds-button--default {
+  background: $gg-light-1;
+  color: $gg-blue;
+  border-left-color: $gg-light-3;
+  border-right-color: $gg-light-3;
+  border-top-color: $gg-light-3;
+  border-bottom-color: $gg-light-3;
+	text-shadow: 0px -1px 1px rgba(255,255,255,1);
+	box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-light-4, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+	&:hover,
+	&:focus:hover {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-light-4, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.5), inset 0 -1px 1px 2px rgba(white, 0);
+		text-shadow: 0px 1px 2px rgba(255,255,255,1);
+	}
+	&:active,
+	&:active:focus {
+		box-shadow:inset 0px #{-$cap-size/2} 0px 0px $gg-light-4, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+	}
+	&:focus {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-light-4, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,1);
+	}
+}
+
+// Button toggle
+.gds-button--toggle {
+  background-color: $gg-light-3;
+  color: white;
+  text-shadow: 0px 1px 1px rgba(0,0,0,.4);
+
+  border-left-color: $gg-light-4;
+  border-right-color: $gg-light-4;
+  border-top-color: $gg-light-4;
+  border-bottom-color: $gg-light-4;
+	box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-light-4, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+	&:hover,
+	&:focus:hover {
+		background-color:$gg-light-3;
+		box-shadow:inset 0px #{-$cap-size} 0px 0px  $gg-light-4, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+		text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+	}
+	&:active,
+	&:active:focus {
+		box-shadow:inset 0px #{-$cap-size/2} 0px 0px $gg-light-4, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+	}
+	&:focus {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-light-4, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+	}
+
+  &.gds-button--active {
+    background: $gg-green;
+    border-left-color: $gg-blue-dark-2;
+  	border-right-color: $gg-blue-dark-2;
+  	border-top-color: $gg-blue-dark-2;
+ 	 	border-bottom-color: $gg-blue-dark-2;
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-green-dark-2, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+		&:hover,
+		&:focus:hover {
+			box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-green-dark-2, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+			text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+		}
+		&:active,
+		&:active:focus {
+			box-shadow:inset 0px #{-$cap-size/2} 0px 0px $gg-green-dark-2, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+		}
+		&:focus {
+			box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-green-dark-2, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+		}
+	}
+}
+
+// Text color toggle
+.gds-button--text-toggle {
+  color: $gg-light-2;
+
+  &.gds-button--active-success {
+    color: $gg-green;
+  }
+}
+
+// Primary buttons
+.gds-button--primary {
+  background: $gg-blue;
+  color: white;
+  text-shadow: 0px 1px 1px rgba(0,0,0,.4);
+ 	border-left-color: $gg-blue-dark-2;
+  border-right-color: $gg-blue-dark-2;
+  border-top-color: $gg-blue-dark-2;
+ 	border-bottom-color: $gg-blue-dark-2;
+	box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-blue-dark-2, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+	&:hover,
+	&:focus:hover {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-blue-dark-2, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+		text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+	}
+	&:active,
+	&:active:focus {
+		box-shadow:inset 0px #{-$cap-size/2} 0px 0px $gg-blue-dark-2, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+	}
+	&:focus {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-blue-dark-2, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+	}
+}
+
+// Secondary buttons
+.gds-button--secondary {
+	background: $gg-gold;
+  color: white;
+  text-shadow: 0px 1px 1px rgba(0,0,0,.4);
+  border-left-color: $gg-gold-dark-2;
+  border-right-color: $gg-gold-dark-2;
+  border-top-color: $gg-gold-dark-2;
+ 	border-bottom-color: $gg-gold-dark-2;
+	box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-gold-dark-2, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+	&:hover,
+	&:focus:hover {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-gold-dark-2, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+		text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+	}
+	&:active,
+	&:active:focus {
+		box-shadow:inset 0px #{-$cap-size/2} 0px 0px $gg-gold-dark-2, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+	}
+	&:focus {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-gold-dark-2, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+	}
+}
+
+// Success buttons
+.gds-button--success {
+  color: white;
+  text-shadow: 0px 1px 1px rgba(0,0,0,.4);
+  background-color: $gg-green;
+ 	border-left-color: $gg-green-dark-2;
+  border-right-color: $gg-green-dark-2;
+  border-top-color: $gg-green-dark-2;
+ 	border-bottom-color: $gg-green-dark-2;
+	box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-green-dark-2, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+	&:hover,
+	&:focus:hover {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-green-dark-2, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+		text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+	}
+	&:active,
+	&:active:focus {
+		box-shadow:inset 0px #{-$cap-size/2} 0px 0px $gg-green-dark-2, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+	}
+	&:focus {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-green-dark-2, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+	}
+}
+
+// Danger buttons
+.gds-button--danger {
+  color: white;
+  text-shadow: 0px 1px 1px rgba(0,0,0,.4);
+  background-color: $gg-red;
+ 	border-left-color: $gg-red-dark-2;
+  border-right-color: $gg-red-dark-2;
+  border-top-color: $gg-red-dark-2;
+ 	border-bottom-color: $gg-red-dark-2;
+	box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-red-dark-2, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+	&:hover,
+	&:focus:hover {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-red-dark-2, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+		text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+	}
+	&:active,
+	&:active:focus {
+		box-shadow:inset 0px #{-$cap-size/2} 0px 0px $gg-red-dark-2, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+	}
+	&:focus {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-red-dark-2, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+	}
+}
+
+// Warning buttons
+.gds-button--warning {
+  color: white;
+  text-shadow: 0px 1px 1px rgba(0,0,0,.4);
+  background-color: $gg-gold;
+ 	border-left-color: $gg-gold-dark-2;
+  border-right-color: $gg-gold-dark-2;
+  border-top-color: $gg-gold-dark-2;
+ 	border-bottom-color: $gg-gold-dark-2;
+	box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-gold-dark-2, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+	&:hover,
+	&:focus:hover {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-gold-dark-2, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+		text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+	}
+	&:active,
+	&:active:focus {
+		box-shadow:inset 0px #{-$cap-size/2} 0px 0px $gg-gold-dark-2, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+	}
+	&:focus {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-gold-dark-2, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+	}
+}
+
+// Info buttons
+.gds-button--info {
+ 	color: white;
+	text-shadow: 0px 1px 1px rgba(0,0,0,.4);
+	background-color: $gg-purple;
+ 	border-left-color: $gg-purple-dark-2;
+  border-right-color: $gg-purple-dark-2;
+  border-top-color: $gg-purple-dark-2;
+ 	border-bottom-color: $gg-purple-dark-2;
+	box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-purple-dark-2, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+	&:hover,
+	&:focus:hover {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-purple-dark-2, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+		text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+	}
+	&:active,
+	&:active:focus {
+		box-shadow:inset 0px #{-$cap-size/2} 0px 0px $gg-purple-dark-2, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+	}
+	&:focus {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-purple-dark-2, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+	}
+}
+
+// Transparent link buttons
+.gds-button--link {
+	color: $gg-blue;
+  background-color: transparent;
+	border-color:$gg-light-2;
+	text-shadow: none !important;
+  box-shadow: none !important;
+	border-width:0;
+
+	&:hover,
+  &:active,
+  &:focus,
+  &:active:focus {
+		text-decoration: none;
+		color: $gg-blue-light-3;
+		top:0;
+		background: transparent;
+		border-color:$gg-blue-light-3;
+		box-shadow:none;
+  }
+
+  &:focus,
+  &:active:focus {
+		border-color:$gg-blue-light-2;
+		box-shadow:none;
+	}
+}
+
+// Close button
+.gds-button--close-x {
+  border: none;
+  background-color: transparent !important;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%0A%09%20viewBox%3D%220%200%2020px%2020px%22%20preserveAspectRatio%3D%22none%22%20fill%3D%22none%22%20stroke%3D%22%23#{strip-hash($gg-light-4)}%22%20stroke-width%3D%222%22%20stroke-miterlimit%3D%2210%22%3E%0A%20%20%3Cline%20class%3D%22st0%22%20x1%3D%220.9%22%20y1%3D%221%22%20x2%3D%2219.1%22%20y2%3D%2219.2%22%2F%3E%0A%20%20%3Cline%20class%3D%22st0%22%20x1%3D%2219.1%22%20y1%3D%221%22%20x2%3D%220.9%22%20y2%3D%2219.2%22%2F%3E%0A%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: 20px 20px;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  &:hover {
+    background-image: url("data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%20100%25%20100%25%22%20fill%3D%22none%22%20stroke%3D%22%23#{strip-hash($gg-blue)}%22%20stroke-width%3D%222%22%20stroke-miterlimit%3D%2210%22%3E%3Cline%20class%3D%22st0%22%20x1%3D%220.9%22%20y1%3D%221%22%20x2%3D%2219.1%22%20y2%3D%2219.2%22%2F%3E%3Cline%20class%3D%22st0%22%20x1%3D%2219.1%22%20y1%3D%221%22%20x2%3D%220.9%22%20y2%3D%2219.2%22%2F%3E%3C%2Fsvg%3E");
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// Get rid of focus style
+.gds-button:focus,
+.gds-button.focus,
+.gds-button:active:focus,
+.gds-button:active.focus,
+.gds-button.active:focus,
+.gds-button.active.focus {
+	outline: none;
+}
+
+
+// Block buttons
+.gds-button--block {
+  display: block;
+	width: 100%;
+}
+
+// Conditionally set buttons to display block, based on breakpoint
+@media #{$phone-width} {
+  .gds-button--block-xs,
+	.gds-button--block-sm,
+	 .gds-button--block-md,
+	 .gds-button--block-lg,
+	 .gds-button--block-xl  {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media #{$phablet-width} {
+  .gds-button--block-sm,
+	 .gds-button--block-md,
+	 .gds-button--block-lg,
+	 .gds-button--block-xl {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media #{$tablet-width} {
+  .gds-button--block-md,
+	 .gds-button--block-lg,
+	 .gds-button--block-xl  {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media #{$laptop-width} {
+  .gds-button--block-lg,
+	 .gds-button--block-xl {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media #{$desktop-width} {
+  .gds-button--block-xl {
+    display: block;
+    width: 100%;
+  }
+}
+
+// Animated ellipsis, after clicking button
+.gds-button .gds-button__thinking {
+  font-size: 10px;
+  white-space: pre;
+  font-family: monospace;
+}
+
+.gds-button--large .gds-button__thinking,
+.gds-button__group--large .gds-button__thinking {
+  font-size: $btn-font-size-large;
+}
+
+.gds-button--small .gds-button__thinking,
+.gds-button__group--small .gds-button__thinking {
+  font-size: $btn-font-size-small;
+}
+
+/////THEMING
+$button-color-map: (
+	(
+		$gg-theme-blue,
+		$gg-blue,
+		$gg-blue-dark-2,
+		$gg-blue-light-4,
+		$gg-gold,
+		$gg-gold-dark-2,
+		$gg-gold-light-4,
+		$gg-purple,
+		$gg-purple-dark-2,
+		$gg-purple-light-4,
+		$gg-green,
+		$gg-green-dark-2,
+		$gg-green-light-4,
+		$gg-gold,
+		$gg-gold-dark-2,
+		$gg-gold-light-4,
+		$gg-red,
+		$gg-red-dark-2,
+		$gg-red-light-4,
+		$gg-purple,
+		$gg-purple-dark-2,
+		$gg-purple-light-4
+	),
+	(
+		$gg-theme-gold,
+		$gg-gold,
+		$gg-gold-dark-2,
+		$gg-gold-light-4,
+		$gg-blue,
+		$gg-blue-dark-2,
+		$gg-blue-light-4,
+		$gg-red,
+		$gg-red-dark-2,
+		$gg-red-light-4,
+		$gg-green-dark-2,
+		$gg-green-dark-4,
+		$gg-green-light-3,
+		$gg-gold-dark-2,
+		$gg-gold-dark-4,
+		$gg-gold-light-3,
+		$gg-red-dark-2,
+		$gg-red-dark-4,
+		$gg-red-light-3,
+		$gg-purple-dark-2,
+		$gg-purple-dark-4,
+		$gg-purple-light-3
+	),
+	(
+		$gg-theme-red,
+		$gg-red,
+		$gg-red-dark-2,
+		$gg-red-light-4,
+		$gg-green,
+		$gg-green-dark-2,
+		$gg-green-light-4,
+		$gg-blue,
+		$gg-blue-dark-2,
+		$gg-blue-light-4,
+		$gg-green-dark-2,
+		$gg-green-dark-4,
+		$gg-green-light-3,
+		$gg-gold-dark-2,
+		$gg-gold-dark-4,
+		$gg-gold-light-3,
+		$gg-red-dark-2,
+		$gg-red-dark-4,
+		$gg-red-light-3,
+		$gg-purple,
+		$gg-purple-dark-2,
+		$gg-purple-light-4
+	),
+	(
+		$gg-theme-green,
+		$gg-green,
+		$gg-green-dark-2,
+		$gg-green-light-4,
+		$gg-red,
+		$gg-red-dark-2,
+		$gg-red-light-4,
+		$gg-purple,
+		$gg-purple-dark-2,
+		$gg-purple-light-4,
+		$gg-green,
+		$gg-green-dark-2,
+		$gg-green-light-4,
+		$gg-gold,
+		$gg-gold-dark-2,
+		$gg-gold-light-4,
+		$gg-red,
+		$gg-red-dark-2,
+		$gg-red-light-4,
+		$gg-purple,
+		$gg-purple-dark-2,
+		$gg-purple-light-4
+	),
+	(
+		$gg-theme-purple,
+		$gg-purple,
+		$gg-purple-dark-2,
+		$gg-purple-light-4,
+		$gg-blue,
+		$gg-blue-dark-2,
+		$gg-blue-light-4,
+		$gg-gold,
+		$gg-gold-dark-2,
+		$gg-gold-light-4,
+		$gg-green,
+		$gg-green-dark-2,
+		$gg-green-light-4,
+		$gg-gold,
+		$gg-gold-dark-2,
+		$gg-gold-light-4,
+		$gg-red,
+		$gg-red-dark-2,
+		$gg-red-light-4,
+		$gg-purple,
+		$gg-purple-dark-2,
+		$gg-purple-light-4
+	),
+	(
+		$gg-theme-mantii,
+		$gg-green,
+		$gg-green-dark-2,
+		$gg-green-light-4,
+		$gg-red,
+		$gg-red-dark-2,
+		$gg-red-light-4,
+		$gg-blue,
+		$gg-blue-dark-2,
+		$gg-blue-light-4,
+		$gg-green-dark-2,
+		$gg-green-dark-4,
+		$gg-green-light-3,
+		$gg-gold-dark-2,
+		$gg-gold-dark-4,
+		$gg-gold-light-3,
+		$gg-red-dark-2,
+		$gg-red-dark-4,
+		$gg-red-light-3,
+		$gg-purple-dark-2,
+		$gg-purple-dark-4,
+		$gg-purple-light-3
+	)
+);
+@each $class, $primary-color, $primary-color-dark, $primary-color-light, $secondary-color, $secondary-color-dark, $secondary-color-light, $tertiary-color, $tertiary-color-dark, $tertiary-color-light, $success-color, $success-color-dark, $success-color-light, $warning-color, $warning-color-dark, $warning-color-light, $danger-color, $danger-color-dark, $danger-color-light, $info-color, $info-color-dark, $info-color-light in $button-color-map {
+	.#{$class} {
+
+
+		// Plain white buttons
+		.gds-button--default {
+			color: $primary-color;
+		}
+
+		// Button toggle
+		.gds-button--toggle {
+			&.gds-button--active {
+				background: $success-color;
+				border-left-color: $success-color-dark;
+				border-right-color: $success-color-dark;
+				border-top-color: $success-color-dark;
+				border-bottom-color: $success-color-dark;
+				box-shadow:inset 0px #{-$cap-size} 0px 0px $success-color-dark, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+				&:hover,
+				&:focus:hover {
+					box-shadow:inset 0px #{-$cap-size} 0px 0px $success-color-dark, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+					text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+				}
+				&:active,
+				&:active:focus {
+					box-shadow:inset 0px #{-$cap-size/2} 0px 0px $success-color-dark, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+				}
+				&:focus {
+					box-shadow:inset 0px #{-$cap-size} 0px 0px $success-color-dark, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+				}
+			}
+		}
+
+		// Primary buttons
+		.gds-button--primary {
+			background: $primary-color;
+			border-left-color: $primary-color-dark;
+			border-right-color: $primary-color-dark;
+			border-top-color: $primary-color-dark;
+			border-bottom-color: $primary-color-dark;
+			box-shadow:inset 0px #{-$cap-size} 0px 0px $primary-color-dark, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+			&:hover,
+			&:focus:hover {
+				box-shadow:inset 0px #{-$cap-size} 0px 0px $primary-color-dark, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+				text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+			}
+			&:active,
+			&:active:focus {
+				box-shadow:inset 0px #{-$cap-size/2} 0px 0px $primary-color-dark, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+			}
+			&:focus {
+				box-shadow:inset 0px #{-$cap-size} 0px 0px $primary-color-dark, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+			}
+		}
+		// Secondary buttons
+		.gds-button--secondary {
+			background: $secondary-color;
+			color: white;
+			text-shadow: 0px 1px 1px rgba(0,0,0,.4);
+			border-left-color: $secondary-color-dark;
+			border-right-color: $secondary-color-dark;
+			border-top-color: $secondary-color-dark;
+			border-bottom-color: $secondary-color-dark;
+			box-shadow:inset 0px #{-$cap-size} 0px 0px $secondary-color-dark, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+
+			&:hover,
+			&:focus:hover {
+				box-shadow:inset 0px #{-$cap-size} 0px 0px $secondary-color-dark, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+				text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+			}
+			&:active,
+			&:active:focus {
+				box-shadow:inset 0px #{-$cap-size/2} 0px 0px $secondary-color-dark, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+			}
+			&:focus {
+				box-shadow:inset 0px #{-$cap-size} 0px 0px $secondary-color-dark, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+			}
+		}
+
+		// Success buttons
+		.gds-button--success {
+			background-color: $success-color;
+			border-left-color: $success-color-dark;
+			border-right-color: $success-color-dark;
+			border-top-color: $success-color-dark;
+			border-bottom-color: $success-color-dark;
+			box-shadow:inset 0px #{-$cap-size} 0px 0px $success-color-dark, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+
+			&:hover,
+			&:focus:hover {
+				box-shadow:inset 0px #{-$cap-size} 0px 0px $success-color-dark, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+				text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+			}
+			&:active,
+			&:active:focus {
+				box-shadow:inset 0px #{-$cap-size/2} 0px 0px $success-color-dark, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+			}
+			&:focus {
+				box-shadow:inset 0px #{-$cap-size} 0px 0px $success-color-dark, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+			}
+		}
+
+		// Danger buttons
+		.gds-button--danger {
+			background-color: $danger-color;
+			border-left-color: $danger-color-dark;
+			border-right-color: $danger-color-dark;
+			border-top-color: $danger-color-dark;
+			border-bottom-color: $danger-color-dark;
+			box-shadow:inset 0px #{-$cap-size} 0px 0px $danger-color-dark, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+			&:hover,
+			&:focus:hover {
+				box-shadow:inset 0px #{-$cap-size} 0px 0px $danger-color-dark, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+				text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+			}
+			&:active,
+			&:active:focus {
+				box-shadow:inset 0px #{-$cap-size/2} 0px 0px $danger-color-dark, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+			}
+			&:focus {
+				box-shadow:inset 0px #{-$cap-size} 0px 0px $danger-color-dark, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+			}
+		}
+
+		// Warning buttons
+		.gds-button--warning {
+			background-color: $warning-color;
+			border-left-color: $warning-color-dark;
+			border-right-color: $warning-color-dark;
+			border-top-color: $warning-color-dark;
+			border-bottom-color: $warning-color-dark;
+			box-shadow:inset 0px #{-$cap-size} 0px 0px $warning-color-dark, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+			&:hover,
+			&:focus:hover {
+				box-shadow:inset 0px #{-$cap-size} 0px 0px $warning-color-dark, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+				text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+			}
+			&:active,
+			&:active:focus {
+				box-shadow:inset 0px #{-$cap-size/2} 0px 0px $warning-color-dark, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+			}
+			&:focus {
+				box-shadow:inset 0px #{-$cap-size} 0px 0px $warning-color-dark, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+			}
+		}
+
+		// Info buttons
+		.gds-button--info {
+			background-color: $info-color;
+			border-left-color: $info-color-dark;
+			border-right-color: $info-color-dark;
+			border-top-color: $info-color-dark;
+			border-bottom-color: $info-color-dark;
+			box-shadow:inset 0px #{-$cap-size} 0px 0px $info-color-dark, 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0);
+			&:hover,
+			&:focus:hover {
+				box-shadow:inset 0px #{-$cap-size} 0px 0px $info-color-dark, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.2), inset 0 -1px 1px 2px rgba(white, 0);
+				text-shadow: 0px 1px 2px rgba(0,0,0,.6);
+			}
+			&:active,
+			&:active:focus {
+				box-shadow:inset 0px #{-$cap-size/2} 0px 0px $info-color-dark, 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0);
+			}
+			&:focus {
+				box-shadow:inset 0px #{-$cap-size} 0px 0px $info-color-dark, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,.35);
+			}
+		}
+
+		// Transparent link buttons
+		.gds-button--link {
+			color: $primary-color;
+			&:hover,
+			&:active,
+			&:focus,
+			&:active:focus {
+				color: $primary-color-light;
+			}
+			&:focus,
+			&:active:focus {
+			}
+		}
+
+    // Text color toggle
+    .gds-button--text-toggle {
+      color: $gg-light-2;
+
+      &.gds-button--active-success {
+        color: $gg-green;
+      }
+
+      &.gds-button--active-primary {
+        color: $primary-color;
+      }
+
+      &.gds-button--active-secondary {
+        color: $secondary-color;
+      }
+    }
+
+		// Close button
+		.gds-button--close-x {
+			&:hover {
+				background-image: url("data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%20100%25%20100%25%22%20fill%3D%22none%22%20stroke%3D%22%23#{strip-hash($primary-color)}%22%20stroke-width%3D%222%22%20stroke-miterlimit%3D%2210%22%3E%3Cline%20class%3D%22st0%22%20x1%3D%220.9%22%20y1%3D%221%22%20x2%3D%2219.1%22%20y2%3D%2219.2%22%2F%3E%3Cline%20class%3D%22st0%22%20x1%3D%2219.1%22%20y1%3D%221%22%20x2%3D%220.9%22%20y2%3D%2219.2%22%2F%3E%3C%2Fsvg%3E");
+			}
+		}
+
+	}
+}

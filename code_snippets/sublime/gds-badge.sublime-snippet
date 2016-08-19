@@ -1,0 +1,4 @@
+<!-- Badge -->
+<snippet><content><![CDATA[
+<p>Default badge<span class="gds-badge">2</span></p>
+]]></content><tabTrigger>gds-badge</tabTrigger><scope>text.html</scope></snippet>

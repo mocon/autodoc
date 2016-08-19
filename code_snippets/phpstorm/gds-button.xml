@@ -1,0 +1,5 @@
+<template name="gds-button" value="&lt;button class=&quot;gds-button gds-button--default&quot;&gt;Default button&lt;/button&gt;" description="Button" toReformat="false" toShortenFQNames="true">
+	<context>
+		<option name="HTML" value="true" />
+	</context>
+</template>
