@@ -4,6 +4,7 @@
   "description": "Parse comments from Scss source code, and use the output to automatically generate documentation and code snippets",
   "main": "commentParser.js",
   "scripts": {
+    "autodoc": "node commentParser.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
