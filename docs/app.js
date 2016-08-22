@@ -118,7 +118,7 @@ var GdsCornerContent = React.createClass({
             preStyle = {background: '#fafafa', lineHeight: 1.2, borderRadius: '2px'};
 
         return (
-            <div className="gds-corner-content gds-corner-content--right gds-corner-content--shown">
+            <div className="gds-corner-content gds-corner-content--right">
                 <div className="gds-corner-content__header" style={headerStyle}>
                     <h4 className="gds-corner-content__title">Getting Started</h4>
                     <div className="gds-corner-content__controls">
