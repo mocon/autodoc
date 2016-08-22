@@ -472,7 +472,7 @@ var MainColumnSectionItem = React.createClass({
                     if (tag.tag === 'optionalClasses') {
                         var optionsStyle = {fontSize: '0.8rem'};
 
-                        if (componentOptions.length > 1) {
+                        if (componentOptions.toString().length !== 0) {
                             return (
                                 <div key={index} className="-m-t-3">
                                     <label className="gds-form-group__label -m-a-0">Options</label>
