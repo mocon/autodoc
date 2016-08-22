@@ -39,13 +39,30 @@ __Note:__ Any tags, prefaced by @, can be added. The JSX markup for the generate
 
 ## Installation
 
+To use Autodoc in your existing project, move the following files and directories into your project's root directory:
+
+&#128194; &nbsp;autodocCodeSnippets  
+&nbsp;&nbsp;&nbsp;&nbsp;&#128194; &nbsp;phpstorm  
+&nbsp;&nbsp;&nbsp;&nbsp;&#128194; &nbsp;sublime  
+&nbsp;&nbsp;&nbsp;&nbsp;&#128194; &nbsp;vim  
+&#128194; &nbsp;docs  
+&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;app.js  
+&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;favicon.ico  
+&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;index.html  
+&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;logo.png  
+&#128196; &nbsp;autodocCommentParser.js  
+&#128196; &nbsp;autodocSnippetConverter.js  
+&#128196; &nbsp;package.json  
+
+After the files above have been moved into the root directory, navigate there and run:
+
 ```
 $ npm install
 ```
 
 ## Generate documentation and code snippets
 
-Pass in the directory to be scanned:
+Pass in the directory containing your source code to be scanned:
 
 ```
 $ npm run autodoc /scss/theme/
