@@ -366,7 +366,8 @@ var MainColumnSectionItem = React.createClass({
             isChildComponent = '',
             renderedMarkupStyle = {},
             autocompleteTrigger,
-            componentOptions;
+            componentOptions,
+            componentLanguage;
 
         // Determine if this component is a parentComponent
         component.tags.map(function(tag) {
@@ -396,6 +397,11 @@ var MainColumnSectionItem = React.createClass({
             // Optional classes
             if (tag.tag === 'optionalClasses') {
                 componentOptions = tag.description.split(',');
+            }
+
+            // Language
+            if (tag.tag === 'language' && tag.description) {
+                componentLanguage = tag.description;
             }
         });
 
@@ -433,7 +439,7 @@ var MainColumnSectionItem = React.createClass({
                                 {/* Show code sample */}
                                 <label className="gds-form-group__label -m-b-1">Code</label>
                                 <pre className="-m-a-0" style={preStyle}>
-                                    <code className="language-html gds-text--body-sm">
+                                    <code className={`language-${componentLanguage || 'html'} gds-text--body-sm`}>
                                         {sampleCode}
                                     </code>
                                 </pre>
