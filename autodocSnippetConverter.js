@@ -22,15 +22,6 @@ module.exports = {
                     value = tag.description;
 
                 currentComponent[key] = value;
-
-                // Grab outerElement from example code
-                if (tag.tag === 'example') {
-                    var regex = /\<(.*?)\ /,
-                        stringToMatch = tag.description,
-                        outerElement = regex.exec(stringToMatch)[1];
-
-                    currentComponent.outerElement = outerElement;
-                }
             });
 
             formattedComponents.push(currentComponent);

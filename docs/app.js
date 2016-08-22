@@ -118,7 +118,7 @@ var GdsCornerContent = React.createClass({
             preStyle = {background: '#fafafa', lineHeight: 1.2, borderRadius: '2px'};
 
         return (
-            <div className="gds-corner-content gds-corner-content--right gds-corner-content--shown">
+            <div className="gds-corner-content gds-corner-content--right">
                 <div className="gds-corner-content__header" style={headerStyle}>
                     <h4 className="gds-corner-content__title">Getting Started</h4>
                     <div className="gds-corner-content__controls">
@@ -366,7 +366,8 @@ var MainColumnSectionItem = React.createClass({
             isChildComponent = '',
             renderedMarkupStyle = {},
             autocompleteTrigger,
-            componentOptions;
+            componentOptions,
+            componentLanguage;
 
         // Determine if this component is a parentComponent
         component.tags.map(function(tag) {
@@ -396,6 +397,11 @@ var MainColumnSectionItem = React.createClass({
             // Optional classes
             if (tag.tag === 'optionalClasses') {
                 componentOptions = tag.description.split(',');
+            }
+
+            // Language
+            if (tag.tag === 'language' && tag.description) {
+                componentLanguage = tag.description;
             }
         });
 
@@ -433,7 +439,7 @@ var MainColumnSectionItem = React.createClass({
                                 {/* Show code sample */}
                                 <label className="gds-form-group__label -m-b-1">Code</label>
                                 <pre className="-m-a-0" style={preStyle}>
-                                    <code className="language-html gds-text--body-sm">
+                                    <code className={`language-${componentLanguage || 'html'} gds-text--body-sm`}>
                                         {sampleCode}
                                     </code>
                                 </pre>
@@ -472,7 +478,7 @@ var MainColumnSectionItem = React.createClass({
                     if (tag.tag === 'optionalClasses') {
                         var optionsStyle = {fontSize: '0.8rem'};
 
-                        if (componentOptions.length > 1) {
+                        if (componentOptions.toString().length !== 0) {
                             return (
                                 <div key={index} className="-m-t-3">
                                     <label className="gds-form-group__label -m-a-0">Options</label>

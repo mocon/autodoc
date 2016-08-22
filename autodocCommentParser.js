@@ -12,7 +12,8 @@ var parse = require('comment-parser'),
     snippetConverter = require('./autodocSnippetConverter'),
     date = new Date().toDateString(),
     time = new Date().toLocaleTimeString(),
-    commentTags = '';
+    commentTags = '',
+    percentageOfFilesTagged;
 
 // Loop through all files in passed in directory, ignoring .DS_Store files
 recursive(__dirname + process.argv[2], ['.DS_Store'], function(err, files) {
@@ -44,8 +45,9 @@ function _extractComments(arr) {
     commentTags += ']';
 
     // Console feedback
+    percentageOfFilesTagged = parseFloat((taggedFiles / filesToSearch) * 100).toFixed(2);
     taggedFiles === 1 ? files = 'file' : files = 'files';
-    console.log(`Searched ${filesToSearch} files in "${process.argv[2]}", found ${taggedFiles} tagged ${files}.`);
+    console.log(`Searched ${filesToSearch} files in "${process.argv[2]}", found ${taggedFiles} tagged ${files} (${percentageOfFilesTagged}%).`);
 
     // Write commentTags to a JSON file, to be used as React state for './docs/index.html' page
     fs.writeFile(__dirname + '/docs/autodocComments.json', commentTags, function(err) {
