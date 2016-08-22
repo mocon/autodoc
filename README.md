@@ -42,18 +42,18 @@ __Note:__ Any tags, prefaced by @, can be added. The JSX markup for the generate
 To use Autodoc in your existing project, move the following files and directories into your project's root directory:
 
 <br/>
-&#128194; &nbsp;autodocCodeSnippets  
-&nbsp;&nbsp;&nbsp;&nbsp;&#128194; &nbsp;phpstorm  
-&nbsp;&nbsp;&nbsp;&nbsp;&#128194; &nbsp;sublime  
-&nbsp;&nbsp;&nbsp;&nbsp;&#128194; &nbsp;vim  
-&#128194; &nbsp;docs  
-&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;app.js  
-&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;favicon.ico  
-&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;index.html  
-&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;logo.png  
-&#128196; &nbsp;autodocCommentParser.js  
-&#128196; &nbsp;autodocSnippetConverter.js  
-&#128196; &nbsp;package.json  
+&nbsp;&nbsp;&nbsp;&nbsp;&#128194; &nbsp;autodocCodeSnippets  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#128194; &nbsp;phpstorm  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#128194; &nbsp;sublime  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#128194; &nbsp;vim  
+&nbsp;&nbsp;&nbsp;&nbsp;&#128194; &nbsp;docs  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;app.js  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;favicon.ico  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;index.html  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;logo.png  
+&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;autodocCommentParser.js  
+&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;autodocSnippetConverter.js  
+&nbsp;&nbsp;&nbsp;&nbsp;&#128196; &nbsp;package.json  
 <br/>
 
 After the files above have been moved into the root directory, navigate there and run:
