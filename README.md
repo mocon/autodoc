@@ -41,7 +41,6 @@ __Note:__ Any tags, prefaced by @, can be added. The JSX markup for the generate
 
 To use Autodoc in your existing project, move the following files and directories into your project's root directory:
 
-<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&#128194; &nbsp;autodocCodeSnippets  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#128194; &nbsp;phpstorm  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#128194; &nbsp;sublime  
