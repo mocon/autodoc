@@ -53,9 +53,22 @@ var App = React.createClass({
 
         _this.setState({sections: sections});
     },
+    _getUrlHash: function() {
+        var _this = this;
+
+        if (window.location.hash) {
+            var hash = window.location.hash;
+        }
+
+        setTimeout(function() {
+            location.href = '#';
+            location.href = hash.toString();
+        }, 10);
+    },
     componentDidMount: function() {
         var _this = this;
 
+        _this._getUrlHash();
         _this._getSections();
     },
     render: function() {
