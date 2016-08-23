@@ -82,3 +82,7 @@ Generated code snippets can be viewed in:
 * `/autodocCodeSnippets/phpstorm`
 * `/autodocCodeSnippets/sublime`
 * `/autodocCodeSnippets/vim`
+
+## Todo
+
+- [ ] Add https://clipboardjs.com/ for copy & pasting code
