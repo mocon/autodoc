@@ -37,11 +37,9 @@ module.exports = {
         // Loop through all components, passed into convert() as json
         json.map(function(component) {
             var defaultTextWithTabStop = '',
-                numberOfDefaultClasses = component.defaultClasses.length,
                 numberOfOptionalClasses = component.optionalClasses.length,
                 tabStopIndex = 1,
                 sublimeSnippet = '',
-                sublimeDefaultClasses = '',
                 sublimeOptionalClasses = '',
                 vimSnippet = '',
                 phpStormSnippet = '',
