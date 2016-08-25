@@ -1,0 +1,130 @@
+/**
+ * The HTML-preview component, prefixed by <span class="gds-text--code">gds-html-preview</span> is a stage for displaying HTML content on a simulated transparent background.
+ *
+ * @section {String} section Molecules
+ *
+ * @parentComponent {String} parentComponent HTML Preview
+ *
+ * @name {String} name HTML Preview
+ *
+ * @example {Code}
+ *
+ * <div class="gds-html-preview">
+ * ---]<iframe class="gds-html-preview__content" frameborder="0" scrolling="0"></iframe>
+ * </div>
+ *
+ * @renderMarkup {Boolean} renderMarkup true
+ *
+ * @author {String} author Dan McKenna, Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-html-preview
+ *
+ * @optionalClasses {Array} optionalClasses gds-html-preview--active,gds-html-preview--disabled,gds-html-preview--resize
+ */
+.gds-html-preview {
+  display:block;
+	overflow:hidden;
+	width:auto;
+	min-height:120px;
+  border-radius: $border-radius;
+  border: 1px solid $gg-light-3;
+	border-bottom-width:$cap-size;
+	box-shadow: 0 0 5px 0px rgba(0,0,0,.1);
+  background-image: url("data:image/svg+xml;base54,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20xmlns%3Aa%3D%22http%3A%2F%2Fns.adobe.com%2FAdobeSVGViewerExtensions%2F3.0%2F%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%2220px%22%20height%3D%2220px%22%20viewBox%3D%220%200%2020%2020%22%20style%3D%22enable-background%3Anew%200%200%2020%2020%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E.st0%7Bfill%3A%23FFFFFF%3B%7D.st1%7Bfill%3A%23D5D5D5%3B%7D%3C%2Fstyle%3E%3Crect%20class%3D%22st0%22%20width%3D%2210%22%20height%3D%2210%22%2F%3E%3Crect%20x%3D%2210%22%20class%3D%22st1%22%20width%3D%2210%22%20height%3D%2210%22%2F%3E%3Crect%20y%3D%2210%22%20class%3D%22st1%22%20width%3D%2210%22%20height%3D%2210%22%2F%3E%3Crect%20x%3D%2210%22%20y%3D%2210%22%20class%3D%22st0%22%20width%3D%2210%22%20height%3D%2210%22%2F%3E%3C%2Fsvg%3E");
+	&:after {
+		content:'';
+		position:absolute;
+		height:100%;
+		width:100%;
+		top:0;
+		left:0;
+		pointer-events:none;
+	}
+	&:hover {
+		border-color:$gg-blue-light-2;
+	}
+}
+
+.gds-html-preview__content {
+	position:static;
+	height:100%;
+	width:100%;
+	top:0;
+	left:0;
+	margin-bottom:-$unit*.75;
+	right:0;
+	min-height:inherit;
+}
+
+.gds-html-preview--resize {
+	display: inline-block;
+  overflow: hidden;
+	width:inherit;
+	&:after {
+		background-image:url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20xmlns%3Aa%3D%22http%3A//ns.adobe.com/AdobeSVGViewerExtensions/3.0/%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%20100%25%20100%25%22%20style%3D%22enable-background%3Anew%200%200%2020%2020%3B%20fill%3A%23#{strip-hash($gg-light-3)}%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpolygon%20points%3D%220%2C20%2020%2C0%2020%2C20%20%22/%3E%3C/svg%3E');
+	background-position:bottom right;
+	background-size:15px 15px;
+	background-repeat:no-repeat;
+	}
+	&:hover {
+		&:after {
+			background-image:url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20xmlns%3Aa%3D%22http%3A//ns.adobe.com/AdobeSVGViewerExtensions/3.0/%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%20100%25%20100%25%22%20style%3D%22enable-background%3Anew%200%200%2020%2020%3B%20fill%3A%23#{strip-hash($gg-blue-light-3)}%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpolygon%20points%3D%220%2C20%2020%2C0%2020%2C20%20%22/%3E%3C/svg%3E');
+		}
+	}
+	&:active {
+		border-color:$gg-blue;
+		&:after {
+		background-image:url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20xmlns%3Aa%3D%22http%3A//ns.adobe.com/AdobeSVGViewerExtensions/3.0/%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%20100%25%20100%25%22%20style%3D%22enable-background%3Anew%200%200%2020%2020%3B%20fill%3A%23#{strip-hash($gg-blue)}%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpolygon%20points%3D%220%2C20%2020%2C0%2020%2C20%20%22/%3E%3C/svg%3E');
+
+		}
+	}
+	.gds-html-preview__content {
+		resize:both;
+	}
+}
+
+
+.gds-html-preview--active {
+   border-color:$gg-blue;
+	 box-shadow: 0 0 10px 0px rgba(0,0,0,.3);
+	 &.gds-html-preview--resize::after {
+		background-image:url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20xmlns%3Aa%3D%22http%3A//ns.adobe.com/AdobeSVGViewerExtensions/3.0/%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%20100%25%20100%25%22%20style%3D%22enable-background%3Anew%200%200%2020%2020%3B%20fill%3A%23#{strip-hash($gg-blue)}%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpolygon%20points%3D%220%2C20%2020%2C0%2020%2C20%20%22/%3E%3C/svg%3E');
+	 }
+}
+
+.gds-html-preview--disabled {
+	@extend .-disabled;
+}
+
+/////THEMING
+$color-map: $default-color-map;
+@each $class, $primary-color, $primary-color-dark, $primary-color-light, $secondary-color, $secondary-color-dark, $secondary-color-light, $tertiary-color, $tertiary-color-dark, $tertiary-color-light, $success-color, $success-color-dark, $success-color-light, $warning-color, $warning-color-dark, $warning-color-light, $danger-color, $danger-color-dark, $danger-color-light, $info-color, $info-color-dark, $info-color-light in $color-map {
+	.#{$class} {
+		.gds-html-preview {
+			&:hover {
+				border-color:$primary-color-light;
+			}
+		}
+
+		.gds-html-preview--resize {
+			&:hover {
+				&:after {
+					background-image:url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20xmlns%3Aa%3D%22http%3A//ns.adobe.com/AdobeSVGViewerExtensions/3.0/%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%20100%25%20100%25%22%20style%3D%22enable-background%3Anew%200%200%2020%2020%3B%20fill%3A%23#{strip-hash($primary-color-light)}%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpolygon%20points%3D%220%2C20%2020%2C0%2020%2C20%20%22/%3E%3C/svg%3E');
+				}
+			}
+			&:active {
+				border-color:$primary-color;
+				&:after {
+				background-image:url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20xmlns%3Aa%3D%22http%3A//ns.adobe.com/AdobeSVGViewerExtensions/3.0/%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%20100%25%20100%25%22%20style%3D%22enable-background%3Anew%200%200%2020%2020%3B%20fill%3A%23#{strip-hash($primary-color)}%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpolygon%20points%3D%220%2C20%2020%2C0%2020%2C20%20%22/%3E%3C/svg%3E');
+
+				}
+			}
+		}
+		.gds-html-preview--active {
+			 border-color:$primary-color;
+			 &.gds-html-preview--resize::after {
+				background-image:url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20xmlns%3Aa%3D%22http%3A//ns.adobe.com/AdobeSVGViewerExtensions/3.0/%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%20100%25%20100%25%22%20style%3D%22enable-background%3Anew%200%200%2020%2020%3B%20fill%3A%23#{strip-hash($primary-color)}%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpolygon%20points%3D%220%2C20%2020%2C0%2020%2C20%20%22/%3E%3C/svg%3E');
+			 }
+		}
+	}
+}

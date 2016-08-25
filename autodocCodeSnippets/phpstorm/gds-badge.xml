@@ -1,5 +1,0 @@
-<template name="gds-badge" value="&lt;p&gt;Default badge&lt;span class=&quot;gds-badge&quot;&gt;2&lt;/span&gt;&lt;/p&gt;" description="Badge" toReformat="false" toShortenFQNames="true">
-	<context>
-		<option name="HTML" value="true" />
-	</context>
-</template>

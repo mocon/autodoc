@@ -1,0 +1,26 @@
+<!-- Timeline -->
+<snippet><content><![CDATA[
+<div class="gds-timeline">
+    <ul class="gds-timeline__items">
+        <li class="gds-timeline__item">
+            <div class="gds-timeline__item-label">Step 1</div>
+            <div class="gds-timeline__item-icon"></div>
+        </li>
+        <li class="gds-timeline__item">
+            <div class="gds-timeline__item-label">Step 2</div>
+            <div class="gds-timeline__item-icon"></div>
+        </li>
+        <li class="gds-timeline__item">
+            <div class="gds-timeline__item-label">Step 3</div>
+            <div class="gds-timeline__item-icon"></div>
+        </li>
+        <li class="gds-timeline__item">
+            <div class="gds-timeline__item-label">Step 4</div>
+            <div class="gds-timeline__item-icon"></div>
+        </li>
+        <div class="gds-timeline__progress-wrapper">
+            <div class="gds-timeline__progress-indicator"></div>
+        </div>
+    </ul>
+</div>
+]]></content><tabTrigger>gds-timeline</tabTrigger><scope>text.html</scope></snippet>

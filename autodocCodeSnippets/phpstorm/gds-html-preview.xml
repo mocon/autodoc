@@ -1,0 +1,5 @@
+<template name="gds-html-preview" value="&lt;div class=&quot;gds-html-preview&quot;&gt;&#13;	&lt;iframe class=&quot;gds-html-preview__content&quot; frameborder=&quot;0&quot; scrolling=&quot;0&quot;&gt;&lt;/iframe&gt;&#13;&lt;/div&gt;" description="HTML Preview" toReformat="false" toShortenFQNames="true">
+	<context>
+		<option name="HTML" value="true" />
+	</context>
+</template>

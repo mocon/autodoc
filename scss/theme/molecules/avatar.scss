@@ -1,5 +1,5 @@
 /**
- * The avatar component, prefixed by .gds-avatar, can display a user's photo, a brand's logo, or a flag icon for internationalization. The avatar can include a dropdown menu, which is meant to be shown when the avatar is clicked on.
+ * The avatar component, prefixed by <span class="gds-text--code">gds-avatar</span>, can display a user's photo, a brand's logo, or a flag icon for internationalization. The avatar can include a dropdown menu, which is meant to be shown when the avatar is clicked on. To show the dropdown menu, add the <span class="gds-text--code">gds-avatar--menu-open</span> class to <span class="gds-text--code">gds-avatar</span>.
  *
  * @section {String} section Molecules
  *
@@ -9,7 +9,7 @@
  *
  * @example {Code}
  *
- * <div class="gds-avatar" gg-avatar>
+ * <div class="gds-avatar">
  * ---]<div class="gds-avatar__image">
  * ---]---]<img src="https://ds.gumgum.com/images/ken.png" alt="Ken Weiner" height="100%" />
  * ---]</div>

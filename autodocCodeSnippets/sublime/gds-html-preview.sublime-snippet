@@ -1,0 +1,6 @@
+<!-- HTML Preview -->
+<snippet><content><![CDATA[
+<div class="gds-html-preview">
+    <iframe class="gds-html-preview__content" frameborder="0" scrolling="0"></iframe>
+</div>
+]]></content><tabTrigger>gds-html-preview</tabTrigger><scope>text.html</scope></snippet>

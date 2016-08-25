@@ -1,0 +1,29 @@
+/**
+ * Enable or disable the default user interaction with any element.
+ *
+ * @section {String} section Utilities
+ *
+ * @parentComponent {String} parentComponent Pointer-Events
+ *
+ * @name {String} name Pointer-Events
+ *
+ * @example {Code}
+ *
+ * <button class="gds-button gds-button--default -pointer-events--auto -m-b-2">Default Pointer-Events</button><br/>
+ * <button class="gds-button gds-button--default -pointer-events--none">No Pointer-Events</button>
+ *
+ * @renderMarkup {Boolean} renderMarkup true
+ *
+ * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger
+ * @defaultClasses {Array} defaultClasses
+ * @optionalClasses {Array} optionalClasses -pointer-events--auto,-pointer-events--none
+ */
+.-pointer-events--none {
+    pointer-events: none;
+}
+
+.-pointer-events--auto {
+    pointer-events: auto;
+}

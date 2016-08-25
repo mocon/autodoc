@@ -1,0 +1,5 @@
+<template name="gds-loading--lg" value="&lt;div class=&quot;gds-loading&quot;&gt;&#13;	&lt;div class=&quot;gds-loading__dot gds-loading__dot--lg&quot;&gt;&lt;/div&gt;&#13;&lt;/div&gt;" description="Loading - Large" toReformat="false" toShortenFQNames="true">
+	<context>
+		<option name="HTML" value="true" />
+	</context>
+</template>

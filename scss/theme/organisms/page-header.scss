@@ -1,5 +1,5 @@
 /**
- * The page-header component, prefixed by .page-header, is the standard fixed-position header component.
+ * The page-header component, prefixed by <span class="gds-text--code">gds-page-header</span>, is the standard fixed-position header component.
  *
  * @section {String} section Organisms
  *
@@ -57,7 +57,7 @@
  * @author {String} author Dan McKenna
  *
  * @tabTrigger {String} tabTrigger gds-page-header
- * @defaultClasses {Array} defaultClasses gds-page-header
+ *
  * @optionalClasses {Array} optionalClasses
  */
 .-has-page-header {

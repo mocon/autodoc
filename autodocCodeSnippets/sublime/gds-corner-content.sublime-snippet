@@ -1,0 +1,15 @@
+<!-- Corner-Content -->
+<snippet><content><![CDATA[
+<div class="gds-corner-content gds-corner-content--right gds-corner-content--shown">
+    <div class="gds-corner-content__header">
+        <h4 class="gds-corner-content__title">Corner content title</h4>
+        <div class="gds-corner-content__controls">
+            <button class="gds-corner-content__button"><i class="fa fa-arrows-h"></i></button>
+            <button class="gds-corner-content__button"><i class="fa fa-expand"></i></button>
+        </div>
+    </div>
+    <div class="gds-corner-content__block">
+        ...
+    </div>
+</div>
+]]></content><tabTrigger>gds-corner-content</tabTrigger><scope>text.html</scope></snippet>

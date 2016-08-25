@@ -1,0 +1,6 @@
+<!-- Loading -->
+<snippet><content><![CDATA[
+<div class="gds-loading">
+    <div class="gds-loading__dot"></div>
+</div>
+]]></content><tabTrigger>gds-loading</tabTrigger><scope>text.html</scope></snippet>

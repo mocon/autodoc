@@ -1,0 +1,4 @@
+<!-- Link -->
+<snippet><content><![CDATA[
+<a class="gds-text--link" href="#">A text link</a>
+]]></content><tabTrigger>gds-text--link</tabTrigger><scope>text.html</scope></snippet>
