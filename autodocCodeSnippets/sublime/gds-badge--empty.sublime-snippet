@@ -1,4 +1,0 @@
-<!-- Badge - Empty -->
-<snippet><content><![CDATA[
-<p>Default badge<span class="gds-badge gds-badge--empty"></span></p>
-]]></content><tabTrigger>gds-badge--empty</tabTrigger><scope>text.html</scope></snippet>

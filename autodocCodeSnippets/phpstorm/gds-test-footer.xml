@@ -1,5 +1,0 @@
-<template name="gds-test-footer" value="&lt;footer class=&quot;test__footer&quot;&gt;&#13;	&lt;span class=&quot;example__span&quot;&gt;Example&lt;/span&gt;&#13;&lt;/footer&gt;" description="Footer Sub-Component" toReformat="false" toShortenFQNames="true">
-	<context>
-		<option name="HTML" value="true" />
-	</context>
-</template>

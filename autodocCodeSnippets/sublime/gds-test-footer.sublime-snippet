@@ -1,6 +1,0 @@
-<!-- Footer Sub-Component -->
-<snippet><content><![CDATA[
-<footer class="test__footer">
-    <span class="example__span">Example</span>
-</footer>
-]]></content><tabTrigger>gds-test-footer</tabTrigger><scope>text.html</scope></snippet>

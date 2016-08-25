@@ -1,0 +1,355 @@
+/**
+ * <p class="-m-b-3">The table component is prefixed by <span class="gds-text--code">gds-table</span>. It is used to style standard &lt;table&gt; elements.</p><p>For a better experience on mobile, wrap the <span class="gds-text--code">gds-table</span> with a <span class="gds-text--code">gds-table--responsive element</span>. This allows the user to scroll through the table horizontally on their mobile device.</p>
+ *
+ * @section {String} section Molecules
+ *
+ * @parentComponent {String} parentComponent Table
+ *
+ * @name {String} name Table
+ *
+ * @example {Code}
+ *
+ * <div class="gds-table--responsive">
+ * ---]<table class="gds-table">
+ * ---]---]<thead>
+ * ---]---]---]<tr class="gds-table__row">
+ * ---]---]---]---]<th class="gds-table__header">#</th>
+ * ---]---]---]---]<th class="gds-table__header -text-left">First Name</th>
+ * ---]---]---]---]<th class="gds-table__header -text-left">Last Name</th>
+ * ---]---]---]---]<th class="gds-table__header gds-table__header--selected -text-left">Username (selected)</th>
+ * ---]---]---]</tr>
+ * ---]---]</thead>
+ * ---]---]<tbody>
+ * ---]---]---]<tr class="gds-table__row">
+ * ---]---]---]---]<th scope="row">1</th>
+ * ---]---]---]---]<td>Mark</td>
+ * ---]---]---]---]<td>Otto</td>
+ * ---]---]---]---]<td>@mdo</td>
+ * ---]---]---]</tr>
+ * ---]---]---]<tr class="gds-table__row">
+ * ---]---]---]---]<th scope="row">2</th>
+ * ---]---]---]---]<td>Jacob</td>
+ * ---]---]---]---]<td>Thornton</td>
+ * ---]---]---]---]<td>@fat</td>
+ * ---]---]---]</tr>
+ * ---]---]---]<tr class="gds-table__row gds-table__row--selected">
+ * ---]---]---]---]<th scope="row">3</th>
+ * ---]---]---]---]<td>Selected Row</td>
+ * ---]---]---]---]<td>the Bird</td>
+ * ---]---]---]---]<td>@twitter</td>
+ * ---]---]---]</tr>
+ * ---]---]---]<tr class="gds-table__row gds-table__row--disabled">
+ * ---]---]---]---]<th scope="row">4</th>
+ * ---]---]---]---]<td>Disabled Row</td>
+ * ---]---]---]---]<td>Otto</td>
+ * ---]---]---]---]<td>@mdo</td>
+ * ---]---]---]</tr>
+ * ---]---]</tbody>
+ * ---]</table>
+ * </div>
+ *
+ * @renderMarkup {Boolean} renderMarkup true
+ *
+ * @author {String} author Dan McKenna, Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-table
+ *
+ * @optionalClasses {Array} optionalClasses gds-table--sm,gds-table--lg,gds-table--striped,gds-table--inverse,gds-table--inverse--striped
+ */
+.gds-table {
+    font-family: $pri-font-regular;
+    width: 100%;
+    max-width: 100%;
+    font-size: $table-font-size-normal;
+    border-spacing: 0;
+    border: none;
+    color:$gg-dark-4;
+    background-color:rgba(white,0.25);
+}
+
+.gds-table th,
+.gds-table td,
+.gds-table thead,
+.gds-table tbody {
+    border: none;
+}
+
+// Wrap around table for horizontal scrolling on mobile
+.gds-table--responsive {
+    width: 100%;
+    min-height: 0.01%;
+    overflow: auto;
+
+    .gds-table__header,
+    .gds-table__row td {
+        white-space: nowrap;
+    }
+}
+
+.gds-table__header {
+    position: relative;
+    background-color: $gg-blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: $table-padding-normal;
+
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: $cap-size;
+        width: 100%;
+        background-color: $gg-blue-dark-2;
+        @include transition-back(all,250ms);
+    }
+
+    &:hover,
+    &.gds-table__header--selected {
+        background-color: $gg-blue-light-1;
+
+        &:after {
+            height: $cap-size*1.5;
+        }
+    }
+}
+
+.gds-table__row {
+    background-color: rgba($gg-gold, 0);
+    @include transition-ease-out(all,250ms);
+
+    &:hover {
+        background-color: rgba($gg-gold, .25);
+    }
+
+    &.gds-table__row--selected {
+        background-color: rgba($gg-gold, .75);
+        color: white;
+    }
+
+    &.gds-table__row--disabled {
+        background-color: rgba($gg-light-2, .75);
+        color: $gg-light-3;
+        cursor: not-allowed;
+    }
+
+    td,
+    th {
+        padding: $table-padding-normal;
+    }
+
+    // For proper flow on mobile, to trigger overflow-x scroll
+    th:last-child,
+    td:last-child {
+      word-break: break-all;
+      word-break: break-word;
+    }
+
+}
+
+// Tightly spaced table
+.gds-table--sm {
+  .gds-table__row td,
+  .gds-table__row th {
+    padding: $table-padding-tight;
+  }
+}
+
+// Loosely spaced table
+.gds-table--lg {
+  .gds-table__row td,
+  .gds-table__row th {
+    padding: $table-padding-loose;
+  }
+}
+
+/**
+ * To indicate <span class="gds-text--regular">positive</span> (green), <span class="gds-text--regular">neutral</span> (yellow), or <span class="gds-text--regular">negative</span> (red) states on a table cell, use the <span class="gds-text--code">gds-table__cell--positive</span>, <span class="gds-text--code">gds-table__cell--neutral</span> & <span class="gds-text--code">gds-table__cell--negative</span> classes.
+ *
+ * @section {String} section Molecules
+ *
+ * @parentComponent {String} parentComponent Table
+ *
+ * @name {String} name Table - Colored Cells
+ *
+ * @example {Code}
+ *
+ * <div class="gds-table--responsive">
+ * ---]<table class="gds-table">
+ * ---]---]<thead>
+ * ---]---]---]<tr class="gds-table__row">
+ * ---]---]---]---]<th class="gds-table__header">#</th>
+ * ---]---]---]---]<th class="gds-table__header -text-left">First Name</th>
+ * ---]---]---]---]<th class="gds-table__header -text-left">Last Name</th>
+ * ---]---]---]---]<th class="gds-table__header gds-table__header--selected -text-left">Username (selected)</th>
+ * ---]---]---]</tr>
+ * ---]---]</thead>
+ * ---]---]<tbody>
+ * ---]---]---]<tr class="gds-table__row">
+ * ---]---]---]---]<th scope="row">1</th>
+ * ---]---]---]---]<td class="gds-table__cell--positive">Mark</td>
+ * ---]---]---]---]<td class="gds-table__cell--neutral">Otto</td>
+ * ---]---]---]---]<td class="gds-table__cell--negative">@mdo</td>
+ * ---]---]---]</tr>
+ * ---]---]</tbody>
+ * ---]</table>
+ * </div>
+ *
+ * @renderMarkup {Boolean} renderMarkup true
+ *
+ * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger
+ *
+ * @optionalClasses {Array} optionalClasses
+ */
+// Color-coded table cells
+.gds-table__cell--positive {
+    background-color: rgba(#32CD32, .2);
+}
+
+.gds-table__cell--neutral {
+    background-color: rgba($gg-gold, .2);
+}
+
+.gds-table__cell--negative {
+    background-color: rgba($gg-red, .2);
+}
+
+// Table with gold header
+.gds-table__header--gold {
+    @extend .gds-table__header;
+    background-color: $gg-gold;
+
+    &:after {
+        background-color: $gg-gold-dark-2;
+    }
+
+    &:hover,
+    &.gds-table__header--gold--selected {
+        background-color: $gg-gold-light-2;
+
+        &:after {
+            height: 5px;
+        }
+    }
+}
+
+// Inverse table (light on dark)
+.gds-table--inverse__row {
+    color: $gg-light-3;
+    background-color: $gg-dark-2;
+
+    &:hover {
+        background-color:$gg-dark-3;
+    }
+
+    &.gds-table--inverse__row--selected {
+        background-color: rgba($gg-dark-4, 1);
+        color: white;
+    }
+
+    &.gds-table--inverse__row--disabled {
+        background-color: rgba($gg-dark-1, .75);
+        color: $gg-light-3;
+        cursor: not-allowed;
+    }
+
+    td,
+    th {
+        padding: $table-padding-normal;
+    }
+}
+
+// Striped table
+.gds-table--striped {
+    tbody tr:nth-of-type(odd) {
+        background-color: rgba($gg-dark-4, .05);
+
+        &:hover {
+            background-color: rgba($gg-gold, .25);
+        }
+    }
+}
+
+// Inverse striped table
+.gds-table--inverse--striped {
+    tbody tr:hover,
+    tbody tr:nth-of-type(odd):hover {
+        background-color: $gg-dark-3;
+    }
+
+    tbody tr:nth-of-type(odd) {
+        background-color: $gg-dark-1;
+    }
+}
+
+/////THEMING
+$color-map: $default-color-map;
+@each $class, $primary-color, $primary-color-dark, $primary-color-light, $secondary-color, $secondary-color-dark, $secondary-color-light, $tertiary-color, $tertiary-color-dark, $tertiary-color-light, $success-color, $success-color-dark, $success-color-light, $warning-color, $warning-color-dark, $warning-color-light, $danger-color, $danger-color-dark, $danger-color-light, $info-color, $info-color-dark, $info-color-light in $color-map {
+    .#{$class} {
+
+        .gds-table__header {
+            background-color: $primary-color;
+
+            &:after {
+                background-color: $primary-color-dark;
+            }
+
+            &:hover,
+            &.gds-table__header--selected {
+                background-color: $primary-color-light;
+            }
+        }
+
+        .gds-table__row {
+            background-color: rgba($secondary-color, 0);
+            &:hover {
+                background-color: rgba($secondary-color, .25);
+            }
+
+            &.gds-table__row--selected {
+                background-color: rgba($secondary-color, .75);
+            }
+
+        }
+
+        // Color-coded table cells
+        .gds-table__cell--positive {
+            background-color: rgba($success-color, .2);
+        }
+
+        .gds-table__cell--neutral {
+            background-color: rgba($warning-color, .2);
+        }
+
+        .gds-table__cell--negative {
+            background-color: rgba($danger-color, .2);
+        }
+
+        // Table with gold header
+        .gds-table__header--gold {
+            @extend .gds-table__header;
+            background-color: $secondary-color;
+
+            &:after {
+                background-color: $secondary-color-dark;
+            }
+
+            &:hover,
+            &.gds-table__header--gold--selected {
+                background-color: $secondary-color-light;
+            }
+        }
+
+        // Striped table
+        .gds-table--striped {
+            tbody tr:nth-of-type(odd) {
+                &:hover {
+                    background-color: rgba($secondary-color, .25);
+                }
+            }
+        }
+    }
+}

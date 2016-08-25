@@ -1,8 +1,0 @@
-<!-- Test Molecule -->
-<snippet><content><![CDATA[
-<div class="test__molecule">
-    <span class="example__span">
-        <span class="example__span">Example</span>
-    </span>
-</div>
-]]></content><tabTrigger>gds-test-molecule</tabTrigger><scope>text.html</scope></snippet>

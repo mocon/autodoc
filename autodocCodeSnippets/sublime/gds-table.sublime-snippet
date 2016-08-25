@@ -1,0 +1,41 @@
+<!-- Table -->
+<snippet><content><![CDATA[
+<div class="gds-table--responsive">
+    <table class="gds-table">
+        <thead>
+            <tr class="gds-table__row">
+                <th class="gds-table__header">#</th>
+                <th class="gds-table__header -text-left">First Name</th>
+                <th class="gds-table__header -text-left">Last Name</th>
+                <th class="gds-table__header gds-table__header--selected -text-left">Username (selected)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="gds-table__row">
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr class="gds-table__row">
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr class="gds-table__row gds-table__row--selected">
+                <th scope="row">3</th>
+                <td>Selected Row</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+            </tr>
+            <tr class="gds-table__row gds-table__row--disabled">
+                <th scope="row">4</th>
+                <td>Disabled Row</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+]]></content><tabTrigger>gds-table</tabTrigger><scope>text.html</scope></snippet>

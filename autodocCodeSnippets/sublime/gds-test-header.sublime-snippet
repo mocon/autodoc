@@ -1,6 +1,0 @@
-<!-- Header Sub-Component -->
-<snippet><content><![CDATA[
-<header class="test__header">
-    <span class="example__span">Example</span>
-</header>
-]]></content><tabTrigger>gds-test-header</tabTrigger><scope>text.html</scope></snippet>

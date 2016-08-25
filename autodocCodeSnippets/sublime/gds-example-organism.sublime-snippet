@@ -1,8 +1,0 @@
-<!-- Example Organism -->
-<snippet><content><![CDATA[
-<div class="example__organism">
-    <span class="example__span">
-        <span class="example__span">Example</span>
-    </span>
-</div>
-]]></content><tabTrigger>gds-example-organism</tabTrigger><scope>text.html</scope></snippet>

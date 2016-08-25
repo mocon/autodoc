@@ -1,5 +1,5 @@
 /**
- * The button component, prefixed by .gds-button, is used to style <button> tags. Note that all optional classes may be used in combination with each other, for example on a single element with gds-button--success, gds-button--lg, & gds-button--block classes. To indicate that a button is disabled, use the disabled="disabled" HTML attribute.
+ * The button component, prefixed by <span class="gds-text--code">gds-button</span>, is used to style &lt;button&gt; tags. Note that all optional classes may be used in combination with each other, for example on a single element with <span class="gds-text--code">gds-button--success</span>, <span class="gds-text--code">gds-button--lg</span>, & <span class="gds-text--code">gds-button--block</span> classes. To indicate that a button is disabled, use the disabled="disabled" HTML attribute.
  *
  * @section {String} section Atoms
  *
@@ -142,6 +142,25 @@
 	}
 	&:focus {
 		box-shadow:inset 0px #{-$cap-size} 0px 0px $gg-light-4, 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,1);
+	}
+}
+
+.gds-button--outline {
+	background:transparent !important;
+	text-shadow:none;
+	color:$gg-blue;
+	box-shadow:inset 0px #{-$cap-size} 0px 0px rgba(black,.2), 0 0 5px 0px rgba(0,0,0,0), inset 0 0 120px 0 rgba(255,255,255,0), inset 0 -1px 1px 2px rgba(white, 0), inset 0px 0px 2px 0px rgba(black,.3);
+	&:hover,
+	&:focus:hover {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px rgba(black,.2), 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(255,255,255,.5), inset 0 -1px 1px 2px rgba(white, 0), inset 0px 0px 2px 0px rgba(black,.3);
+		text-shadow: 0px 1px 2px rgba(255,255,255,1);
+	}
+	&:active,
+	&:active:focus {
+		box-shadow:inset 0px #{-$cap-size/2} 0px 0px rgba(black,.2), 0 0 5px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white, 0), inset 0px 0px 2px 0px rgba(black,.3);
+	}
+	&:focus {
+		box-shadow:inset 0px #{-$cap-size} 0px 0px rgba(black,.2), 0 0 6px 0px rgba(0,0,0,.2), inset 0 0 120px 0 rgba(0,0,0,.025), inset 0 -1px 1px 2px rgba(white,1), inset 0px 0px 2px 0px rgba(black,.3);
 	}
 }
 
@@ -632,7 +651,9 @@ $button-color-map: (
 		.gds-button--default {
 			color: $primary-color;
 		}
-
+		.gds-button--outline {
+			color:$primary-color;
+		}
 		// Button toggle
 		.gds-button--toggle {
 			&.gds-button--active {

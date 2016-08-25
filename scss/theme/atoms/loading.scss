@@ -1,0 +1,132 @@
+/**
+ * The loading component, prefixed by <span class="gds-text--code">gds-loading</span>, is used to indicate asynchronous loading of content. To show the indicator on a transparent overlay, add the <span class="gds-text--code">gds-loading--bg</span> class to the parent element containing <span class="gds-text--code">gds-loading</span>.
+ *
+ * @section {String} section Atoms
+ *
+ * @parentComponent {String} parentComponent Loading
+ *
+ * @name {String} name Loading
+ *
+ * @example {Code}
+ *
+ * <div class="gds-loading">
+ * ---]<div class="gds-loading__dot"></div>
+ * </div>
+ *
+ * @renderMarkup {Boolean} renderMarkup true
+ *
+ * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-loading
+ * @defaultClasses {Array} defaultClasses gds-loading
+ * @optionalClasses {Array} optionalClasses
+ */
+.gds-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.gds-loading--bg {
+  width: 100%;
+  height: 100%;
+  background: $trans-white-light;
+}
+
+.gds-loading__dot,
+.gds-loading__dot:before,
+.gds-loading__dot:after {
+  width: ($unit / 2);
+  height: ($unit / 2);
+  border-radius: ($unit / 4);
+  transition: all .25s ease-in-out;
+}
+
+.gds-loading__dot {
+  position: relative;
+  top: -50%;
+  left: -50%;
+  -webkit-animation-delay: 0.25s !important;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+  }
+
+  &:before {
+    left: -13px;
+    -webkit-animation-delay: 0s !important;
+  }
+
+  &:after {
+    left: 13px;
+    -webkit-animation-delay: 0.5s !important;
+  }
+}
+
+/**
+ * For a larger variation of <span class="gds-text--code">gds-loading</span>, add the <span class="gds-text--code">gds-loading__dot--lg</span> class to <span class="gds-text--code">gds-loading__dot</span>.
+ *
+ * @section {String} section Atoms
+ *
+ * @parentComponent {String} parentComponent Loading
+ *
+ * @name {String} name Loading - Large
+ *
+ * @example {Code}
+ *
+ * <div class="gds-loading">
+ * ---]<div class="gds-loading__dot gds-loading__dot--lg"></div>
+ * </div>
+ *
+ * @renderMarkup {Boolean} renderMarkup true
+ *
+ * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-loading--lg
+ * @defaultClasses {Array} defaultClasses gds-loading
+ * @optionalClasses {Array} optionalClasses
+ */
+// Large dots
+.gds-loading__dot--lg,
+.gds-loading__dot--lg:before,
+.gds-loading__dot--lg:after {
+  width: $unit;
+  height: $unit;
+  border-radius: ($unit / 2);
+}
+
+.gds-loading__dot--lg:before {
+  left: -26px;
+}
+
+.gds-loading__dot--lg:after {
+  left: 26px;
+}
+
+// Themes
+$color-map: $default-color-map;
+@each $class, $primary-color, $primary-color-dark, $primary-color-light, $secondary-color, $secondary-color-dark, $secondary-color-light, $tertiary-color, $tertiary-color-dark, $tertiary-color-light, $success-color, $success-color-dark, $success-color-light, $warning-color, $warning-color-dark, $warning-color-light, $danger-color, $danger-color-dark, $danger-color-light, $info-color, $info-color-dark, $info-color-light in $color-map {
+
+  .#{$class} {
+    .gds-loading__dot,
+    .gds-loading__dot:before,
+    .gds-loading__dot:after {
+      animation: #{$class}-pulse 3s infinite;
+    }
+
+    @keyframes #{$class}-pulse {
+      0% {background: rgba($primary-color,0.15);}
+      70% {background: rgba($primary-color,1);}
+      100% {background: rgba($primary-color,0.15);}
+    }
+  }
+
+}
+
+.sample-area {
+  width: 100%;
+  height: 200px;
+}

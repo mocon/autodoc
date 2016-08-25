@@ -1,0 +1,93 @@
+/**
+ * The corner-content component, prefixed by <span class="gds-text--code">gds-corner-content</span>, is meant for secondary navigation that does not work in the context of a standard <span class="gds-text--code">gds-modal</span> component. To show the component, add the <span class="gds-text--code">gds-corner-content--shown</span> class to <span class="gds-text--code">gds-corner-content</span>. This component can be aligned to the right or left side of the user's window by toggling the <span class="gds-text--code">gds-corner-content--right</span> and <span class="gds-text--code">gds-corner-content--left</span> classes.
+ *
+ * @section {String} section Molecules
+ *
+ * @parentComponent {String} parentComponent Corner-Content
+ *
+ * @name {String} name Corner-Content
+ *
+ * @example {Code}
+ *
+ * <div class="gds-corner-content gds-corner-content--right gds-corner-content--shown">
+ * ---]<div class="gds-corner-content__header">
+ * ---]---]<h4 class="gds-corner-content__title">Corner content title</h4>
+ * ---]---]<div class="gds-corner-content__controls">
+ * ---]---]---]<button class="gds-corner-content__button"><i class="fa fa-arrows-h"></i></button>
+ * ---]---]---]<button class="gds-corner-content__button"><i class="fa fa-expand"></i></button>
+ * ---]---]</div>
+ * ---]</div>
+ * ---]<div class="gds-corner-content__block">
+ * ---]---]...
+ * ---]</div>
+ * </div>
+ *
+ * @renderMarkup {Boolean} renderMarkup false
+ *
+ * @author {String} author Myles O'Connor
+ *
+ * @tabTrigger {String} tabTrigger gds-corner-content
+ *
+ * @optionalClasses {Array} optionalClasses gds-corner-content--shown,gds-corner-content--left,gds-corner-content--right
+ */
+.gds-corner-content {
+    position: fixed;
+    width: ($unit * 30);
+    bottom: 0;
+    transform: translateY(100%);
+    background-color: white;
+    box-shadow: 0 0 3px 1px rgba(0,0,0,0.1);
+    z-index: $z-index-8;
+    @extend .-transition-out-250;
+
+    @media #{$phone-width}, #{$phablet-width} {
+        left: $unit;
+        right: $unit;
+        width: auto;
+    }
+}
+
+// Show .gds-corner-content
+.gds-corner-content--shown {
+    transform: translateY(0%);
+}
+
+.gds-corner-content--right {
+    right: $unit;
+}
+
+.gds-corner-content--left {
+    left: $unit;
+}
+
+.gds-corner-content__header {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    background-color: $gg-dark-3;
+    overflow: hidden;
+    border-radius: $border-radius $border-radius 0 0;
+}
+
+.gds-corner-content__title {
+    color: white;
+    display: inline-block;
+    vertical-align: middle;
+    padding: ($unit * 0.4) 0 0 ($unit * 0.7);
+}
+
+// Buttons in .gds-corner-content__header
+.gds-corner-content__controls {
+    float: right;
+
+    &:after {
+        @extend .-clear-both;
+    }
+}
+
+.gds-corner-content__button {
+    @extend .gds-button;
+    @extend .gds-button--link;
+    @extend .gds-button--sm;
+}

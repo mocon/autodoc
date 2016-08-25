@@ -1,0 +1,213 @@
+/**
+ * The timeline component, prefixed by <span class="gds-text--code">gds-timeline</span>, is used to indicate the number of completed steps in a given procedure. Add the modifier class <span class="gds-text--code">gds-timeline__item--active</span> to <span class="gds-text--code">gds-timeline__item</span> to show the current step the user is on.
+ *
+ * @section {String} section Organisms
+ *
+ * @parentComponent {String} parentComponent Timeline
+ *
+ * @name {String} name Timeline
+ *
+ * @example {Code}
+ *
+ * <div class="gds-timeline">
+ * ---]<ul class="gds-timeline__items">
+ * ---]---]<li class="gds-timeline__item">
+ * ---]---]---]<div class="gds-timeline__item-label">Step 1</div>
+ * ---]---]---]<div class="gds-timeline__item-icon"></div>
+ * ---]---]</li>
+ * ---]---]<li class="gds-timeline__item">
+ * ---]---]---]<div class="gds-timeline__item-label">Step 2</div>
+ * ---]---]---]<div class="gds-timeline__item-icon"></div>
+ * ---]---]</li>
+ * ---]---]<li class="gds-timeline__item">
+ * ---]---]---]<div class="gds-timeline__item-label">Step 3</div>
+ * ---]---]---]<div class="gds-timeline__item-icon"></div>
+ * ---]---]</li>
+ * ---]---]<li class="gds-timeline__item">
+ * ---]---]---]<div class="gds-timeline__item-label">Step 4</div>
+ * ---]---]---]<div class="gds-timeline__item-icon"></div>
+ * ---]---]</li>
+ * ---]---]<div class="gds-timeline__progress-wrapper">
+ * ---]---]---]<div class="gds-timeline__progress-indicator"></div>
+ * ---]---]</div>
+ * ---]</ul>
+ * </div>
+ *
+ * @renderMarkup {Boolean} renderMarkup true
+ *
+ * @author {String} author Dan McKenna
+ *
+ * @tabTrigger {String} tabTrigger gds-timeline
+ *
+ * @optionalClasses {Array} optionalClasses
+ */
+.gds-timeline {
+
+}
+
+.gds-timeline__items {
+	list-style:none;
+	text-align:justify;
+	&:after {
+		display:inline-block;
+    width:100%;
+    content:'';
+	}
+}
+
+.gds-timeline__item {
+	display:inline-block;
+	text-align:center;
+	color:$gg-light-4;
+	cursor:pointer;
+	z-index:1;
+	&:hover {
+		color:$gg-dark-4;
+		.gds-timeline__item-icon {
+			transform:scale(1.2);
+			background-color:$gg-light-4;
+			border-color:white;
+			box-shadow:0px 0px 0px 2px $gg-blue;
+		}
+	}
+	&:active {
+		color:$gg-blue;
+		.gds-timeline__item-icon {
+			transform:scale(.75);
+			background-color:$gg-blue
+		}
+	}
+}
+
+.gds-timeline__item--active {
+	color:$gg-blue;
+	&:hover {
+		color:$gg-blue;
+		.gds-timeline__item-icon {
+			background-color:$gg-blue;
+			border-color:white;
+			box-shadow:0px 0px 0px 2px $gg-blue;
+		}
+	}
+	.gds-timeline__item-icon {
+		background-color:$gg-blue;
+			border-color:white;
+			box-shadow:0px 0px 0px 2px $gg-blue;
+	}
+}
+
+.gds-timeline__item--completed {
+	color:$gg-blue-dark-2;
+	.gds-timeline__item-icon {
+		background-color:$gg-blue-dark-2;
+	}
+	&:hover {
+		color:$gg-blue;
+		.gds-timeline__item-icon {
+			background-color:$gg-blue;
+		}
+	}
+}
+
+.gds-timeline__item-label {
+	display:block;
+	color:inherit;
+	width:$unit*5;
+	white-space: nowrap;
+	@include transition-back(all,250ms);
+}
+
+.gds-timeline__item-icon {
+	display:inline-block;
+	border-radius:50%;
+	height:$unit*1.25;
+	width:$unit*1.25;
+	border:1px solid transparent;
+	background-color:$gg-light-2;
+	transform-origin:50% 50%;
+	@include transition-back(all,250ms);
+
+}
+
+.gds-timeline__progress-wrapper {
+	position:absolute;
+	bottom:53%;
+	left:$unit*2.5;
+	right:$unit*2.5;
+	height:4px;
+	overflow:hidden;
+	background-color:$gg-light-2;
+}
+
+.gds-timeline__progress-indicator {
+	background-color:$gg-blue-dark-2;
+	height:100%;
+	width:0%;
+	@include transition-ease-out(all,250ms);
+}
+
+// Loop for sizing progress indicator
+@for $i from 2 through 20 {
+	$w: (100 / (-1 + $i));
+	@for $g from 1 through $i {
+		$s: $w*(-1 + $g);
+		.gds-timeline__item:first-child:nth-last-of-type(#{$i}) ~ .gds-timeline__item--active:nth-of-type(#{$g}) ~ .gds-timeline__progress-wrapper .gds-timeline__progress-indicator{
+			width:$s+ %;
+		}
+	}
+}
+
+/////THEMING
+$color-map: $default-color-map;
+@each $class, $primary-color, $primary-color-dark, $primary-color-light, $secondary-color, $secondary-color-dark, $secondary-color-light, $tertiary-color, $tertiary-color-dark, $tertiary-color-light, $success-color, $success-color-dark, $success-color-light, $warning-color, $warning-color-dark, $warning-color-light, $danger-color, $danger-color-dark, $danger-color-light, $info-color, $info-color-dark, $info-color-light in $color-map {
+	.#{$class} {
+
+		.gds-timeline__item {
+			&:hover {
+				.gds-timeline__item-icon {
+					border-color:white;
+					box-shadow:0px 0px 0px 2px $primary-color;
+				}
+			}
+			&:active {
+				color:$primary-color;
+				.gds-timeline__item-icon {
+					background-color:$primary-color;
+				}
+			}
+		}
+
+		.gds-timeline__item--active {
+			color:$primary-color;
+			&:hover {
+				color:$primary-color;
+				.gds-timeline__item-icon {
+					background-color:$primary-color;
+					box-shadow:0px 0px 0px 2px $primary-color;
+				}
+			}
+			.gds-timeline__item-icon {
+				background-color:$primary-color;
+					border-color:white;
+					box-shadow:0px 0px 0px 2px $primary-color;
+			}
+		}
+
+		.gds-timeline__item--completed {
+			color:$primary-color-dark;
+			.gds-timeline__item-icon {
+				background-color:$primary-color-dark;
+			}
+			&:hover {
+				color:$gg-blue;
+				.gds-timeline__item-icon {
+					background-color:$primary-color;
+				}
+			}
+		}
+
+		.gds-timeline__progress-indicator {
+			background-color:$primary-color-dark;
+		}
+	}
+}
