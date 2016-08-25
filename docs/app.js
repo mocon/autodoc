@@ -53,8 +53,6 @@ var App = React.createClass({
 
         // Temporary, custom order sections
         orderedSections = [
-            'Themes',
-            'Subatomic',
             'Atoms',
             'Molecules',
             'Organisms',
