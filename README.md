@@ -86,5 +86,5 @@ Generated code snippets can be viewed in:
 ## Todo
 
 - [ ] Add `npm clipboard` for copy & pasting code
-- [ ] Add `npm react-scroll` to scroll to anchor from URL on &lt;App /&gt; componentDidMount
 - [ ] Confirm syntax highlighting for `cpp`, `java`, `groovy`, `python`, `javascript`, `html`, & `css`
+- [ ] Add customized ordering to sections

@@ -40,7 +40,8 @@ var App = React.createClass({
     _getSections: function() {
         var _this = this,
             currentJson = _this.state.json,
-            sections = [];
+            sections = [],
+            orderedSections = [];
 
         currentJson.map(function(component) {
             component.tags.map(function(tag) {
@@ -49,8 +50,18 @@ var App = React.createClass({
                 }
             });
         });
-        sections.sort();
 
+        // Temporary, custom order sections
+        // orderedSections = [
+        //     'Themes',
+        //     'Subatomic',
+        //     'Atoms',
+        //     'Molecules',
+        //     'Organisms',
+        //     'Utilities'
+        // ];
+
+        // Pass in orderedSections for custom order
         _this.setState({sections: sections});
     },
     _getUrlHash: function() {
@@ -65,10 +76,14 @@ var App = React.createClass({
             location.href = hash.toString();
         }, 10);
     },
-    componentDidMount: function() {
+    componentWillMount: function() {
         var _this = this;
 
         _this._getUrlHash();
+    },
+    componentDidMount: function() {
+        var _this = this;
+
         _this._getSections();
     },
     render: function() {
@@ -94,6 +109,19 @@ var App = React.createClass({
                         <img src="./logo.png" alt="Autodoc" className="-m-b-2" />
                         <p><span className="gds-text--keyboard">npm run autodoc &lt;/path/to/sourcecode/&gt;</span><br/>to generate documentation.</p>
                     </div>
+                </div>
+            )
+        }
+
+        if (this.state.isLoading) {
+            var loadingStyles = {
+                    position: 'fixed',
+                    marginLeft: '1rem'
+                };
+
+            return (
+                <div className="gds-loading" style={loadingStyles}>
+                    <div className="gds-loading__dot"></div>
                 </div>
             )
         }
@@ -431,7 +459,7 @@ var MainColumnSectionItem = React.createClass({
 
                                 {/* Display component's description */}
                                 <label className="gds-form-group__label -m-a-0">Description</label>
-                                <h3 className="gds-text--body-md -m-b-3" style={capitalized}>{component.description}</h3>
+                                <h3 className="gds-text--body-md -m-b-3" dangerouslySetInnerHTML={createRenderedMarkup(component.description)}></h3>
                             </div>
                         )
                     }

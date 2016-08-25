@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
         <title>Product Name Documentation</title>
         <link rel="icon" href="./favicon.ico">
-        <meta name="description" content="Generated Documentation">
+        <meta name="description" content="Autodoc generated documentation">
         <meta name="author" content="Myles O'Connor">
         <link rel="stylesheet" href="https://ds.gumgum.com/staging/main.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css">
@@ -15,35 +15,15 @@
         <script src="https://npmcdn.com/jquery@3.1.0/dist/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <style>
-            /* Temporary */
-            .gds-docs__child-component:before {
-                content: '';
-                position: absolute;
-                display: block;
-                top: -49px;
-                left: -1rem;
-                right: -1rem;
-                height: 32px;
-                border-left: 1px solid #e6e6e6;
-                border-right: 1px solid #e6e6e6;
-                border-bottom: 33px solid #e6e6e6;
-                border-left: 50px solid transparent;
-                border-right: 50px solid transparent;
-                height: 0;
-                width: calc(100% - 67px);
-            }
-            .gds-docs__anchor-target:before {
-                content: '';
-                display: block;
-                height: 100px; /* fixed header height*/
-                margin: -100px 0 0; /* negative fixed header height */
-            }
-        </style>
     </head>
     <body class="gg-theme-mantii -has-page-header -has-slide-nav" gg-slide-nav>
         <!-- React app injected here -->
         <div data-ui-role="content"></div>
+
+        <!-- Loading animation -->
+        <div class="gds-loading">
+            <div class="gds-loading__dot gds-loading__dot--lg"></div>
+        </div>
 
         <!-- React app -->
         <script type="text/babel" src="./app.js"></script>

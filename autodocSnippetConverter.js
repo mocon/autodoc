@@ -36,23 +36,16 @@ module.exports = {
 
         // Loop through all components, passed into convert() as json
         json.map(function(component) {
-            var defaultTextWithTabStop = '',
-                numberOfDefaultClasses = component.defaultClasses.length,
-                numberOfOptionalClasses = component.optionalClasses.length,
-                tabStopIndex = 1,
+            var numberOfOptionalClasses = component.optionalClasses.length,
                 sublimeSnippet = '',
-                sublimeDefaultClasses = '',
-                sublimeOptionalClasses = '',
                 vimSnippet = '',
                 phpStormSnippet = '',
-                phpStormTabStopIndex = 1,
-                phpStormOptionalClasses = '',
-                phpStormOptionalClassVariables = '',
                 phpStormBaseHtml = '',
                 phpStormEncodedHtml = '';
 
             // If this component has a tabTrigger, create snippets for it
             if (component.tabTrigger) {
+
                 // Assemble Sublime snippet
                 sublimeSnippet += '<!-- ' + component.name + ' -->\n<snippet><content><![CDATA[\n';
                 sublimeSnippet += component.example.replace(/---]/g, '    ') + '\n';
@@ -91,7 +84,6 @@ module.exports = {
                     }
                 });
             }
-
         });
 
         console.log('Code snippets converted and saved.');
