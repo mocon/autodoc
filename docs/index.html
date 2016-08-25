@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-        <title>Product Name Documentation</title>
+        <title>Design System Documentation</title>
         <link rel="icon" href="./favicon.ico">
-        <meta name="description" content="Autodoc generated documentation">
+        <meta name="description" content="Autodoc generated Documentation">
         <meta name="author" content="Myles O'Connor">
         <link rel="stylesheet" href="https://ds.gumgum.com/staging/main.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css">
@@ -17,13 +17,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body class="gg-theme-mantii -has-page-header -has-slide-nav" gg-slide-nav>
-        <!-- React app injected here -->
-        <div data-ui-role="content"></div>
-
         <!-- Loading animation -->
-        <div class="gds-loading">
+        <div class="gds-loading -z-1">
             <div class="gds-loading__dot gds-loading__dot--lg"></div>
         </div>
+
+        <!-- React app injected here -->
+        <div data-ui-role="content" class="-z-2"></div>
 
         <!-- React app -->
         <script type="text/babel" src="./app.js"></script>
