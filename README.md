@@ -88,3 +88,4 @@ Generated code snippets can be viewed in:
 - [ ] Add `npm clipboard` for copy & pasting code
 - [ ] Confirm syntax highlighting for `cpp`, `java`, `groovy`, `python`, `javascript`, `html`, & `css`
 - [ ] Add customized ordering to sections
+- [ ] Inline CSS for loading animation
